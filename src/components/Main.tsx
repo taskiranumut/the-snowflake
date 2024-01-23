@@ -5,7 +5,7 @@ type MainProps = {
 };
 
 function Main({ children }: MainProps) {
-  return <main>{children}</main>;
+  return <main className="bg-gray-50 px-3 py-4">{children}</main>;
 }
 
 export default Main;

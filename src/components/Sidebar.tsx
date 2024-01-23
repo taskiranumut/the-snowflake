@@ -1,5 +1,5 @@
-import MainLogo from '@/ui/MainLogo';
-import Navbar from '@/ui/Navbar';
+import MainLogo from '@/components/MainLogo';
+import Navbar from '@/components/Navbar';
 
 function Sidebar() {
   return (

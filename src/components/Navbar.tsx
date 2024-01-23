@@ -1,4 +1,4 @@
-import NavItem from '@/ui/shared/NavItem';
+import NavItem from '@/components/NavItem';
 import {
   AiFillHome,
   AiFillCalendar,

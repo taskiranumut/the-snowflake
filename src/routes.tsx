@@ -1,5 +1,5 @@
 import { createRoutesFromElements, Navigate, Route } from 'react-router-dom';
-import AppLayout from '@/ui/AppLayout';
+import AppLayout from '@/components/AppLayout';
 import Dashboard from '@/pages/Dashboard';
 
 const routes = createRoutesFromElements(
