@@ -1,12 +1,38 @@
+import { deleteContainer } from '@/services/api';
 import { type DataContainer } from '@/services/api/containers.types';
 import { formatCurrency } from '@/utils';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 type ContainerTableRowProps = {
   container: DataContainer;
 };
 
 function ContainerTableRow({ container }: ContainerTableRowProps) {
-  const { name, maxCapacity, regularPrice, discount, image } = container;
+  const {
+    id: containerId,
+    name,
+    maxCapacity,
+    regularPrice,
+    discount,
+    image,
+  } = container;
+
+  const queryClient = useQueryClient();
+
+  const { isPending, mutate } = useMutation({
+    mutationFn: deleteContainer,
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: ['containers'],
+      }),
+    onError: (err) => {
+      alert(err.message);
+    },
+  });
+
+  function handleDeleteContainer(id: number): void {
+    mutate(id);
+  }
 
   return (
     <div
@@ -24,7 +50,12 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
         {formatCurrency(regularPrice)}
       </div>
       <div className="font-sono text-green-700">{formatCurrency(discount)}</div>
-      <button>Delete</button>
+      <button
+        onClick={() => handleDeleteContainer(containerId)}
+        disabled={isPending}
+      >
+        Delete
+      </button>
     </div>
   );
 }
