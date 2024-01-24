@@ -20,3 +20,11 @@ export async function getContainers(): Promise<DataContainer[]> {
 
   return containerData;
 }
+
+export async function deleteContainer(id: number): Promise<void> {
+  const { error } = await supabase.from('containers').delete().eq('id', id);
+
+  if (error) {
+    throw new Error(`Container could not be deleted! -> ${error.message}`);
+  }
+}

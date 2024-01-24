@@ -1,1 +1,1 @@
-export { getContainers } from '@/services/api/containers';
+export { getContainers, deleteContainer } from '@/services/api/containers';
