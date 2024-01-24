@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 import Main from '@/components/Main';
+import Box from '@/components/shared/Box';
 
 function AppLayout() {
   return (
@@ -9,7 +10,9 @@ function AppLayout() {
       <Sidebar />
       <Header />
       <Main>
-        <Outlet />
+        <Box>
+          <Outlet />
+        </Box>
       </Main>
     </div>
   );
