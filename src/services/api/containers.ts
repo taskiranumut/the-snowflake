@@ -5,7 +5,8 @@ export async function getContainers(): Promise<DataContainer[]> {
   const { data, error } = await supabase.from('containers').select('*');
 
   if (error) {
-    throw new Error(`Containers could not be loaded! -> ${error.message}`);
+    console.error(error.message);
+    throw new Error('Containers could not be loaded!');
   }
 
   const containerData: DataContainer[] = data.map((rawData) => ({
@@ -25,6 +26,7 @@ export async function deleteContainer(id: number): Promise<void> {
   const { error } = await supabase.from('containers').delete().eq('id', id);
 
   if (error) {
-    throw new Error(`Container could not be deleted! -> ${error.message}`);
+    console.error(error.message);
+    throw new Error('Container could not be deleted!');
   }
 }

@@ -2,6 +2,7 @@ import { deleteContainer } from '@/services/api';
 import { type DataContainer } from '@/services/api/containers.types';
 import { formatCurrency } from '@/utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 type ContainerTableRowProps = {
   container: DataContainer;
@@ -21,12 +22,14 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
 
   const { isPending, mutate } = useMutation({
     mutationFn: deleteContainer,
-    onSuccess: () =>
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['containers'],
       }),
+        toast.success('Container successfully deleted!');
+    },
     onError: (err) => {
-      alert(err.message);
+      toast.error(err.message);
     },
   });
 
