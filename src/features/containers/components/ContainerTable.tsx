@@ -14,7 +14,7 @@ function ContainerTable() {
 
   return (
     <div
-      className="overflow-hidden rounded-lg border border-gray-200 bg-white text-lg"
+      className="overflow-hidden rounded-md border border-gray-200 bg-white text-base"
       role="table"
     >
       <ContainerTableHeader />
