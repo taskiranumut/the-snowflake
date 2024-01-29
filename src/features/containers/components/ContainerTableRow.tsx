@@ -25,8 +25,8 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['containers'],
-      }),
-        toast.success('Container successfully deleted!');
+      });
+      toast.success('Container successfully deleted!');
     },
     onError: (err) => {
       toast.error(err.message);
