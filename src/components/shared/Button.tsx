@@ -17,7 +17,7 @@ function Button({
   ...props
 }: ButtonProps) {
   const base =
-    'rounded-md shadow-sm text-center transition-all duration-200 font-normal';
+    'rounded-md shadow-sm text-center transition-all duration-200 font-normal disabled:opacity-50 disabled:pointer-events-none focus:border-0 focus:outline-none focus:ring-2 focus:ring-sky-300';
 
   const sizes = {
     sm: 'text-sm py-1 px-2',

@@ -19,7 +19,7 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         </label>
         <textarea
           id={id}
-          className={`h-24 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base shadow-sm ${className}`}
+          className={`h-24 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base shadow-sm focus:border-0 focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:pointer-events-none disabled:opacity-50 ${className}`}
           {...props}
           ref={ref}
         />

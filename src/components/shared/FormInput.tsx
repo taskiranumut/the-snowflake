@@ -13,8 +13,8 @@ const FormInput = forwardRef<HTMLInputElement, InputProps>(function Input(
 ) {
   const styles =
     props?.type === 'file'
-      ? 'file-px-3 rounded-md border text-base shadow-sm file:mr-3 file:cursor-pointer file:rounded-md file:border-0 file:bg-sky-600 file:py-2 file:text-inherit file:text-sky-50 file:transition-colors file:duration-200 file:hover:bg-sky-700'
-      : 'rounded-md border border-gray-300 bg-white px-3 py-2 text-base shadow-sm';
+      ? 'file-px-3 rounded-md border text-base shadow-sm file:mr-3 file:cursor-pointer file:rounded-md file:border-0 file:bg-sky-600 file:py-2 file:text-inherit file:text-sky-50 file:transition-colors file:duration-200 file:hover:bg-sky-700 disabled:opacity-50 disabled:pointer-events-none focus:border-0 focus:outline-none focus:ring-2 focus:ring-sky-300'
+      : 'rounded-md border border-gray-300 bg-white px-3 py-2 text-base shadow-sm disabled:opacity-50 disabled:pointer-events-none focus:border-0 focus:outline-none focus:ring-2 focus:ring-sky-300';
 
   const elements = (
     <>
