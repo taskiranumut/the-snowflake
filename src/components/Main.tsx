@@ -5,7 +5,11 @@ type MainProps = {
 };
 
 function Main({ children }: MainProps) {
-  return <main className="bg-gray-50 px-3 py-4">{children}</main>;
+  return (
+    <main className="h-full overflow-auto bg-gray-50 px-3 py-4">
+      {children}
+    </main>
+  );
 }
 
 export default Main;

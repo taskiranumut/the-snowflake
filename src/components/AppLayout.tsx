@@ -6,7 +6,7 @@ import Box from '@/components/shared/Box';
 
 function AppLayout() {
   return (
-    <div className="grid min-h-screen grid-cols-[16rem_1fr] grid-rows-[auto_1fr]">
+    <div className="grid h-screen grid-cols-[16rem_1fr] grid-rows-[auto_1fr]">
       <Sidebar />
       <Header />
       <Main>
