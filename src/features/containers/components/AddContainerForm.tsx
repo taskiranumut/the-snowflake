@@ -4,6 +4,10 @@ import FormInput from '@/components/shared/FormInput';
 import FormTextArea from '@/components/shared/FormTextarea';
 import Button from '@/components/shared/Button';
 import { useForm } from 'react-hook-form';
+import { addNewContainer } from '@/services/api';
+import { type RawNewDataContainer } from '@/services/api/containers.types';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 type FormFields = {
   name: string;
@@ -11,11 +15,27 @@ type FormFields = {
   regularPrice: number | '';
   discount: number | '';
   description: string;
-  image: File | null;
+  image: string | null;
 };
 
 function AddContainerForm() {
-  const { register, handleSubmit } = useForm<FormFields>({
+  const queryClient = useQueryClient();
+
+  const { isPending, mutate } = useMutation({
+    mutationFn: addNewContainer,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['containers'],
+      });
+      toast.success('Container successfully added!');
+      reset();
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
+  const { register, handleSubmit, reset } = useForm<FormFields>({
     defaultValues: {
       name: '',
       maxCapacity: '',
@@ -26,8 +46,28 @@ function AddContainerForm() {
     },
   });
 
+  function getConvertedNumberValue(value: number | string): number | null {
+    const convertedValue = Number(value);
+    return Number.isNaN(convertedValue) ? null : convertedValue;
+  }
+
+  function getConvertedContainerData(data: FormFields): RawNewDataContainer {
+    return {
+      name: data.name,
+      max_capacity: getConvertedNumberValue(data.maxCapacity),
+      regular_price: getConvertedNumberValue(data.regularPrice),
+      discount: getConvertedNumberValue(data.discount),
+      description: data.description,
+      image: '',
+    };
+  }
+
   function onSubmit(data: FormFields) {
+    const newContainerData = getConvertedContainerData(data);
+
+    console.log('newData :>> ', newContainerData);
     console.log('data :>> ', data);
+    mutate(newContainerData);
   }
 
   return (
@@ -76,10 +116,12 @@ function AddContainerForm() {
         />
       </FormRow>
       <FormRow>
-        <Button color="secondary" type="reset">
+        <Button color="secondary" type="reset" disabled={isPending}>
           Cancel
         </Button>
-        <Button type="submit">Add Container</Button>
+        <Button type="submit" disabled={isPending}>
+          Add Container
+        </Button>
       </FormRow>
     </Form>
   );
