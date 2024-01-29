@@ -35,7 +35,13 @@ function AddContainerForm() {
     },
   });
 
-  const { register, handleSubmit, reset } = useForm<FormFields>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    getValues,
+    formState: { errors },
+  } = useForm<FormFields>({
     defaultValues: {
       name: '',
       maxCapacity: '',
@@ -72,47 +78,81 @@ function AddContainerForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow>
-        <FormInput id="name" label="Container Name" {...register('name')} />
+      <FormRow error={errors?.name?.message}>
+        <FormInput
+          id="name"
+          label="Container Name"
+          {...register('name', {
+            required: 'Container name is required',
+          })}
+          disabled={isPending}
+        />
       </FormRow>
-      <FormRow>
+      <FormRow error={errors?.maxCapacity?.message}>
         <FormInput
           type="number"
           id="maxCapacity"
           label="Maximum Capacity"
-          {...register('maxCapacity')}
+          step="1"
+          {...register('maxCapacity', {
+            required: 'Capacity is required',
+            min: {
+              value: 1,
+              message: 'Capacity should be at least 1',
+            },
+          })}
+          disabled={isPending}
         />
       </FormRow>
-      <FormRow>
+      <FormRow error={errors?.regularPrice?.message}>
         <FormInput
           type="number"
           id="regularPrice"
           label="Regular Price"
-          {...register('regularPrice')}
+          {...register('regularPrice', {
+            required: 'Regular price is required',
+            min: {
+              value: 1,
+              message: 'Capacity should be at least 1',
+            },
+          })}
+          disabled={isPending}
         />
       </FormRow>
-      <FormRow>
+      <FormRow error={errors?.discount?.message}>
         <FormInput
           type="number"
           id="discount"
           label="Discount"
-          {...register('discount')}
+          {...register('discount', {
+            required: 'Discount is required',
+            validate: (value) =>
+              Number(value) < Number(getValues('regularPrice')) ||
+              'Discount should be less than regular price',
+          })}
+          disabled={isPending}
         />
       </FormRow>
-      <FormRow>
+      <FormRow error={errors?.description?.message}>
         <FormTextArea
           id="description"
           label="Description For Website"
-          {...register('description')}
+          {...register('description', {
+            required: 'Description is required',
+          })}
+          disabled={isPending}
         />
       </FormRow>
-      <FormRow>
+      <FormRow error={errors?.image?.message}>
         <FormInput
           type="file"
           id="image"
           accept="image/*"
           label="Container Photo"
-          {...register('image')}
+          {...register('image', {
+            required: 'Image is required',
+          })}
+          disabled={isPending}
         />
       </FormRow>
       <FormRow>
