@@ -1,5 +1,9 @@
 import supabase from '@/services/supabase';
-import { convertRawContainerData, getImageInfo } from '@/services/api/utils';
+import {
+  convertRawContainerData,
+  getImageInfo,
+  getContainerPlaceholderImagePath,
+} from '@/services/api/utils';
 import {
   type DataContainer,
   type RawNewDataContainer,
@@ -30,7 +34,7 @@ export async function addNewContainer(
 ): Promise<DataContainer[]> {
   const imageInfo: ImageInfo = newContainerData.image
     ? getImageInfo(newContainerData.image)
-    : { name: '', path: '' };
+    : { name: '', path: getContainerPlaceholderImagePath() };
 
   const { data, error } = await supabase
     .from('containers')

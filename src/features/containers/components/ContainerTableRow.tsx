@@ -45,7 +45,7 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
       <img
         src={image || ''}
         alt={`${name || 'Container'} image`}
-        className="aspect-[3/2] w-20 min-w-16 scale-150 object-cover object-center text-xs"
+        className="aspect-[3/2] w-20 min-w-16 translate-x-2 scale-150 object-cover object-center text-xs"
       />
       <div className="font-sono font-semibold text-gray-600">{name}</div>
       <div className="font-sono">{`${maxCapacity} guests`}</div>

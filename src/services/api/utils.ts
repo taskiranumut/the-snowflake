@@ -26,3 +26,7 @@ export function getImageInfo(imageFile: File): ImageInfo {
   const path = `${containerImagesUrl}${name}`;
   return { name, path };
 }
+
+export function getContainerPlaceholderImagePath() {
+  return `${containerImagesUrl}default-placeholder.png`;
+}
