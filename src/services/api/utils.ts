@@ -1,7 +1,11 @@
 import {
   type DataContainer,
   type RawDataContainer,
+  type ImageInfo,
 } from '@/services/api/containers.types';
+import { v4 as uuidv4 } from 'uuid';
+
+const containerImagesUrl = import.meta.env.VITE_SUPABASE_CONTAINER_IMAGES_URL;
 
 export function convertRawContainerData(
   data: RawDataContainer[],
@@ -15,4 +19,10 @@ export function convertRawContainerData(
     description: rawData.description,
     image: rawData.image,
   }));
+}
+
+export function getImageInfo(imageFile: File): ImageInfo {
+  const name = `${uuidv4()}-${imageFile?.name}`.replaceAll('/', '');
+  const path = `${containerImagesUrl}${name}`;
+  return { name, path };
 }

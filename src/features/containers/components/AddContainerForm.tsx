@@ -1,7 +1,7 @@
 import Form from '@/components/shared/Form';
 import FormRow from '@/components/shared/FormRow';
 import FormInput from '@/components/shared/FormInput';
-import FormTextArea from '@/components/shared/FormTextarea';
+import FormTextArea from '@/components/shared/FormTextArea';
 import Button from '@/components/shared/Button';
 import { useForm } from 'react-hook-form';
 import { addNewContainer } from '@/services/api';
@@ -15,7 +15,7 @@ type FormFields = {
   regularPrice: number | '';
   discount: number | '';
   description: string;
-  image: string | null;
+  image: FileList | null;
 };
 
 function AddContainerForm() {
@@ -64,14 +64,12 @@ function AddContainerForm() {
       regular_price: getConvertedNumberValue(data.regularPrice),
       discount: getConvertedNumberValue(data.discount),
       description: data.description,
-      image: '',
+      image: data.image?.[0] ?? null,
     };
   }
 
   function onSubmit(data: FormFields) {
     const newContainerData = getConvertedContainerData(data);
-
-    console.log('newData :>> ', newContainerData);
     console.log('data :>> ', data);
     mutate(newContainerData);
   }
@@ -81,7 +79,7 @@ function AddContainerForm() {
       <FormRow error={errors?.name?.message}>
         <FormInput
           id="name"
-          label="Container Name"
+          label="Container Name *"
           {...register('name', {
             required: 'Container name is required',
           })}
@@ -92,7 +90,7 @@ function AddContainerForm() {
         <FormInput
           type="number"
           id="maxCapacity"
-          label="Maximum Capacity"
+          label="Maximum Capacity *"
           step="1"
           {...register('maxCapacity', {
             required: 'Capacity is required',
@@ -108,7 +106,7 @@ function AddContainerForm() {
         <FormInput
           type="number"
           id="regularPrice"
-          label="Regular Price"
+          label="Regular Price *"
           {...register('regularPrice', {
             required: 'Regular price is required',
             min: {
@@ -123,7 +121,7 @@ function AddContainerForm() {
         <FormInput
           type="number"
           id="discount"
-          label="Discount"
+          label="Discount *"
           {...register('discount', {
             required: 'Discount is required',
             validate: (value) =>
@@ -137,9 +135,7 @@ function AddContainerForm() {
         <FormTextArea
           id="description"
           label="Description For Website"
-          {...register('description', {
-            required: 'Description is required',
-          })}
+          {...register('description')}
           disabled={isPending}
         />
       </FormRow>
@@ -149,9 +145,7 @@ function AddContainerForm() {
           id="image"
           accept="image/*"
           label="Container Photo"
-          {...register('image', {
-            required: 'Image is required',
-          })}
+          {...register('image')}
           disabled={isPending}
         />
       </FormRow>
