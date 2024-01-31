@@ -6,6 +6,8 @@ import {
 } from '@/services/api/utils';
 import {
   type DataContainer,
+  type RawNewDataContainerWithImageFile,
+  type RawNewDataContainerWithImagePath,
   type RawNewDataContainer,
   type ImageInfo,
 } from '@/services/api/containers.types';
@@ -30,7 +32,7 @@ export async function deleteContainer(id: number): Promise<void> {
 }
 
 export async function addNewContainer(
-  newContainerData: RawNewDataContainer,
+  newContainerData: RawNewDataContainerWithImageFile,
 ): Promise<DataContainer[]> {
   const imageInfo: ImageInfo = newContainerData.image
     ? getImageInfo(newContainerData.image)
@@ -43,6 +45,51 @@ export async function addNewContainer(
 
   if (error) {
     throw new Error('Containers could not be added!');
+  }
+
+  if (newContainerData.image) {
+    const { error: storageError } = await supabase.storage
+      .from('container_images')
+      .upload(imageInfo.name, newContainerData.image);
+
+    if (storageError) {
+      await deleteContainer(data[0].id);
+      throw new Error(
+        'Container image could not be uploaded and the container was not added!',
+      );
+    }
+  }
+
+  return convertRawContainerData(data);
+}
+
+export async function editContainer({
+  newContainerData,
+  id,
+}: {
+  newContainerData: RawNewDataContainerWithImageFile;
+  id: number;
+}): Promise<DataContainer[]> {
+  let containerData: RawNewDataContainer | RawNewDataContainerWithImagePath;
+  let imageInfo: ImageInfo = { name: '', path: '' };
+
+  if (newContainerData.image) {
+    imageInfo = getImageInfo(newContainerData.image);
+    containerData = { ...newContainerData, image: imageInfo.path };
+  } else {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { image: _, ...rest } = newContainerData;
+    containerData = rest;
+  }
+
+  const { data, error } = await supabase
+    .from('containers')
+    .update(containerData)
+    .eq('id', id)
+    .select();
+
+  if (error) {
+    throw new Error('Containers could not be edited!');
   }
 
   if (newContainerData.image) {

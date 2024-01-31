@@ -24,7 +24,14 @@ export type RawNewDataContainer = {
   regular_price: number | null;
   discount: number | null;
   description: string | null;
+};
+
+export type RawNewDataContainerWithImageFile = RawNewDataContainer & {
   image: File | null;
+};
+
+export type RawNewDataContainerWithImagePath = RawNewDataContainer & {
+  image: string | null;
 };
 
 export type ImageInfo = {

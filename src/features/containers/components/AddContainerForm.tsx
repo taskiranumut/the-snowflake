@@ -4,8 +4,11 @@ import FormInput from '@/components/shared/FormInput';
 import FormTextArea from '@/components/shared/FormTextArea';
 import Button from '@/components/shared/Button';
 import { useForm } from 'react-hook-form';
-import { addNewContainer } from '@/services/api';
-import { type RawNewDataContainer } from '@/services/api/containers.types';
+import { addNewContainer, editContainer } from '@/services/api';
+import {
+  type RawNewDataContainerWithImageFile,
+  type DataContainer,
+} from '@/services/api/containers.types';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
@@ -18,16 +21,34 @@ type FormFields = {
   image: FileList | null;
 };
 
-function AddContainerForm() {
+type AddContainerFormProps = {
+  container?: DataContainer;
+};
+
+function AddContainerForm({ container }: AddContainerFormProps) {
   const queryClient = useQueryClient();
 
-  const { isPending, mutate } = useMutation({
+  const { isPending: isAdding, mutate: mutateAddNewContainer } = useMutation({
     mutationFn: addNewContainer,
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['containers'],
       });
       toast.success('Container successfully added!');
+      reset();
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
+  const { isPending: isEditing, mutate: mutateEditContainer } = useMutation({
+    mutationFn: editContainer,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['containers'],
+      });
+      toast.success('Container successfully edited!');
       reset();
     },
     onError: (err) => {
@@ -43,11 +64,11 @@ function AddContainerForm() {
     formState: { errors },
   } = useForm<FormFields>({
     defaultValues: {
-      name: '',
-      maxCapacity: '',
-      regularPrice: '',
-      discount: 0,
-      description: '',
+      name: container?.name ?? '',
+      maxCapacity: container?.maxCapacity ?? '',
+      regularPrice: container?.regularPrice ?? '',
+      discount: container?.discount ?? 0,
+      description: container?.description ?? '',
       image: null,
     },
   });
@@ -57,7 +78,9 @@ function AddContainerForm() {
     return Number.isNaN(convertedValue) ? null : convertedValue;
   }
 
-  function getConvertedContainerData(data: FormFields): RawNewDataContainer {
+  function getConvertedContainerData(
+    data: FormFields,
+  ): RawNewDataContainerWithImageFile {
     return {
       name: data.name,
       max_capacity: getConvertedNumberValue(data.maxCapacity),
@@ -69,9 +92,16 @@ function AddContainerForm() {
   }
 
   function onSubmit(data: FormFields) {
-    const newContainerData = getConvertedContainerData(data);
+    const containerData = getConvertedContainerData(data);
+    if (container?.id) {
+      mutateEditContainer({
+        newContainerData: containerData,
+        id: container.id,
+      });
+    } else {
+      mutateAddNewContainer(containerData);
+    }
     console.log('data :>> ', data);
-    mutate(newContainerData);
   }
 
   return (
@@ -83,7 +113,7 @@ function AddContainerForm() {
           {...register('name', {
             required: 'Container name is required',
           })}
-          disabled={isPending}
+          disabled={isAdding || isEditing}
         />
       </FormRow>
       <FormRow error={errors?.maxCapacity?.message}>
@@ -99,7 +129,7 @@ function AddContainerForm() {
               message: 'Capacity should be at least 1',
             },
           })}
-          disabled={isPending}
+          disabled={isAdding || isEditing}
         />
       </FormRow>
       <FormRow error={errors?.regularPrice?.message}>
@@ -114,7 +144,7 @@ function AddContainerForm() {
               message: 'Capacity should be at least 1',
             },
           })}
-          disabled={isPending}
+          disabled={isAdding || isEditing}
         />
       </FormRow>
       <FormRow error={errors?.discount?.message}>
@@ -128,7 +158,7 @@ function AddContainerForm() {
               Number(value) < Number(getValues('regularPrice')) ||
               'Discount should be less than regular price',
           })}
-          disabled={isPending}
+          disabled={isAdding || isEditing}
         />
       </FormRow>
       <FormRow error={errors?.description?.message}>
@@ -136,7 +166,7 @@ function AddContainerForm() {
           id="description"
           label="Description For Website"
           {...register('description')}
-          disabled={isPending}
+          disabled={isAdding || isEditing}
         />
       </FormRow>
       <FormRow error={errors?.image?.message}>
@@ -146,15 +176,15 @@ function AddContainerForm() {
           accept="image/*"
           label="Container Photo"
           {...register('image')}
-          disabled={isPending}
+          disabled={isAdding || isEditing}
         />
       </FormRow>
       <FormRow>
-        <Button color="secondary" type="reset" disabled={isPending}>
+        <Button color="secondary" type="reset" disabled={isAdding || isEditing}>
           Cancel
         </Button>
-        <Button type="submit" disabled={isPending}>
-          Add Container
+        <Button type="submit" disabled={isAdding || isEditing}>
+          {container ? 'Edit Container' : 'Add Container'}
         </Button>
       </FormRow>
     </Form>
