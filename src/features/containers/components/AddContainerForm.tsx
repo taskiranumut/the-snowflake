@@ -4,13 +4,14 @@ import FormInput from '@/components/shared/FormInput';
 import FormTextArea from '@/components/shared/FormTextArea';
 import Button from '@/components/shared/Button';
 import { useForm } from 'react-hook-form';
-import { addNewContainer, editContainer } from '@/services/api';
 import {
   type RawNewDataContainerWithImageFile,
   type DataContainer,
 } from '@/services/api/containers.types';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
+import {
+  useCreateContainer,
+  useEditContainer,
+} from '@/features/containers/hooks';
 
 type FormFields = {
   name: string;
@@ -26,35 +27,8 @@ type AddContainerFormProps = {
 };
 
 function AddContainerForm({ container }: AddContainerFormProps) {
-  const queryClient = useQueryClient();
-
-  const { isPending: isAdding, mutate: mutateAddNewContainer } = useMutation({
-    mutationFn: addNewContainer,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['containers'],
-      });
-      toast.success('Container successfully added!');
-      reset();
-    },
-    onError: (err) => {
-      toast.error(err.message);
-    },
-  });
-
-  const { isPending: isEditing, mutate: mutateEditContainer } = useMutation({
-    mutationFn: editContainer,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['containers'],
-      });
-      toast.success('Container successfully edited!');
-      reset();
-    },
-    onError: (err) => {
-      toast.error(err.message);
-    },
-  });
+  const { isAdding, mutateAddNewContainer } = useCreateContainer();
+  const { isEditing, mutateEditContainer } = useEditContainer();
 
   const {
     register,
@@ -94,12 +68,19 @@ function AddContainerForm({ container }: AddContainerFormProps) {
   function onSubmit(data: FormFields) {
     const containerData = getConvertedContainerData(data);
     if (container?.id) {
-      mutateEditContainer({
-        newContainerData: containerData,
-        id: container.id,
-      });
+      mutateEditContainer(
+        {
+          newContainerData: containerData,
+          id: container.id,
+        },
+        {
+          onSuccess: () => reset(),
+        },
+      );
     } else {
-      mutateAddNewContainer(containerData);
+      mutateAddNewContainer(containerData, {
+        onSuccess: () => reset(),
+      });
     }
   }
 

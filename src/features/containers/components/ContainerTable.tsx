@@ -1,14 +1,10 @@
-import { getContainers } from '@/services/api';
-import { useQuery } from '@tanstack/react-query';
 import ContainerTableHeader from '@/features/containers/components/ContainerTableHeader';
 import ContainerTableRow from '@/features/containers/components/ContainerTableRow';
 import Spinner from '@/components/shared/Spinner';
+import { useContainers } from '../hooks/useContainers';
 
 function ContainerTable() {
-  const { data: containers, isLoading } = useQuery({
-    queryKey: ['containers'],
-    queryFn: getContainers,
-  });
+  const { isLoading, containers } = useContainers();
 
   if (isLoading) return <Spinner />;
 

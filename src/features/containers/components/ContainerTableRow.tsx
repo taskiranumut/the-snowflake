@@ -1,11 +1,9 @@
 import Row from '@/components/shared/Row';
-import { deleteContainer } from '@/services/api';
 import { type DataContainer } from '@/services/api/containers.types';
 import { formatCurrency } from '@/utils';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import toast from 'react-hot-toast';
 import AddContainerForm from '@/features/containers/components/AddContainerForm';
+import { useDeleteContainer } from '@/features/containers/hooks';
 
 type ContainerTableRowProps = {
   container: DataContainer;
@@ -23,21 +21,7 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
 
   const [showForm, setShowForm] = useState(false);
 
-  const queryClient = useQueryClient();
-
-  const { isPending: isDeleting, mutate: mutationDeleteContainer } =
-    useMutation({
-      mutationFn: deleteContainer,
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ['containers'],
-        });
-        toast.success('Container successfully deleted!');
-      },
-      onError: (err) => {
-        toast.error(err.message);
-      },
-    });
+  const { isDeleting, mutationDeleteContainer } = useDeleteContainer();
 
   function handleDeleteContainer(id: number): void {
     mutationDeleteContainer(id);
