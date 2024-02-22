@@ -101,7 +101,6 @@ function AddContainerForm({ container }: AddContainerFormProps) {
     } else {
       mutateAddNewContainer(containerData);
     }
-    console.log('data :>> ', data);
   }
 
   return (

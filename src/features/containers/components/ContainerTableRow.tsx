@@ -59,8 +59,12 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
         <div className="font-sono font-semibold">
           {formatCurrency(regularPrice)}
         </div>
-        <div className="font-sono text-green-700">
-          {formatCurrency(discount)}
+        <div className="font-sono">
+          {discount ? (
+            <span className="text-green-700">{formatCurrency(discount)}</span>
+          ) : (
+            <span>—</span>
+          )}
         </div>
         <Row type="horizontal">
           <button
