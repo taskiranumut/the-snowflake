@@ -2,3 +2,4 @@ export { useDeleteContainer } from '@/features/containers/hooks/useDeleteContain
 export { useCreateContainer } from '@/features/containers/hooks/useCreateContainer';
 export { useEditContainer } from '@/features/containers/hooks/useEditContainer';
 export { useContainers } from '@/features/containers/hooks/useContainers';
+export { useDuplicateContainer } from '@/features/containers/hooks/useDuplicateContainer';

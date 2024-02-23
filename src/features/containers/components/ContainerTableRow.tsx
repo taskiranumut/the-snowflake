@@ -1,9 +1,16 @@
 import Row from '@/components/shared/Row';
-import { type DataContainer } from '@/services/api/containers.types';
+import {
+  type DataContainer,
+  type RawNewDataContainerWithImagePath,
+} from '@/services/api/containers.types';
 import { formatCurrency } from '@/utils';
+import { AiFillCopy, AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { useState } from 'react';
 import AddContainerForm from '@/features/containers/components/AddContainerForm';
-import { useDeleteContainer } from '@/features/containers/hooks';
+import {
+  useDeleteContainer,
+  useDuplicateContainer,
+} from '@/features/containers/hooks';
 
 type ContainerTableRowProps = {
   container: DataContainer;
@@ -17,14 +24,28 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
     regularPrice,
     discount,
     image,
+    description,
   } = container;
 
   const [showForm, setShowForm] = useState(false);
 
   const { isDeleting, mutationDeleteContainer } = useDeleteContainer();
+  const { isDuplicating, mutateDuplciateContainer } = useDuplicateContainer();
 
   function handleDeleteContainer(id: number): void {
     mutationDeleteContainer(id);
+  }
+
+  function handleDuplicateContainer() {
+    const data: RawNewDataContainerWithImagePath = {
+      name: `Copy of ${name}`,
+      max_capacity: maxCapacity,
+      regular_price: regularPrice,
+      discount,
+      description,
+      image,
+    };
+    mutateDuplciateContainer(data);
   }
 
   return (
@@ -54,16 +75,28 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
           <button
             className="border border-gray-300 px-2 py-1"
             onClick={() => setShowForm((show) => !show)}
-            disabled={isDeleting}
+            disabled={isDeleting || isDuplicating}
+            title="Edit"
           >
-            Edit
+            <AiFillEdit />
+          </button>
+          <button
+            className="border border-gray-300 px-2 py-1"
+            onClick={() => {
+              handleDuplicateContainer();
+            }}
+            disabled={isDeleting || isDuplicating}
+            title="Duplicate"
+          >
+            <AiFillCopy />
           </button>
           <button
             className="border border-gray-300 px-2 py-1"
             onClick={() => handleDeleteContainer(containerId)}
-            disabled={isDeleting}
+            disabled={isDeleting || isDuplicating}
+            title="Delete"
           >
-            Delete
+            <AiFillDelete />
           </button>
         </Row>
       </div>

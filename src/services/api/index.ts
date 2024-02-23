@@ -3,4 +3,5 @@ export {
   deleteContainer,
   addNewContainer,
   editContainer,
+  dupliateContainer,
 } from '@/services/api/containers';

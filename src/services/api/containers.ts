@@ -44,7 +44,7 @@ export async function addNewContainer(
     .select();
 
   if (error) {
-    throw new Error('Containers could not be added!');
+    throw new Error('Container could not be added!');
   }
 
   if (newContainerData.image) {
@@ -89,7 +89,7 @@ export async function editContainer({
     .select();
 
   if (error) {
-    throw new Error('Containers could not be edited!');
+    throw new Error('Container could not be edited!');
   }
 
   if (newContainerData.image) {
@@ -103,6 +103,21 @@ export async function editContainer({
         'Container image could not be uploaded and the container was not added!',
       );
     }
+  }
+
+  return convertRawContainerData(data);
+}
+
+export async function dupliateContainer(
+  newContainerData: RawNewDataContainerWithImagePath,
+): Promise<DataContainer[]> {
+  const { data, error } = await supabase
+    .from('containers')
+    .insert([newContainerData])
+    .select();
+
+  if (error) {
+    throw new Error('Container could not be duplciated!');
   }
 
   return convertRawContainerData(data);
