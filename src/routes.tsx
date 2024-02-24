@@ -2,6 +2,7 @@ import { createRoutesFromElements, Navigate, Route } from 'react-router-dom';
 import AppLayout from '@/components/AppLayout';
 import Dashboard from '@/pages/Dashboard';
 import Containers from '@/pages/Containers';
+import Settings from '@/pages/Settings';
 
 const routes = createRoutesFromElements(
   <Route element={<AppLayout />}>
@@ -10,7 +11,7 @@ const routes = createRoutesFromElements(
     <Route path="bookings" element={<div>Bookings</div>} />
     <Route path="containers" element={<Containers />} />
     <Route path="users" element={<div>Users</div>} />
-    <Route path="settings" element={<div>Settings</div>} />
+    <Route path="settings" element={<Settings />} />
   </Route>,
 );
 
