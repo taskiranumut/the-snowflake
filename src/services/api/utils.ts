@@ -27,7 +27,6 @@ export function convertRawContainerData(
 
 export function convertRawSettingsData(data: RawSettingsData): SettingsData {
   return {
-    id: data.id,
     breakfastPrice: data.breakfast_price,
     maxBookingLength: data.max_booking_length,
     maxGuestNum: data.max_guest_num,
