@@ -24,9 +24,10 @@ type FormFields = {
 
 type AddContainerFormProps = {
   container?: DataContainer;
+  onCloseModal?: () => void;
 };
 
-function AddContainerForm({ container }: AddContainerFormProps) {
+function AddContainerForm({ container, onCloseModal }: AddContainerFormProps) {
   const { isAdding, mutateAddNewContainer } = useCreateContainer();
   const { isEditing, mutateEditContainer } = useEditContainer();
 
@@ -74,18 +75,24 @@ function AddContainerForm({ container }: AddContainerFormProps) {
           id: container.id,
         },
         {
-          onSuccess: () => reset(),
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
         },
       );
     } else {
       mutateAddNewContainer(containerData, {
-        onSuccess: () => reset(),
+        onSuccess: () => {
+          reset();
+          onCloseModal?.();
+        },
       });
     }
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)} modal={!!onCloseModal}>
       <FormRow error={errors?.name?.message}>
         <FormInput
           id="name"
@@ -160,7 +167,12 @@ function AddContainerForm({ container }: AddContainerFormProps) {
         />
       </FormRow>
       <FormRow>
-        <Button color="secondary" type="reset" disabled={isAdding || isEditing}>
+        <Button
+          color="secondary"
+          type="reset"
+          onClick={() => onCloseModal?.()}
+          disabled={isAdding || isEditing}
+        >
           Cancel
         </Button>
         <Button type="submit" disabled={isAdding || isEditing}>
