@@ -9,7 +9,7 @@ function AddContainer() {
         <Modal.Open name="container-form">
           <Button>Add New Container</Button>
         </Modal.Open>
-        <Modal.Window name="container-form">
+        <Modal.Window name="container-form" closeOutsideClick>
           <AddContainerForm />
         </Modal.Window>
       </Modal>
