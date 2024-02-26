@@ -11,6 +11,7 @@ import {
   useDuplicateContainer,
 } from '@/features/containers/hooks';
 import Modal from '@/components/shared/Modal';
+import ConfirmDelete from '@/components/shared/ConfirmDelete';
 
 type ContainerTableRowProps = {
   container: DataContainer;
@@ -93,14 +94,24 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
         >
           <AiFillCopy />
         </button>
-        <button
-          className="border border-gray-300 px-2 py-1"
-          onClick={() => handleDeleteContainer(containerId)}
-          disabled={isDeleting || isDuplicating}
-          title="Delete"
-        >
-          <AiFillDelete />
-        </button>
+        <Modal>
+          <Modal.Open name="delete-container">
+            <button
+              className="border border-gray-300 px-2 py-1"
+              disabled={isDeleting || isDuplicating}
+              title="Delete"
+            >
+              <AiFillDelete />
+            </button>
+          </Modal.Open>
+          <Modal.Window name="delete-container">
+            <ConfirmDelete
+              resource={name}
+              onConfirm={() => handleDeleteContainer(containerId)}
+              disabled={isDeleting}
+            />
+          </Modal.Window>
+        </Modal>
       </Row>
     </div>
   );
