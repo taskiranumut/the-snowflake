@@ -7,7 +7,7 @@ type RowProps = {
 
 function Row({
   type = 'vertical',
-  className,
+  className = '',
   children = '',
   ...otherProps
 }: RowProps) {

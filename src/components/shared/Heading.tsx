@@ -9,7 +9,12 @@ type HeadingProps = {
   | ComponentPropsWithoutRef<'h3'>
 );
 
-function Heading({ as, children, className, ...otherProps }: HeadingProps) {
+function Heading({
+  as,
+  children,
+  className = '',
+  ...otherProps
+}: HeadingProps) {
   const headingMap = {
     h1: (
       <h1

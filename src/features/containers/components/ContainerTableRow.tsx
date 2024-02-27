@@ -12,6 +12,7 @@ import {
 } from '@/features/containers/hooks';
 import Modal from '@/components/shared/Modal';
 import ConfirmDelete from '@/components/shared/ConfirmDelete';
+import GridTable from '@/components/shared/GridTable';
 
 type ContainerTableRowProps = {
   container: DataContainer;
@@ -48,72 +49,77 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
   }
 
   return (
-    <div
-      className="grid grid-cols-6 items-center gap-12 border-b border-gray-100 px-3 py-4 last:border-0"
-      role="row"
-    >
-      <img
-        src={image || ''}
-        alt={`${name || 'Container'} image`}
-        className="aspect-[3/2] w-20 min-w-16 translate-x-2 scale-150 object-cover object-center text-xs"
-      />
-      <div className="font-sono font-semibold text-gray-600">{name}</div>
-      <div className="font-sono">{`${maxCapacity} guests`}</div>
-      <div className="font-sono font-semibold">
+    <GridTable.Row>
+      <GridTable.Cell>
+        <img
+          src={image || ''}
+          alt={`${name || 'Container'} image`}
+          className="aspect-[3/2] w-20 min-w-16 translate-x-2 scale-150 object-cover object-center text-xs"
+        />
+      </GridTable.Cell>
+      <GridTable.Cell className='text-gray-600" font-sono font-semibold'>
+        {name}
+      </GridTable.Cell>
+      <GridTable.Cell className="font-sono">
+        {`${maxCapacity} guests`}
+      </GridTable.Cell>
+      <GridTable.Cell className="font-sono font-semibold">
         {formatCurrency(regularPrice)}
-      </div>
-      <div className="font-sono">
+      </GridTable.Cell>
+      <GridTable.Cell className="font-sono">
         {discount ? (
           <span className="text-green-700">{formatCurrency(discount)}</span>
         ) : (
           <span>—</span>
         )}
-      </div>
-      <Row type="horizontal">
-        <Modal>
-          <Modal.Open name="edit-form">
-            <button
-              className="border border-gray-300 px-2 py-1"
-              disabled={isDeleting || isDuplicating}
-              title="Edit"
-            >
-              <AiFillEdit />
-            </button>
-          </Modal.Open>
-          <Modal.Window name="edit-form" closeOutsideClick>
-            <AddContainerForm container={container} />
-          </Modal.Window>
-        </Modal>
-        <button
-          className="border border-gray-300 px-2 py-1"
-          onClick={() => {
-            handleDuplicateContainer();
-          }}
-          disabled={isDeleting || isDuplicating}
-          title="Duplicate"
-        >
-          <AiFillCopy />
-        </button>
-        <Modal>
-          <Modal.Open name="delete-container">
-            <button
-              className="border border-gray-300 px-2 py-1"
-              disabled={isDeleting || isDuplicating}
-              title="Delete"
-            >
-              <AiFillDelete />
-            </button>
-          </Modal.Open>
-          <Modal.Window name="delete-container">
-            <ConfirmDelete
-              resource={name}
-              onConfirm={() => handleDeleteContainer(containerId)}
-              disabled={isDeleting}
-            />
-          </Modal.Window>
-        </Modal>
-      </Row>
-    </div>
+      </GridTable.Cell>
+      <GridTable.Cell>
+        <Row type="horizontal">
+          <Modal>
+            <Modal.Open name="edit-form">
+              <button
+                className="border border-gray-300 px-2 py-1"
+                disabled={isDeleting || isDuplicating}
+                title="Edit"
+              >
+                <AiFillEdit />
+              </button>
+            </Modal.Open>
+            <Modal.Window name="edit-form" closeOutsideClick>
+              <AddContainerForm container={container} />
+            </Modal.Window>
+          </Modal>
+          <button
+            className="border border-gray-300 px-2 py-1"
+            onClick={() => {
+              handleDuplicateContainer();
+            }}
+            disabled={isDeleting || isDuplicating}
+            title="Duplicate"
+          >
+            <AiFillCopy />
+          </button>
+          <Modal>
+            <Modal.Open name="delete-container">
+              <button
+                className="border border-gray-300 px-2 py-1"
+                disabled={isDeleting || isDuplicating}
+                title="Delete"
+              >
+                <AiFillDelete />
+              </button>
+            </Modal.Open>
+            <Modal.Window name="delete-container">
+              <ConfirmDelete
+                resource={name}
+                onConfirm={() => handleDeleteContainer(containerId)}
+                disabled={isDeleting}
+              />
+            </Modal.Window>
+          </Modal>
+        </Row>
+      </GridTable.Cell>
+    </GridTable.Row>
   );
 }
 
