@@ -4,7 +4,6 @@ import {
   type RawNewDataContainerWithImagePath,
 } from '@/services/api/containers.types';
 import { formatCurrency } from '@/utils';
-import { AiFillCopy, AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import AddContainerForm from '@/features/containers/components/AddContainerForm';
 import {
   useDeleteContainer,
@@ -13,6 +12,8 @@ import {
 import Modal from '@/components/shared/Modal';
 import ConfirmDelete from '@/components/shared/ConfirmDelete';
 import GridTable from '@/components/shared/GridTable';
+import Menus from '@/components/shared/Menus';
+import { HiSquare2Stack, HiPencil, HiTrash } from 'react-icons/hi2';
 
 type ContainerTableRowProps = {
   container: DataContainer;
@@ -76,46 +77,41 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
       <GridTable.Cell>
         <Row type="horizontal">
           <Modal>
-            <Modal.Open name="edit-form">
-              <button
-                className="border border-gray-300 px-2 py-1"
+            <Menus.Menu>
+              <Menus.Toggle
+                menuId={containerId}
                 disabled={isDeleting || isDuplicating}
-                title="Edit"
-              >
-                <AiFillEdit />
-              </button>
-            </Modal.Open>
-            <Modal.Window name="edit-form" closeOutsideClick>
-              <AddContainerForm container={container} />
-            </Modal.Window>
-          </Modal>
-          <button
-            className="border border-gray-300 px-2 py-1"
-            onClick={() => {
-              handleDuplicateContainer();
-            }}
-            disabled={isDeleting || isDuplicating}
-            title="Duplicate"
-          >
-            <AiFillCopy />
-          </button>
-          <Modal>
-            <Modal.Open name="delete-container">
-              <button
-                className="border border-gray-300 px-2 py-1"
-                disabled={isDeleting || isDuplicating}
-                title="Delete"
-              >
-                <AiFillDelete />
-              </button>
-            </Modal.Open>
-            <Modal.Window name="delete-container">
-              <ConfirmDelete
-                resource={name}
-                onConfirm={() => handleDeleteContainer(containerId)}
-                disabled={isDeleting}
               />
-            </Modal.Window>
+
+              <Menus.List menuId={containerId}>
+                <Menus.Button
+                  icon={<HiSquare2Stack />}
+                  onClick={handleDuplicateContainer}
+                >
+                  Duplicate
+                </Menus.Button>
+
+                <Modal.Open name="edit-form">
+                  <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+                </Modal.Open>
+
+                <Modal.Open name="delete">
+                  <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+                </Modal.Open>
+              </Menus.List>
+
+              <Modal.Window name="edit-form" closeOutsideClick>
+                <AddContainerForm container={container} />
+              </Modal.Window>
+
+              <Modal.Window name="delete">
+                <ConfirmDelete
+                  resource={name}
+                  onConfirm={() => handleDeleteContainer(containerId)}
+                  disabled={isDeleting}
+                />
+              </Modal.Window>
+            </Menus.Menu>
           </Modal>
         </Row>
       </GridTable.Cell>

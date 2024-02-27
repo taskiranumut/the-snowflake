@@ -1,9 +1,9 @@
 import {
   createContext,
   useContext,
+  type ReactElement,
+  type ComponentPropsWithoutRef,
   type ReactNode,
-  ReactElement,
-  ComponentPropsWithoutRef,
 } from 'react';
 
 type ColumnsType =
