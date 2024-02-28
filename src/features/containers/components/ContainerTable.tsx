@@ -4,11 +4,28 @@ import Spinner from '@/components/shared/Spinner';
 import { useContainers } from '../hooks/useContainers';
 import GridTable from '@/components/shared/GridTable';
 import Menus from '@/components/shared/Menus';
+import { useSearchParams } from 'react-router-dom';
 
 function ContainerTable() {
   const { isLoading, containers } = useContainers();
+  const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
+
+  const filterValue = searchParams.get('discount') || 'all';
+
+  let filteredContainers: DataContainer[] | undefined;
+  if (filterValue === 'all') {
+    filteredContainers = containers;
+  } else if (filterValue === 'no-discount') {
+    filteredContainers = containers?.filter(
+      (container) => container.discount === 0,
+    );
+  } else if (filterValue === 'with-discount') {
+    filteredContainers = containers?.filter((container) => container.discount);
+  } else {
+    filteredContainers = containers;
+  }
 
   return (
     <Menus>
@@ -22,7 +39,7 @@ function ContainerTable() {
           <GridTable.Cell></GridTable.Cell>
         </GridTable.Header>
         <GridTable.Body
-          data={containers}
+          data={filteredContainers}
           render={(container: DataContainer) => (
             <ContainerTableRow container={container} key={container.id} />
           )}
