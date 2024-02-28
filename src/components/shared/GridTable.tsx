@@ -85,7 +85,7 @@ function GridTable({
     <TableContext.Provider value={{ columns }}>
       <div
         className={twMerge(
-          'border-1 overflow-hidden rounded-md bg-white text-base',
+          'border-1 overflow-hidden rounded-md bg-white text-base shadow-sm',
           className,
         )}
         role="table"
