@@ -1,4 +1,5 @@
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type HeadingProps = {
   children: ReactNode;
@@ -18,7 +19,7 @@ function Heading({
   const headingMap = {
     h1: (
       <h1
-        className={`text-3xl font-semibold leading-6 ${className}`}
+        className={twMerge('text-3xl font-semibold leading-6', className)}
         {...otherProps}
       >
         {children}
@@ -26,14 +27,14 @@ function Heading({
     ),
     h2: (
       <h2
-        className={`text-xl font-semibold leading-6 ${className}`}
+        className={twMerge('text-xl font-semibold leading-6', className)}
         {...otherProps}
       >
         {children}
       </h2>
     ),
     h3: (
-      <h3 className={`text-xl leading-6 ${className}`} {...otherProps}>
+      <h3 className={twMerge('text-xl leading-6', className)} {...otherProps}>
         {children}
       </h3>
     ),

@@ -5,6 +5,7 @@ import {
   type ComponentPropsWithoutRef,
   type ReactNode,
 } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type ColumnsType =
   | '1'
@@ -83,7 +84,10 @@ function GridTable({
   return (
     <TableContext.Provider value={{ columns }}>
       <div
-        className={`border-1 overflow-hidden rounded-md bg-white text-base ${className}`}
+        className={twMerge(
+          'border-1 overflow-hidden rounded-md bg-white text-base',
+          className,
+        )}
         role="table"
         {...otherProps}
       >
@@ -100,9 +104,27 @@ function CommonRow({
 }: CommonRowProps) {
   const { columns } = useTableContext();
 
+  const gridCols = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-2',
+    3: 'grid-cols-3',
+    4: 'grid-cols-4',
+    5: 'grid-cols-5',
+    6: 'grid-cols-6',
+    7: 'grid-cols-7',
+    8: 'grid-cols-8',
+    9: 'grid-cols-9',
+    10: 'grid-cols-10',
+    11: 'grid-cols-11',
+    12: 'grid-cols-12',
+  };
+
   return (
     <div
-      className={`grid gap-4 px-3 py-4 text-center transition-none grid-cols-${columns} ${className}`}
+      className={twMerge(
+        `grid gap-4 px-3 py-4 text-center transition-none ${gridCols[columns]}`,
+        className,
+      )}
       role="row"
       {...otherProps}
     >
@@ -114,7 +136,10 @@ function CommonRow({
 function Header({ children, className = '', ...otherProps }: HeaderProps) {
   return (
     <CommonRow
-      className={`border-b border-gray-100 bg-gray-50 px-4 py-3 font-semibold tracking-tight text-gray-600 last-of-type:border-0 ${className}`}
+      className={twMerge(
+        'border-b border-gray-100 bg-gray-50 px-4 py-3 font-semibold tracking-tight text-gray-600 last-of-type:border-0',
+        className,
+      )}
       {...otherProps}
     >
       {children}
@@ -125,7 +150,10 @@ function Header({ children, className = '', ...otherProps }: HeaderProps) {
 function Row({ children, className = '', ...otherProps }: RowProps) {
   return (
     <CommonRow
-      className={`border-b border-gray-100 px-4 py-2 last-of-type:border-b-0 ${className}`}
+      className={twMerge(
+        'border-b border-gray-100 px-4 py-3 last-of-type:border-b-0',
+        className,
+      )}
       {...otherProps}
     >
       {children}
@@ -136,7 +164,7 @@ function Row({ children, className = '', ...otherProps }: RowProps) {
 function Cell({ children, className = '', ...otherProps }: CellProps) {
   return (
     <div
-      className={`flex items-center justify-start ${className}`}
+      className={twMerge('flex items-center justify-start', className)}
       {...otherProps}
     >
       {children}
@@ -154,7 +182,7 @@ function Body<T>({
     return <Empty>No data to show at the moment</Empty>;
 
   return (
-    <div className={`m-0 ${className}`} {...otherProps}>
+    <div className={twMerge('m-0', className)} {...otherProps}>
       {data.map(render)}
     </div>
   );
@@ -163,7 +191,7 @@ function Body<T>({
 function Footer({ children, className = '', ...otherProps }: FooterProps) {
   return (
     <div
-      className={`flex justify-center bg-gray-50 p-2 ${className}`}
+      className={twMerge('flex justify-center bg-gray-50 p-2', className)}
       {...otherProps}
     >
       {children}
@@ -174,7 +202,7 @@ function Footer({ children, className = '', ...otherProps }: FooterProps) {
 function Empty({ children, className = '', ...otherProps }: EmptyProps) {
   return (
     <div
-      className={`m-4 text-center text-base font-normal ${className}`}
+      className={twMerge('m-4 text-center text-base font-normal', className)}
       {...otherProps}
     >
       {children}

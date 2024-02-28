@@ -1,4 +1,5 @@
 import { forwardRef, type ComponentPropsWithoutRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type InputProps = {
   label?: string;
@@ -24,7 +25,7 @@ const FormInput = forwardRef<HTMLInputElement, InputProps>(function Input(
       <input
         id={id}
         type="text"
-        className={`${styles} ${className}`}
+        className={twMerge(styles, className)}
         {...props}
         ref={ref}
       />

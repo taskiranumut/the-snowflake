@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { HiEllipsisVertical } from 'react-icons/hi2';
+import { twMerge } from 'tailwind-merge';
 
 type Position = {
   x: number;
@@ -93,7 +94,7 @@ function Menus({ children }: MenusProps) {
 function Menu({ children, className = '', ...otherProps }: MenuProps) {
   return (
     <div
-      className={`flex items-center justify-end ${className}`}
+      className={twMerge('flex items-center justify-end', className)}
       {...otherProps}
     >
       {children}
@@ -126,7 +127,10 @@ function Toggle({
   return (
     <button
       type="button"
-      className={`translate-x-2 rounded-md border-none bg-none p-2 transition-all duration-200 hover:bg-gray-100 ${className}`}
+      className={twMerge(
+        'translate-x-2 rounded-md p-2 transition-all duration-200 hover:bg-gray-100',
+        className,
+      )}
       onClick={handleClick}
       {...otherProps}
     >
@@ -144,7 +148,7 @@ function List({ menuId, children, className = '', ...otherProps }: ListProps) {
   return createPortal(
     <ul
       style={{ top: position?.y, right: position?.x }}
-      className={`fixed rounded-md bg-white shadow-md ${className}`}
+      className={twMerge('fixed rounded-md bg-white shadow-md', className)}
       ref={ref}
       {...otherProps}
     >
@@ -172,7 +176,10 @@ function Button({
     <li>
       <button
         type="button"
-        className={`flex w-full items-center gap-4 border-none bg-none px-6 py-3 text-left text-base transition-all duration-200 hover:bg-gray-50 ${className}`}
+        className={twMerge(
+          'flex w-full items-center gap-4 px-6 py-3 text-left text-base transition-all duration-200 hover:bg-gray-50',
+          className,
+        )}
         onClick={handleClick}
         {...otherProps}
       >

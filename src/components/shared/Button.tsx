@@ -1,4 +1,5 @@
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type ButtonProps = {
   children?: ReactNode;
@@ -31,7 +32,7 @@ function Button({
     danger: 'text-red-100 bg-red-700 hover:bg-red-800',
   };
 
-  const styles = `${base} ${sizes[size]} ${colors[color]} ${className}`;
+  const styles = twMerge(base, sizes[size], colors[color], className);
 
   return (
     <button type="button" className={styles} {...props}>

@@ -1,4 +1,5 @@
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type RowProps = {
   type?: 'vertical' | 'horizontal';
@@ -17,7 +18,7 @@ function Row({
   };
 
   return (
-    <div className={`${typeStyleMap[type]} ${className}`} {...otherProps}>
+    <div className={twMerge(typeStyleMap[type], className)} {...otherProps}>
       {children}
     </div>
   );
