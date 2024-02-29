@@ -2,7 +2,7 @@ import Heading from '@/components/shared/Heading';
 import Row from '@/components/shared/Row';
 import UpdateSettingsForm from '@/features/settings/components/UpdateSettingsForm';
 
-function Settings() {
+export function Settings() {
   return (
     <Row>
       <Heading as="h1" className="mb-4">
@@ -12,5 +12,3 @@ function Settings() {
     </Row>
   );
 }
-
-export default Settings;

@@ -4,7 +4,7 @@ import Heading from '@/components/shared/Heading';
 import Row from '@/components/shared/Row';
 import ContainerTableOperations from '@/features/containers/components/ContainerTableOperations';
 
-function Containers() {
+export function Containers() {
   return (
     <>
       <Row type="horizontal">
@@ -18,5 +18,3 @@ function Containers() {
     </>
   );
 }
-
-export default Containers;
