@@ -18,13 +18,7 @@ function Select({ options, value, white = false, ...otherProps }: SelectProps) {
   const selectStyle = twMerge(selectBaseStyle, white ? 'border-gray-100' : '');
 
   return (
-    <select
-      name=""
-      id=""
-      defaultValue={value}
-      className={selectStyle}
-      {...otherProps}
-    >
+    <select name="" id="" value={value} className={selectStyle} {...otherProps}>
       {options.map(({ value, label }) => (
         <option key={value} value={value}>
           {label}

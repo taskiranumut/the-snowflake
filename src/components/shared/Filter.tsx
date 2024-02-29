@@ -19,7 +19,7 @@ type FilterButtonProps = {
 
 function FilterButton({ active, children, ...otherProps }: FilterButtonProps) {
   const filterButtonBaseStyle =
-    'rounded-md border-0 bg-white px-2.5 py-1.5 transition-all duration-200 hover:text-sky-50 hover:bg-sky-600 disabled:pointer-events-none disabled:hover:bg-white disabled:hover:text-inherit';
+    'text-base rounded-md border-0 bg-white px-2 py-1 transition-all duration-200 hover:text-sky-50 hover:bg-sky-600 disabled:pointer-events-none disabled:hover:bg-white disabled:hover:text-inherit';
   const filterButtonActiveStyle = 'text-sky-50 bg-sky-600';
   const filterButtonStyle = twMerge(
     filterButtonBaseStyle,
@@ -44,12 +44,13 @@ function Filter({ queryField, options }: FilterProps) {
   }
 
   return (
-    <div className="border-1 flex gap-2 rounded-md bg-white p-2 shadow-sm">
+    <div className="flex gap-2 rounded-md border border-gray-100 bg-white p-2 shadow-sm">
       {options.map(({ value, label }) => (
         <FilterButton
           key={value}
           onClick={() => handleChangeTab(value)}
           active={selectedOption === value}
+          disabled={selectedOption === value}
         >
           {label}
         </FilterButton>

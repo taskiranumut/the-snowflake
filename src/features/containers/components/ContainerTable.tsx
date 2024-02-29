@@ -27,6 +27,25 @@ function ContainerTable() {
     filteredContainers = containers;
   }
 
+  const sortValue = searchParams.get('sort-by') || 'name-asc';
+  const [field, direction] = sortValue.split('-');
+  const modifier = direction === 'asc' ? 1 : -1;
+
+  const sortedAndFilteredContainers = filteredContainers
+    ? filteredContainers.sort((a, b) => {
+        const aValue = a[field];
+        const bValue = b[field];
+
+        if (typeof aValue === 'string' && typeof bValue === 'string') {
+          return aValue.localeCompare(bValue) * modifier;
+        } else if (typeof aValue === 'number' && typeof bValue === 'number') {
+          return (aValue - bValue) * modifier;
+        } else {
+          return 0;
+        }
+      })
+    : [];
+
   return (
     <Menus>
       <GridTable columns="6">
@@ -39,7 +58,7 @@ function ContainerTable() {
           <GridTable.Cell></GridTable.Cell>
         </GridTable.Header>
         <GridTable.Body
-          data={filteredContainers}
+          data={sortedAndFilteredContainers}
           render={(container: DataContainer) => (
             <ContainerTableRow container={container} key={container.id} />
           )}

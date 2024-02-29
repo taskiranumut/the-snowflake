@@ -9,6 +9,7 @@ export type RawDataContainer = {
 };
 
 export type DataContainer = {
+  [key: string]: string | number | boolean | null;
   id: number;
   name: string | null;
   maxCapacity: number | null;
