@@ -5,12 +5,15 @@ import { useContainers } from '../hooks/useContainers';
 import GridTable from '@/components/shared/GridTable';
 import Menus from '@/components/shared/Menus';
 import { useSearchParams } from 'react-router-dom';
+import Empty from '@/components/shared/Empty';
 
 function ContainerTable() {
   const { isLoading, containers } = useContainers();
   const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
+
+  if (!containers?.length) return <Empty resource="containers" />;
 
   const filterValue = searchParams.get('discount') || 'all';
 

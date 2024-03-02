@@ -3,6 +3,7 @@ import Spinner from '@/components/shared/Spinner';
 import GridTable from '@/components/shared/GridTable';
 import Menus from '@/components/shared/Menus';
 import { useBookings } from '@/features/bookings/hooks';
+import Empty from '@/components/shared/Empty';
 import { BookingTableRow } from '@/features/bookings/components';
 
 export function BookingsTable() {
@@ -10,6 +11,7 @@ export function BookingsTable() {
 
   if (isLoading) return <Spinner />;
 
+  if (!bookings?.length) return <Empty resource="bookings" />;
 
   return (
     <Menus>
