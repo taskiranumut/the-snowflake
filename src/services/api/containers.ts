@@ -19,8 +19,7 @@ export async function getContainers(): Promise<DataContainer[]> {
     throw new Error('Containers could not be loaded!');
   }
 
-  const containerData: DataContainer[] = convertRawContainerData(data);
-  return containerData;
+  return data.map((item) => convertRawContainerData(item));
 }
 
 export async function deleteContainer(id: number): Promise<void> {
@@ -60,7 +59,7 @@ export async function addNewContainer(
     }
   }
 
-  return convertRawContainerData(data);
+  return data.map((item) => convertRawContainerData(item));
 }
 
 export async function editContainer({
@@ -105,7 +104,7 @@ export async function editContainer({
     }
   }
 
-  return convertRawContainerData(data);
+  return data.map((item) => convertRawContainerData(item));
 }
 
 export async function dupliateContainer(
@@ -120,5 +119,5 @@ export async function dupliateContainer(
     throw new Error('Container could not be duplciated!');
   }
 
-  return convertRawContainerData(data);
+  return data.map((item) => convertRawContainerData(item));
 }
