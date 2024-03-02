@@ -2,6 +2,7 @@ import { type DataBooking } from '@/services/api/bookings.types';
 import { formatCurrency, formatDistanceFromNow } from '@/utils';
 import { format, isToday } from 'date-fns';
 import GridTable from '@/components/shared/GridTable';
+import Tag from '@/components/shared/Tag';
 
 type BookingsTableRowProps = {
   booking: DataBooking;
@@ -40,6 +41,11 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
           {format(new Date(startDate || ''), 'MMM dd yyyy')} &mdash;{' '}
           {format(new Date(endDate || ''), 'MMM dd yyyy')}
         </span>
+      </GridTable.Cell>
+      <GridTable.Cell>
+        <Tag color={status ? statusToTagName[status] : ''}>
+          {status?.replace('-', ' ')}
+        </Tag>
       </GridTable.Cell>
       <GridTable.Cell className="font-sono">
         {formatCurrency(totalPrice)}
