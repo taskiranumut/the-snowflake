@@ -8,14 +8,18 @@ import {
 export async function getBookings(
   queryParams: GetBookingsTypes,
 ): Promise<DataBooking[]> {
-  const { filter } = queryParams;
+  const { filter, sort } = queryParams;
 
   const query = supabase.from('bookings').select('*, containers(*), guests(*)');
 
-  if (filter !== null) {
+  if (filter) {
     if (!filter.method || filter.method === 'eq') {
       query.eq(filter.field, filter.value);
     }
+  }
+
+  if (sort) {
+    query.order(sort.field, { ascending: sort.direction === 'asc' });
   }
 
   const { data, error } = await query;
@@ -27,3 +31,16 @@ export async function getBookings(
   return data.map((item) => convertRawBookingData(item));
 }
 
+export async function getBooking(id: number): Promise<DataBooking> {
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('*, containers(*), guests(*)')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    throw new Error('Booking not found!');
+  }
+
+  return convertRawBookingData(data);
+}

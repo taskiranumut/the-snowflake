@@ -8,11 +8,18 @@ export function useBookings() {
 
   const filterValue = searchParams.get('status');
 
+  const sortRaw = searchParams.get('sort-by') || 'start_date-desc';
+  const [sortField, sortDirection] = sortRaw.split('-');
+
   const queryParams: GetBookingsTypes = {
     filter:
       !filterValue || filterValue === 'all'
         ? null
         : { field: 'status', value: filterValue },
+    sort: {
+      field: sortField,
+      direction: sortDirection,
+    },
   };
 
   const { data: bookings, isLoading } = useQuery({

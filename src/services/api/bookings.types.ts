@@ -52,4 +52,8 @@ export type GetBookingsTypes = {
     value: string;
     method?: QueryMethod;
   } | null;
+  sort: {
+    field: string;
+    direction: string;
+  };
 };

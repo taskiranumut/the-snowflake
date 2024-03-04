@@ -13,7 +13,15 @@ type StatusToTagMap = {
 };
 
 export function BookingTableRow({ booking }: BookingsTableRowProps) {
-  const { startDate, endDate, nigthsNum, totalPrice, status, guests } = booking;
+  const {
+    startDate,
+    endDate,
+    nigthsNum,
+    totalPrice,
+    status,
+    guests,
+    containers,
+  } = booking;
 
   const statusToTagName: StatusToTagMap = {
     unconfirmed: 'blue',
@@ -23,7 +31,9 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
 
   return (
     <GridTable.Row>
-      <GridTable.Cell className="font-sono text-base font-semibold text-gray-600"></GridTable.Cell>
+      <GridTable.Cell className="font-sono text-base font-semibold text-gray-600">
+        {containers?.name}
+      </GridTable.Cell>
       <GridTable.Cell className="flex flex-col items-start gap-1">
         <span>{guests?.fullName}</span>
         <span className="text-sm text-gray-500">{guests?.email}</span>
