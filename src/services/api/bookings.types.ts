@@ -43,3 +43,13 @@ export type DataBooking = {
   containers: DataContainer | null;
   guests: DataGuest | null;
 };
+
+export type QueryMethod = 'eq';
+
+export type GetBookingsTypes = {
+  filter: {
+    field: string;
+    value: string;
+    method?: QueryMethod;
+  } | null;
+};
