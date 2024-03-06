@@ -5,6 +5,7 @@ import Menus from '@/components/shared/Menus';
 import { useBookings } from '@/features/bookings/hooks';
 import Empty from '@/components/shared/Empty';
 import { BookingTableRow } from '@/features/bookings/components';
+import Pagination from '@/components/shared/Pagination';
 
 export function BookingsTable() {
   const { isLoading, bookings } = useBookings();
@@ -30,6 +31,9 @@ export function BookingsTable() {
             <BookingTableRow booking={booking} key={booking.id} />
           )}
         />
+        <GridTable.Footer>
+          <Pagination count={bookings.length} />
+        </GridTable.Footer>
       </GridTable>
     </Menus>
   );
