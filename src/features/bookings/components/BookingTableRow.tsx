@@ -2,17 +2,19 @@ import { type DataBooking } from '@/services/api/bookings.types';
 import { formatCurrency, formatDistanceFromNow } from '@/utils';
 import { format, isToday } from 'date-fns';
 import { GridTable, Tag, Modal, Menus } from '@/components/shared';
+import { useNavigate } from 'react-router-dom';
+import {
+  HiEye,
+} from 'react-icons/hi2';
+import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
 
 type BookingsTableRowProps = {
   booking: DataBooking;
 };
 
-type StatusToTagMap = {
-  [key: string]: string;
-};
-
 export function BookingTableRow({ booking }: BookingsTableRowProps) {
   const {
+    id: bookingId,
     startDate,
     endDate,
     nigthsNum,
@@ -22,11 +24,9 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
     containers,
   } = booking;
 
-  const statusToTagName: StatusToTagMap = {
-    unconfirmed: 'blue',
-    'checked-in': 'green',
-    'checked-out': 'gray',
-  };
+  const navigate = useNavigate();
+
+  const tagColor = getTagColorForBookingStatus(status);
 
   return (
     <GridTable.Row>
@@ -52,12 +52,25 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
         </span>
       </GridTable.Cell>
       <GridTable.Cell>
-        <Tag color={status ? statusToTagName[status] : ''}>
-          {status?.replace('-', ' ')}
-        </Tag>
+        <Tag color={tagColor}>{status?.replace('-', ' ')}</Tag>
       </GridTable.Cell>
       <GridTable.Cell className="font-sono">
         {formatCurrency(totalPrice)}
+      </GridTable.Cell>
+      <GridTable.Cell className="justify-end">
+        <Modal>
+          <Menus.Menu>
+            <Menus.Toggle menuId={bookingId} />
+            <Menus.List menuId={bookingId}>
+              <Menus.Button
+                onClick={() => navigate(`/bookings/${bookingId}`)}
+                icon={<HiEye />}
+              >
+                See details
+              </Menus.Button>
+            </Menus.List>
+          </Menus.Menu>
+        </Modal>
       </GridTable.Cell>
     </GridTable.Row>
   );
