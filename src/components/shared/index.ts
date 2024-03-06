@@ -4,6 +4,7 @@ export { ConfirmDelete } from '@/components/shared/ConfirmDelete';
 export { DataItem } from '@/components/shared/DataItem';
 export { Empty } from '@/components/shared/Empty';
 export { Filter } from '@/components/shared/Filter';
+export { Flag } from '@/components/shared/Flag';
 export { Form } from '@/components/shared/Form';
 export { FormInput } from '@/components/shared/FormInput';
 export { FormRow } from '@/components/shared/FormRow';
