@@ -3,14 +3,18 @@ import { convertRawBookingData } from '@/services/api/utils';
 import {
   type DataBooking,
   type GetBookingsTypes,
+  type DataBookingsWithCount,
 } from '@/services/api/bookings.types';
+import { PAGE_SIZE } from '@/utils/constants';
 
 export async function getBookings(
   queryParams: GetBookingsTypes,
-): Promise<DataBooking[]> {
-  const { filter, sort } = queryParams;
+): Promise<DataBookingsWithCount> {
+  const { filter, sort, page } = queryParams;
 
-  const query = supabase.from('bookings').select('*, containers(*), guests(*)');
+  const query = supabase
+    .from('bookings')
+    .select('*, containers(*), guests(*)', { count: 'exact' });
 
   if (filter) {
     if (!filter.method || filter.method === 'eq') {
@@ -22,13 +26,22 @@ export async function getBookings(
     query.order(sort.field, { ascending: sort.direction === 'asc' });
   }
 
-  const { data, error } = await query;
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query.range(from, to);
+  }
+
+  const { data, error, count } = await query;
 
   if (error) {
     throw new Error('Bookings could not be loaded!');
   }
 
-  return data.map((item) => convertRawBookingData(item));
+  return {
+    data: data.map((item) => convertRawBookingData(item)),
+    count,
+  };
 }
 
 export async function getBooking(id: number): Promise<DataBooking> {

@@ -44,6 +44,11 @@ export type DataBooking = {
   guests: DataGuest | null;
 };
 
+export type DataBookingsWithCount = {
+  data: DataBooking[];
+  count: number | null;
+};
+
 export type QueryMethod = 'eq';
 
 export type GetBookingsTypes = {
@@ -56,4 +61,5 @@ export type GetBookingsTypes = {
     field: string;
     direction: string;
   };
+  page: number;
 };

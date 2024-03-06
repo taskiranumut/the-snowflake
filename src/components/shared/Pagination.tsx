@@ -1,9 +1,10 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { useSearchParams } from 'react-router-dom';
+import { PAGE_SIZE } from '@/utils/constants';
 
 type PaginationProps = {
-  count: number;
+  count: number | null;
   pageSize?: number;
 };
 
@@ -23,8 +24,10 @@ function PaginationButton({ children, ...otherProps }: PaginationButtonProps) {
   );
 }
 
-function Pagination({ count, pageSize = 10 }: PaginationProps) {
+function Pagination({ count, pageSize = PAGE_SIZE }: PaginationProps) {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  if (!count || count <= pageSize) return null;
 
   const pageParams = searchParams.get('page');
   const currentPage = pageParams ? Number(pageParams) : 1;
@@ -44,8 +47,6 @@ function Pagination({ count, pageSize = 10 }: PaginationProps) {
     searchParams.set('page', previous.toString());
     setSearchParams(searchParams);
   }
-
-  if (count <= pageSize) return null;
 
   return (
     <div className="flex w-full items-center justify-between">

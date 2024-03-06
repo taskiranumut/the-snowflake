@@ -8,7 +8,7 @@ import { BookingTableRow } from '@/features/bookings/components';
 import Pagination from '@/components/shared/Pagination';
 
 export function BookingsTable() {
-  const { isLoading, bookings } = useBookings();
+  const { isLoading, bookings, count = null } = useBookings();
 
   if (isLoading) return <Spinner />;
 
@@ -32,7 +32,7 @@ export function BookingsTable() {
           )}
         />
         <GridTable.Footer>
-          <Pagination count={bookings.length} />
+          <Pagination count={count} />
         </GridTable.Footer>
       </GridTable>
     </Menus>
