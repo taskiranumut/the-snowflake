@@ -1,8 +1,10 @@
-import Form from '@/components/shared/Form';
-import FormRow from '@/components/shared/FormRow';
-import FormInput from '@/components/shared/FormInput';
-import FormTextArea from '@/components/shared/FormTextArea';
-import Button from '@/components/shared/Button';
+import {
+  Form,
+  FormRow,
+  FormInput,
+  FormTextArea,
+  Button,
+} from '@/components/shared';
 import { useForm } from 'react-hook-form';
 import {
   type RawNewDataContainerWithImageFile,
@@ -27,7 +29,10 @@ type AddContainerFormProps = {
   onCloseModal?: () => void;
 };
 
-function AddContainerForm({ container, onCloseModal }: AddContainerFormProps) {
+export function AddContainerForm({
+  container,
+  onCloseModal,
+}: AddContainerFormProps) {
   const { isAdding, mutateAddNewContainer } = useCreateContainer();
   const { isEditing, mutateEditContainer } = useEditContainer();
 
@@ -182,5 +187,3 @@ function AddContainerForm({ container, onCloseModal }: AddContainerFormProps) {
     </Form>
   );
 }
-
-export default AddContainerForm;

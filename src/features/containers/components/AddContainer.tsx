@@ -1,8 +1,7 @@
-import AddContainerForm from '@/features/containers/components/AddContainerForm';
-import Button from '@/components/shared/Button';
-import Modal from '@/components/shared/Modal';
+import { AddContainerForm } from '@/features/containers/components';
+import { Button, Modal } from '@/components/shared';
 
-function AddContainer() {
+export function AddContainer() {
   return (
     <div>
       <Modal>
@@ -16,5 +15,3 @@ function AddContainer() {
     </div>
   );
 }
-
-export default AddContainer;

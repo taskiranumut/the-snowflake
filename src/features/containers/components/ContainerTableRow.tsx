@@ -1,25 +1,27 @@
-import Row from '@/components/shared/Row';
+import {
+  Row,
+  Modal,
+  ConfirmDelete,
+  GridTable,
+  Menus,
+} from '@/components/shared';
 import {
   type DataContainer,
   type RawNewDataContainerWithImagePath,
 } from '@/services/api/containers.types';
 import { formatCurrency } from '@/utils';
-import AddContainerForm from '@/features/containers/components/AddContainerForm';
+import { AddContainerForm } from '@/features/containers/components';
 import {
   useDeleteContainer,
   useDuplicateContainer,
 } from '@/features/containers/hooks';
-import Modal from '@/components/shared/Modal';
-import ConfirmDelete from '@/components/shared/ConfirmDelete';
-import GridTable from '@/components/shared/GridTable';
-import Menus from '@/components/shared/Menus';
 import { HiSquare2Stack, HiPencil, HiTrash } from 'react-icons/hi2';
 
 type ContainerTableRowProps = {
   container: DataContainer;
 };
 
-function ContainerTableRow({ container }: ContainerTableRowProps) {
+export function ContainerTableRow({ container }: ContainerTableRowProps) {
   const {
     id: containerId,
     name,
@@ -118,5 +120,3 @@ function ContainerTableRow({ container }: ContainerTableRowProps) {
     </GridTable.Row>
   );
 }
-
-export default ContainerTableRow;

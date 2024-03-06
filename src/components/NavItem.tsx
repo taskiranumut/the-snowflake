@@ -8,7 +8,7 @@ type NavItemProps = {
   icon?: ReactNode;
 };
 
-function NavItem({ to, icon, title, children }: NavItemProps) {
+export function NavItem({ to, icon, title, children }: NavItemProps) {
   const baseLink =
     'flex items-center gap-2 px-4 py-3 text-base font-normal transition-all duration-200 hover:rounded-md hover:bg-gray-50 hover:text-gray-800';
   const activeLink = baseLink + ' rounded-md bg-gray-50 text-gray-800';
@@ -34,5 +34,3 @@ function NavItem({ to, icon, title, children }: NavItemProps) {
     />
   );
 }
-
-export default NavItem;

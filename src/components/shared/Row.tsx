@@ -6,7 +6,7 @@ type RowProps = {
   children: ReactNode;
 } & ComponentPropsWithoutRef<'div'>;
 
-function Row({
+export function Row({
   type = 'vertical',
   className = '',
   children = '',
@@ -23,5 +23,3 @@ function Row({
     </div>
   );
 }
-
-export default Row;

@@ -1,7 +1,4 @@
-import Form from '@/components/shared/Form';
-import FormRow from '@/components/shared/FormRow';
-import FormInput from '@/components/shared/FormInput';
-import Spinner from '@/components/shared/Spinner';
+import { Form, FormRow, FormInput, Spinner } from '@/components/shared';
 import { useSettings, useUpdateSettings } from '@/features/settings/hooks';
 import { type RawSettingsData } from '@/services/api/settings.type';
 import { useDebounce } from '@/hooks';
@@ -15,7 +12,7 @@ type SettingsUpdate = {
   value: number | null;
 };
 
-function UpdateSettingsForm() {
+export function UpdateSettingsForm() {
   const { isLoading, settings } = useSettings();
   const { isUpdating, mutateUpdateSettings } = useUpdateSettings();
 
@@ -99,5 +96,3 @@ function UpdateSettingsForm() {
     </Form>
   );
 }
-
-export default UpdateSettingsForm;

@@ -1,6 +1,6 @@
 import { type ChangeEvent } from 'react';
-import Select from './Select';
 import { useSearchParams } from 'react-router-dom';
+import { Select } from '@/components/shared';
 
 type SortOptions = {
   value: string;
@@ -12,7 +12,7 @@ type SortByProps = {
   queryField?: string;
 };
 
-function SortBy({ options, queryField = 'sort-by' }: SortByProps) {
+export function SortBy({ options, queryField = 'sort-by' }: SortByProps) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const queryValue = searchParams.get(queryField) || '';
@@ -32,5 +32,3 @@ function SortBy({ options, queryField = 'sort-by' }: SortByProps) {
     />
   );
 }
-
-export default SortBy;

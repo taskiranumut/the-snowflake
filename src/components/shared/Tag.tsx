@@ -10,7 +10,7 @@ type ColorsType = {
   [key in string]: string;
 };
 
-function Tag({ children, color }: TagProps) {
+export function Tag({ children, color }: TagProps) {
   const colors: ColorsType = {
     blue: 'text-blue-700 bg-blue-100',
     green: 'text-green-700 bg-green-100',
@@ -28,5 +28,3 @@ function Tag({ children, color }: TagProps) {
     </span>
   );
 }
-
-export default Tag;

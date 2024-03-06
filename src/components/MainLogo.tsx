@@ -1,4 +1,4 @@
-function MainLogo() {
+export function MainLogo() {
   return (
     <div className="flex flex-col items-center justify-start gap-1">
       <img
@@ -10,5 +10,3 @@ function MainLogo() {
     </div>
   );
 }
-
-export default MainLogo;

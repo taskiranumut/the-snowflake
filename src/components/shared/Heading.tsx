@@ -10,7 +10,7 @@ type HeadingProps = {
   | ComponentPropsWithoutRef<'h3'>
 );
 
-function Heading({
+export function Heading({
   as,
   children,
   className = '',
@@ -42,5 +42,3 @@ function Heading({
 
   return headingMap[as];
 }
-
-export default Heading;

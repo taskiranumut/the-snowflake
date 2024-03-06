@@ -8,7 +8,7 @@ type TextAreaProps = {
   wrapper?: boolean;
 } & ComponentPropsWithoutRef<'textarea'>;
 
-const FormTextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+export const FormTextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea(
     { id, label, className = '', wrapper = false, ...props },
     ref,
@@ -33,5 +33,3 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     return wrapper ? <div>{elements}</div> : elements;
   },
 );
-
-export default FormTextArea;

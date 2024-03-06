@@ -9,7 +9,7 @@ type ButtonProps = {
   className?: string;
 } & ComponentPropsWithoutRef<'button'>;
 
-function Button({
+export function Button({
   content,
   children,
   size = 'md',
@@ -40,5 +40,3 @@ function Button({
     </button>
   );
 }
-
-export default Button;

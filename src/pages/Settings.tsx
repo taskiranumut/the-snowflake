@@ -1,6 +1,5 @@
-import Heading from '@/components/shared/Heading';
-import Row from '@/components/shared/Row';
-import UpdateSettingsForm from '@/features/settings/components/UpdateSettingsForm';
+import { Heading, Row } from '@/components/shared';
+import { UpdateSettingsForm } from '@/features/settings/components';
 
 export function Settings() {
   return (

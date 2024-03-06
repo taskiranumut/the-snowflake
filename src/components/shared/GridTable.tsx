@@ -75,7 +75,7 @@ function useTableContext() {
   return context;
 }
 
-function GridTable({
+export function GridTable({
   columns,
   children,
   className = '',
@@ -216,5 +216,3 @@ GridTable.Row = Row;
 GridTable.Cell = Cell;
 GridTable.Footer = Footer;
 GridTable.Empty = Empty;
-
-export default GridTable;

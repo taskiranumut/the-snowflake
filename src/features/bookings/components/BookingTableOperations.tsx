@@ -1,5 +1,4 @@
-import Filter from '@/components/shared/Filter';
-import SortBy from '@/components/shared/SortBy';
+import { Filter, SortBy } from '@/components/shared';
 
 export function BookingTableOperations() {
   return (

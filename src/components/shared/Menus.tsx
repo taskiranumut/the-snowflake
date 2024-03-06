@@ -5,7 +5,7 @@ import {
   useState,
   type ReactNode,
   type MouseEvent,
-  ComponentPropsWithoutRef,
+  type ComponentPropsWithoutRef,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { HiEllipsisVertical } from 'react-icons/hi2';
@@ -66,7 +66,7 @@ function useMenusContext() {
   return context;
 }
 
-function Menus({ children }: MenusProps) {
+export function Menus({ children }: MenusProps) {
   const [openId, setOpenId] = useState<MenuId>('');
   const [position, setPosition] = useState<Position | null>(null);
 
@@ -195,5 +195,3 @@ Menus.Menu = Menu;
 Menus.Toggle = Toggle;
 Menus.List = List;
 Menus.Button = Button;
-
-export default Menus;

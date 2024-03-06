@@ -1,8 +1,7 @@
 import { type DataBooking } from '@/services/api/bookings.types';
 import { formatCurrency, formatDistanceFromNow } from '@/utils';
 import { format, isToday } from 'date-fns';
-import GridTable from '@/components/shared/GridTable';
-import Tag from '@/components/shared/Tag';
+import { GridTable, Tag, Modal, Menus } from '@/components/shared';
 
 type BookingsTableRowProps = {
   booking: DataBooking;

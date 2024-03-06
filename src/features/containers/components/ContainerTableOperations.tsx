@@ -1,7 +1,6 @@
-import Filter from '@/components/shared/Filter';
-import SortBy from '@/components/shared/SortBy';
+import { Filter, SortBy } from '@/components/shared';
 
-function ContainerTableOperations() {
+export function ContainerTableOperations() {
   return (
     <div className="flex items-center gap-4">
       <Filter
@@ -28,5 +27,3 @@ function ContainerTableOperations() {
     </div>
   );
 }
-
-export default ContainerTableOperations;

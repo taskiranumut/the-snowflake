@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { useSearchParams } from 'react-router-dom';
 import { PAGE_SIZE } from '@/utils/constants';
@@ -24,7 +24,7 @@ function PaginationButton({ children, ...otherProps }: PaginationButtonProps) {
   );
 }
 
-function Pagination({ count, pageSize = PAGE_SIZE }: PaginationProps) {
+export function Pagination({ count, pageSize = PAGE_SIZE }: PaginationProps) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   if (!count || count <= pageSize) return null;
@@ -75,5 +75,3 @@ function Pagination({ count, pageSize = PAGE_SIZE }: PaginationProps) {
     </div>
   );
 }
-
-export default Pagination;

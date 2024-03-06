@@ -39,7 +39,7 @@ function useModalContext() {
   return context;
 }
 
-function Modal({ children }: ModalProps) {
+export function Modal({ children }: ModalProps) {
   const [openName, setOpenName] = useState('');
 
   function handleOpen(name: string) {
@@ -91,5 +91,3 @@ function Window({ name, children, closeOutsideClick = false }: WindowProps) {
 
 Modal.Open = Open;
 Modal.Window = Window;
-
-export default Modal;

@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import routes from '@/routes';
-import ReactQueryProvider from './providers/ReactQueryProvider';
-import ToasterProvider from '@/providers/ToasterProvider';
+import { ReactQueryProvider, ToasterProvider } from './providers';
 
 function App() {
   return (

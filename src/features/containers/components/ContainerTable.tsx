@@ -1,13 +1,10 @@
 import { type DataContainer } from '@/services/api/containers.types';
-import ContainerTableRow from '@/features/containers/components/ContainerTableRow';
-import Spinner from '@/components/shared/Spinner';
+import { ContainerTableRow } from '@/features/containers/components';
+import { Spinner, Menus, GridTable, Empty } from '@/components/shared';
 import { useContainers } from '../hooks/useContainers';
-import GridTable from '@/components/shared/GridTable';
-import Menus from '@/components/shared/Menus';
 import { useSearchParams } from 'react-router-dom';
-import Empty from '@/components/shared/Empty';
 
-function ContainerTable() {
+export function ContainerTable() {
   const { isLoading, containers } = useContainers();
   const [searchParams] = useSearchParams();
 
@@ -70,5 +67,3 @@ function ContainerTable() {
     </Menus>
   );
 }
-
-export default ContainerTable;

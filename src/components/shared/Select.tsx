@@ -12,7 +12,12 @@ type SelectProps = {
   white?: boolean;
 } & ComponentPropsWithoutRef<'select'>;
 
-function Select({ options, value, white = false, ...otherProps }: SelectProps) {
+export function Select({
+  options,
+  value,
+  white = false,
+  ...otherProps
+}: SelectProps) {
   const selectBaseStyle =
     'rounded-md border border-gray-300 bg-white px-3 py-3 text-base shadow-sm focus:border-0 focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:pointer-events-none disabled:opacity-50';
   const selectStyle = twMerge(selectBaseStyle, white ? 'border-gray-100' : '');
@@ -27,5 +32,3 @@ function Select({ options, value, white = false, ...otherProps }: SelectProps) {
     </select>
   );
 }
-
-export default Select;

@@ -1,11 +1,13 @@
 import { type DataBooking } from '@/services/api/bookings.types';
-import Spinner from '@/components/shared/Spinner';
-import GridTable from '@/components/shared/GridTable';
-import Menus from '@/components/shared/Menus';
+import {
+  Spinner,
+  GridTable,
+  Menus,
+  Empty,
+  Pagination,
+} from '@/components/shared';
 import { useBookings } from '@/features/bookings/hooks';
-import Empty from '@/components/shared/Empty';
 import { BookingTableRow } from '@/features/bookings/components';
-import Pagination from '@/components/shared/Pagination';
 
 export function BookingsTable() {
   const { isLoading, bookings, count = null } = useBookings();

@@ -1,4 +1,4 @@
-import NavItem from '@/components/NavItem';
+import { NavItem } from '@/components';
 import {
   AiFillHome,
   AiFillCalendar,
@@ -7,7 +7,7 @@ import {
   AiFillSetting,
 } from 'react-icons/ai';
 
-function Navbar() {
+export function Navbar() {
   return (
     <nav>
       <ul className="flex flex-col gap-2">
@@ -30,5 +30,3 @@ function Navbar() {
     </nav>
   );
 }
-
-export default Navbar;

@@ -14,7 +14,7 @@ type ReactQueryProviderProps = {
   children: ReactNode;
 };
 
-function ReactQueryProvider({ children }: ReactQueryProviderProps) {
+export function ReactQueryProvider({ children }: ReactQueryProviderProps) {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
@@ -22,5 +22,3 @@ function ReactQueryProvider({ children }: ReactQueryProviderProps) {
     </QueryClientProvider>
   );
 }
-
-export default ReactQueryProvider;

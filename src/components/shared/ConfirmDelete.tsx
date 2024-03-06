@@ -1,5 +1,4 @@
-import Heading from '@/components/shared/Heading';
-import Button from '@/components/shared/Button';
+import { Button, Heading } from '@/components/shared';
 
 type ConfirmDeleteProps = {
   resource: string | null;
@@ -8,7 +7,7 @@ type ConfirmDeleteProps = {
   onCloseModal?: () => void;
 };
 
-function ConfirmDelete({
+export function ConfirmDelete({
   resource,
   onCloseModal,
   onConfirm,
@@ -48,5 +47,3 @@ function ConfirmDelete({
     </div>
   );
 }
-
-export default ConfirmDelete;

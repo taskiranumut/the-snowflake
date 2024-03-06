@@ -33,7 +33,7 @@ function FilterButton({ active, children, ...otherProps }: FilterButtonProps) {
   );
 }
 
-function Filter({ queryField, options }: FilterProps) {
+export function Filter({ queryField, options }: FilterProps) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const selectedOption = searchParams.get(queryField) || options.at(0)?.value;
@@ -58,5 +58,3 @@ function Filter({ queryField, options }: FilterProps) {
     </div>
   );
 }
-
-export default Filter;

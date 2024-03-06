@@ -1,5 +1,4 @@
-import Heading from '@/components/shared/Heading';
-import Row from '@/components/shared/Row';
+import { Heading, Row } from '@/components/shared';
 import {
   BookingsTable,
   BookingTableOperations,

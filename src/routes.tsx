@@ -1,5 +1,5 @@
 import { createRoutesFromElements, Navigate, Route } from 'react-router-dom';
-import AppLayout from '@/components/AppLayout';
+import { AppLayout } from '@/components';
 import { Dashboard, Containers, Settings, Bookings } from '@/pages';
 
 const routes = createRoutesFromElements(
