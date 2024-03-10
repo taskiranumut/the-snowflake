@@ -1,6 +1,13 @@
 import { createRoutesFromElements, Navigate, Route } from 'react-router-dom';
 import { AppLayout } from '@/components';
-import { Dashboard, Containers, Settings, Bookings, Booking } from '@/pages';
+import {
+  Dashboard,
+  Containers,
+  Settings,
+  Bookings,
+  Booking,
+  Checkin,
+} from '@/pages';
 
 const routes = createRoutesFromElements(
   <Route element={<AppLayout />}>
@@ -8,6 +15,7 @@ const routes = createRoutesFromElements(
     <Route path="dashboard" element={<Dashboard />} />
     <Route path="bookings" element={<Bookings />} />
     <Route path="bookings/:bookingId" element={<Booking />} />
+    <Route path="checkin/:bookingId" element={<Checkin />} />
     <Route path="containers" element={<Containers />} />
     <Route path="users" element={<div>Users</div>} />
     <Route path="settings" element={<Settings />} />

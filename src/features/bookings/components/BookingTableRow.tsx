@@ -4,6 +4,7 @@ import { format, isToday } from 'date-fns';
 import { GridTable, Tag, Modal, Menus } from '@/components/shared';
 import { useNavigate } from 'react-router-dom';
 import {
+  HiArrowDownOnSquare,
   HiEye,
 } from 'react-icons/hi2';
 import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
@@ -68,6 +69,15 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
               >
                 See details
               </Menus.Button>
+
+              {status === 'unconfirmed' && (
+                <Menus.Button
+                  onClick={() => navigate(`/checkin/${bookingId}`)}
+                  icon={<HiArrowDownOnSquare />}
+                >
+                  Check in
+                </Menus.Button>
+              )}
             </Menus.List>
           </Menus.Menu>
         </Modal>

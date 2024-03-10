@@ -4,6 +4,7 @@ import {
   type DataBooking,
   type GetBookingsTypes,
   type DataBookingsWithCount,
+  type UpdateBookingTypes,
 } from '@/services/api/bookings.types';
 import { PAGE_SIZE } from '@/utils/constants';
 
@@ -53,6 +54,24 @@ export async function getBooking(id: number | string): Promise<DataBooking> {
 
   if (error) {
     throw new Error('Booking not found!');
+  }
+
+  return convertRawBookingData(data);
+}
+
+export async function updateBooking({
+  id,
+  updatedValues,
+}: UpdateBookingTypes): Promise<DataBooking> {
+  const { data, error } = await supabase
+    .from('bookings')
+    .update(updatedValues)
+    .eq('id', id)
+    .select('*, containers(*), guests(*)')
+    .single();
+
+  if (error) {
+    throw new Error('Booking could not be updated!');
   }
 
   return convertRawBookingData(data);
