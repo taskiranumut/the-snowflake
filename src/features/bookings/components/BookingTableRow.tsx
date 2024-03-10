@@ -5,9 +5,11 @@ import { GridTable, Tag, Modal, Menus } from '@/components/shared';
 import { useNavigate } from 'react-router-dom';
 import {
   HiArrowDownOnSquare,
+  HiArrowUpOnSquare,
   HiEye,
 } from 'react-icons/hi2';
 import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
+import { useCheckout } from '@/features/check-in-out/hooks';
 
 type BookingsTableRowProps = {
   booking: DataBooking;
@@ -26,6 +28,12 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
   } = booking;
 
   const navigate = useNavigate();
+
+  const { mutateCheckout, isCheckingOut } = useCheckout();
+
+  function handleCheckout() {
+    mutateCheckout(bookingId);
+  }
 
   const tagColor = getTagColorForBookingStatus(status);
 
@@ -76,6 +84,16 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
                   icon={<HiArrowDownOnSquare />}
                 >
                   Check in
+                </Menus.Button>
+              )}
+
+              {status === 'checked-in' && (
+                <Menus.Button
+                  onClick={handleCheckout}
+                  disabled={isCheckingOut}
+                  icon={<HiArrowUpOnSquare />}
+                >
+                  Check out
                 </Menus.Button>
               )}
             </Menus.List>

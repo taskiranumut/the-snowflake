@@ -12,14 +12,22 @@ import { useBooking } from '@/features/bookings/hooks';
 import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
 import { useMoveBack } from '@/hooks';
 import { BookingDetailData } from '@/features/bookings/components';
+import { useCheckout } from '@/features/check-in-out/hooks';
 
 export function BookingDetail() {
   const { isLoading, booking } = useBooking();
   const navigate = useNavigate();
   const moveBack = useMoveBack();
 
+  const { mutateCheckout, isCheckingOut } = useCheckout();
 
   if (isLoading) return <Spinner />;
+
+  function handleCheckout() {
+    if (booking?.id) {
+      mutateCheckout(booking?.id);
+    }
+  }
 
   const tagColor = getTagColorForBookingStatus(booking?.status);
 
@@ -39,6 +47,12 @@ export function BookingDetail() {
         {booking?.status === 'unconfirmed' && (
           <Button onClick={() => navigate(`/checkin/${booking?.id}`)}>
             Check in
+          </Button>
+        )}
+
+        {booking?.status === 'checked-in' && (
+          <Button onClick={handleCheckout} disabled={isCheckingOut}>
+            Check out
           </Button>
         )}
 

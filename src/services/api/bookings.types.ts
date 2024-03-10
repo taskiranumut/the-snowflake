@@ -68,7 +68,7 @@ export type UpdateBookingTypes = {
   id: number | string;
   updatedValues: {
     status: 'checked-in' | 'checked-out';
-    is_paid: true;
+    is_paid?: true;
     has_breakfast?: boolean;
     extras_price?: number;
     total_price?: number;
