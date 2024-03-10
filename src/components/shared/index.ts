@@ -1,6 +1,7 @@
 export { Box } from '@/components/shared/Box';
 export { Button } from '@/components/shared/Button';
 export { ButtonText } from '@/components/shared/ButtonText';
+export { Checkbox } from '@/components/shared/Checkbox';
 export { ConfirmDelete } from '@/components/shared/ConfirmDelete';
 export { DataItem } from '@/components/shared/DataItem';
 export { Empty } from '@/components/shared/Empty';
