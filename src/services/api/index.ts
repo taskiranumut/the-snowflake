@@ -10,4 +10,5 @@ export {
   getBookings,
   getBooking,
   updateBooking,
+  deleteBooking,
 } from '@/services/api/bookings';

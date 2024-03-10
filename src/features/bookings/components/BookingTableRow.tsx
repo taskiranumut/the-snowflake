@@ -1,15 +1,23 @@
 import { type DataBooking } from '@/services/api/bookings.types';
 import { formatCurrency, formatDistanceFromNow } from '@/utils';
 import { format, isToday } from 'date-fns';
-import { GridTable, Tag, Modal, Menus } from '@/components/shared';
+import {
+  GridTable,
+  Tag,
+  Modal,
+  Menus,
+  ConfirmDelete,
+} from '@/components/shared';
 import { useNavigate } from 'react-router-dom';
 import {
   HiArrowDownOnSquare,
   HiArrowUpOnSquare,
   HiEye,
+  HiTrash,
 } from 'react-icons/hi2';
 import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
 import { useCheckout } from '@/features/check-in-out/hooks';
+import { useDeleteBooking } from '@/features/bookings/hooks';
 
 type BookingsTableRowProps = {
   booking: DataBooking;
@@ -30,9 +38,16 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
   const navigate = useNavigate();
 
   const { mutateCheckout, isCheckingOut } = useCheckout();
+  const { mutationDeleteBooking, isDeleting } = useDeleteBooking();
 
   function handleCheckout() {
     mutateCheckout(bookingId);
+  }
+
+  function handleDeleteBooking() {
+    mutationDeleteBooking(bookingId, {
+      onSettled: () => navigate('/bookings'),
+    });
   }
 
   const tagColor = getTagColorForBookingStatus(status);
@@ -96,8 +111,20 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
                   Check out
                 </Menus.Button>
               )}
+
+              <Modal.Open name="delete">
+                <Menus.Button icon={<HiTrash />}>Delete booking</Menus.Button>
+              </Modal.Open>
             </Menus.List>
           </Menus.Menu>
+
+          <Modal.Window name="delete">
+            <ConfirmDelete
+              resource="booking"
+              onConfirm={handleDeleteBooking}
+              disabled={isDeleting}
+            />
+          </Modal.Window>
         </Modal>
       </GridTable.Cell>
     </GridTable.Row>

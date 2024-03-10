@@ -6,9 +6,10 @@ import {
   Button,
   ButtonText,
   Modal,
+  ConfirmDelete,
   Spinner,
 } from '@/components/shared';
-import { useBooking } from '@/features/bookings/hooks';
+import { useBooking, useDeleteBooking } from '@/features/bookings/hooks';
 import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
 import { useMoveBack } from '@/hooks';
 import { BookingDetailData } from '@/features/bookings/components';
@@ -19,6 +20,7 @@ export function BookingDetail() {
   const navigate = useNavigate();
   const moveBack = useMoveBack();
 
+  const { mutationDeleteBooking, isDeleting } = useDeleteBooking();
   const { mutateCheckout, isCheckingOut } = useCheckout();
 
   if (isLoading) return <Spinner />;
@@ -26,6 +28,14 @@ export function BookingDetail() {
   function handleCheckout() {
     if (booking?.id) {
       mutateCheckout(booking?.id);
+    }
+  }
+
+  function handleDeleteBooking() {
+    if (booking?.id) {
+      mutationDeleteBooking(booking?.id, {
+        onSettled: () => navigate('/bookings'),
+      });
     }
   }
 
@@ -55,6 +65,19 @@ export function BookingDetail() {
             Check out
           </Button>
         )}
+
+        <Modal>
+          <Modal.Open name="delete">
+            <Button color="danger">Delete booking</Button>
+          </Modal.Open>
+          <Modal.Window name="delete">
+            <ConfirmDelete
+              resource="booking"
+              onConfirm={handleDeleteBooking}
+              disabled={isDeleting}
+            />
+          </Modal.Window>
+        </Modal>
 
         <Button onClick={moveBack} color="secondary">
           Back
