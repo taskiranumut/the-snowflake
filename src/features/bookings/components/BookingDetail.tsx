@@ -35,6 +35,17 @@ export function BookingDetail() {
 
       <BookingDetailData booking={booking} />
 
+      <div className="flex justify-end gap-3">
+        {booking?.status === 'unconfirmed' && (
+          <Button onClick={() => navigate(`/checkin/${booking?.id}`)}>
+            Check in
+          </Button>
+        )}
+
+        <Button onClick={moveBack} color="secondary">
+          Back
+        </Button>
+      </div>
     </>
   );
 }

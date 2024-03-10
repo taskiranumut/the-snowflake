@@ -35,12 +35,12 @@ export function BookingDetailData({ booking }: BookingDetailData) {
 
   return (
     <>
-      <section className="overflow-hidden px-10 py-8">
+      <section className="overflow-hidden px-10 py-4">
         <header className="flex items-center justify-between rounded-t-lg bg-sky-500 px-10 py-6 text-lg text-gray-100">
           <div className="flex items-center gap-4 text-lg font-semibold">
             <AiFillBuild size="2.25rem" />
             <p>
-              {nigthsNum} nights in Cabin{' '}
+              {nigthsNum} nights in Container{' '}
               <span className="ml-2 font-sono text-xl">{containers?.name}</span>
             </p>
           </div>
@@ -96,7 +96,7 @@ export function BookingDetailData({ booking }: BookingDetailData) {
               {formatCurrency(totalPrice)}
 
               {hasBreakfast &&
-                ` (${formatCurrency(containerPrice)} cabin + ${formatCurrency(
+                ` (${formatCurrency(containerPrice)} container + ${formatCurrency(
                   extrasPrice,
                 )} breakfast)`}
             </DataItem>
