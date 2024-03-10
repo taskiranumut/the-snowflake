@@ -40,6 +40,11 @@ export function Filter({ queryField, options }: FilterProps) {
 
   function handleChangeTab(option: string) {
     searchParams.set(queryField, option);
+
+    if (searchParams.get('page')) {
+      searchParams.set('page', '1');
+    }
+
     setSearchParams(searchParams);
   }
 
