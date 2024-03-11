@@ -21,7 +21,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         <textarea
           id={id}
           className={twMerge(
-            'h-24 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base shadow-sm focus:border-0 focus:outline-none focus:ring-2 focus:ring-sky-300 disabled:pointer-events-none disabled:opacity-50',
+            'h-24 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base shadow-sm focus:border-0 focus:outline-none focus:ring-2 focus:ring-emerald-300 disabled:pointer-events-none disabled:opacity-50',
             className,
           )}
           {...props}

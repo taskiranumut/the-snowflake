@@ -15,7 +15,7 @@ export function ButtonText({
     <button
       type="button"
       className={twMerge(
-        'rounded-md border-0 text-center text-sky-600 transition-all duration-200 hover:text-sky-500 active:text-sky-700',
+        'rounded-md border-0 text-center text-emerald-600 transition-all duration-200 hover:text-emerald-500 active:text-emerald-700',
         className,
       )}
       {...otherProps}

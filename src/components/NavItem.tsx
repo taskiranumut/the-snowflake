@@ -15,7 +15,7 @@ export function NavItem({ to, icon, title, children }: NavItemProps) {
   const passiveLink = baseLink + ' text-gray-600';
 
   const baseIcon = 'text-xl transition-all duration-100';
-  const activeIcon = baseIcon + ' text-sky-600';
+  const activeIcon = baseIcon + ' text-emerald-600';
   const passiveIcon = baseIcon + ' text-gray-300';
 
   return (

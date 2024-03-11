@@ -76,7 +76,7 @@ function Window({ name, children, closeOutsideClick = false }: WindowProps) {
         ref={closeOutsideClick ? modalWindowRef : null}
       >
         <button
-          className="absolute right-4 top-3 translate-x-2 rounded-md border-0 p-2 outline-none transition-all duration-200 hover:bg-gray-100 focus:border-0 focus:outline-none focus:ring-2 focus:ring-sky-300"
+          className="absolute right-4 top-3 translate-x-2 rounded-md border-0 p-2 outline-none transition-all duration-200 hover:bg-gray-100 focus:border-0 focus:outline-none focus:ring-2 focus:ring-emerald-300"
           type="button"
           onClick={handleClose}
         >

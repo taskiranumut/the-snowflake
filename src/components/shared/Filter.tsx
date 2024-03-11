@@ -19,8 +19,8 @@ type FilterButtonProps = {
 
 function FilterButton({ active, children, ...otherProps }: FilterButtonProps) {
   const filterButtonBaseStyle =
-    'text-base rounded-md border-0 bg-white px-2 py-1 transition-all duration-200 hover:text-sky-50 hover:bg-sky-600 disabled:pointer-events-none disabled:hover:bg-white disabled:hover:text-inherit';
-  const filterButtonActiveStyle = 'text-sky-50 bg-sky-600';
+    'text-base rounded-md border-0 bg-white px-2 py-1 transition-all duration-200 hover:text-emerald-50 hover:bg-emerald-600 disabled:pointer-events-none disabled:hover:bg-white disabled:hover:text-inherit';
+  const filterButtonActiveStyle = 'text-emerald-50 bg-emerald-600';
   const filterButtonStyle = twMerge(
     filterButtonBaseStyle,
     active ? filterButtonActiveStyle : '',

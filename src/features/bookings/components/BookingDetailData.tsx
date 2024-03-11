@@ -36,7 +36,7 @@ export function BookingDetailData({ booking }: BookingDetailData) {
   return (
     <>
       <section className="overflow-hidden px-10 py-4">
-        <header className="flex items-center justify-between rounded-t-lg bg-sky-500 px-10 py-6 text-lg text-gray-100">
+        <header className="flex items-center justify-between rounded-t-lg bg-emerald-500 px-10 py-6 text-lg text-gray-100">
           <div className="flex items-center gap-4 text-lg font-semibold">
             <AiFillBuild size="2.25rem" />
             <p>

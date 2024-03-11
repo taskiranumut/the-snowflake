@@ -18,7 +18,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    'rounded-md shadow-sm text-center transition-all duration-200 font-normal disabled:opacity-50 disabled:pointer-events-none focus:border-0 focus:outline-none focus:ring-2 focus:ring-sky-300';
+    'rounded-md shadow-sm text-center transition-all duration-200 font-normal disabled:opacity-50 disabled:pointer-events-none focus:border-0 focus:outline-none focus:ring-2 focus:ring-emerald-300';
 
   const sizes = {
     sm: 'text-sm py-1 px-2',
@@ -27,7 +27,7 @@ export function Button({
   };
 
   const colors = {
-    primary: 'text-sky-50 bg-sky-600 hover:bg-sky-700',
+    primary: 'text-emerald-50 bg-emerald-600 hover:bg-emerald-700',
     secondary: 'text-gray-600 bg-white hover:bg-gray-50 border border-gray-200',
     danger: 'text-red-100 bg-red-700 hover:bg-red-800',
   };

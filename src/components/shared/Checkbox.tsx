@@ -19,7 +19,7 @@ export function Checkbox({
       <input
         id={id}
         disabled={disabled}
-        className="size-6 origin-center accent-sky-600 transition-all duration-200 disabled:accent-sky-600 disabled:opacity-50"
+        className="size-6 origin-center accent-emerald-600 transition-all duration-200 disabled:accent-emerald-600 disabled:opacity-50"
         {...otherProps}
         type="checkbox"
       />

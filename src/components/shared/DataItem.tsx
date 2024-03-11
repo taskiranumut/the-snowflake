@@ -13,7 +13,7 @@ export function DataItem({ children, label, icon }: DataItemProps) {
         {icon &&
           cloneElement(icon, {
             size: '1.25rem',
-            className: 'text-sky-600',
+            className: 'text-emerald-600',
           })}
         <span className="text-gray-700">{label}</span>
       </span>
