@@ -12,3 +12,4 @@ export {
   updateBooking,
   deleteBooking,
 } from '@/services/api/bookings';
+export { login } from '@/services/api/auth';
