@@ -9,10 +9,17 @@ import {
   Checkin,
   Login,
 } from '@/pages';
+import { UserProvider } from '@/providers';
 
 const routes = createRoutesFromElements(
   <>
-    <Route element={<AppLayout />}>
+    <Route
+      element={
+        <UserProvider>
+          <AppLayout />
+        </UserProvider>
+      }
+    >
       <Route index element={<Navigate replace to="/dashboard" />} />
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="bookings" element={<Bookings />} />
