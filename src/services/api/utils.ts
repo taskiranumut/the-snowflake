@@ -79,5 +79,5 @@ export function getImageInfo(imageFile: File): ImageInfo {
 }
 
 export function getContainerPlaceholderImagePath() {
-  return `${containerImagesUrl}default-placeholder.png`;
+  return `${containerImagesUrl}default.png`;
 }
