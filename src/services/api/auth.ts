@@ -1,5 +1,5 @@
 import supabase from '@/services/supabase';
-import { type LoginTypes } from '@/services/api/auth.types';
+import { type LoginTypes, type SignUpTypes } from '@/services/api/auth.types';
 
 export async function login({ email, password }: LoginTypes) {
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -34,4 +34,23 @@ export async function logout() {
   if (error) {
     throw new Error('User could not be logged out!');
   }
+}
+
+export async function signUp({ fullName, email, password }: SignUpTypes) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name: fullName,
+        avatar: '',
+      },
+    },
+  });
+
+  if (error) {
+    throw new Error('User could not be created!');
+  }
+
+  console.log('data :>> ', data);
 }

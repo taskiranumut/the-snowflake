@@ -8,6 +8,7 @@ import {
   Booking,
   Checkin,
   Login,
+  Users,
 } from '@/pages';
 import { UserProvider } from '@/providers';
 
@@ -26,7 +27,7 @@ const routes = createRoutesFromElements(
       <Route path="bookings/:bookingId" element={<Booking />} />
       <Route path="checkin/:bookingId" element={<Checkin />} />
       <Route path="containers" element={<Containers />} />
-      <Route path="users" element={<div>Users</div>} />
+      <Route path="users" element={<Users />} />
       <Route path="settings" element={<Settings />} />
     </Route>
 
