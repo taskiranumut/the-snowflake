@@ -13,7 +13,14 @@ export function LoginForm() {
 
     if (isLoading || !email || !password) return;
 
-    mutateLogin({ email, password });
+    mutateLogin(
+      { email, password },
+      {
+        onError: () => {
+          setPassword('');
+        },
+      },
+    );
   }
 
   return (
