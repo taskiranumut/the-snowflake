@@ -1,6 +1,8 @@
 import supabase from '@/services/supabase';
 import { type LoginTypes, type SignUpTypes } from '@/services/api/auth.types';
 
+const profilePicturesUrl = import.meta.env.VITE_SUPABASE_PROFILE_PICTURES_URL;
+
 export async function login({ email, password }: LoginTypes) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
@@ -43,7 +45,7 @@ export async function signUp({ fullName, email, password }: SignUpTypes) {
     options: {
       data: {
         full_name: fullName,
-        avatar: '',
+        avatar: `${profilePicturesUrl}default.jpg`,
       },
     },
   });
