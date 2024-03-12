@@ -2,7 +2,7 @@ import supabase from '@/services/supabase';
 import { type LoginTypes } from '@/services/api/auth.types';
 
 export async function login({ email, password }: LoginTypes) {
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
@@ -10,6 +10,8 @@ export async function login({ email, password }: LoginTypes) {
   if (error) {
     throw new Error('User could not be logged in!');
   }
+
+  return data?.user;
 }
 
 export async function getCurrentUser() {
