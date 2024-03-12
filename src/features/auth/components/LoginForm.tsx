@@ -4,7 +4,7 @@ import { useLogin } from '@/features/auth/hooks';
 
 export function LoginForm() {
   const [email, setEmail] = useState('umut@example.com');
-  const [password, setPassword] = useState('123456');
+  const [password, setPassword] = useState('123123123');
 
   const { isLoading, mutateLogin } = useLogin();
 
