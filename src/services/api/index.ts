@@ -12,4 +12,10 @@ export {
   updateBooking,
   deleteBooking,
 } from '@/services/api/bookings';
-export { login, getCurrentUser, logout, signUp } from '@/services/api/auth';
+export {
+  login,
+  getCurrentUser,
+  logout,
+  signUp,
+  updateCurrentUser,
+} from '@/services/api/auth';

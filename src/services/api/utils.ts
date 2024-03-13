@@ -15,6 +15,7 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 
 const containerImagesUrl = import.meta.env.VITE_SUPABASE_CONTAINER_IMAGES_URL;
+const profilePicturesUrl = import.meta.env.VITE_SUPABASE_PROFILE_PICTURES_URL;
 
 export function convertRawContainerData(data: RawDataContainer): DataContainer {
   return {
@@ -72,12 +73,25 @@ export function convertRawBookingData(data: RawDataBooking): DataBooking {
   };
 }
 
-export function getImageInfo(imageFile: File): ImageInfo {
+export function getImageInfo(
+  imageFile: File,
+  urlKey: 'container' | 'profile',
+): ImageInfo {
   const name = `${uuidv4()}-${imageFile?.name}`.replaceAll('/', '');
-  const path = `${containerImagesUrl}${name}`;
-  return { name, path };
+
+  const paths = {
+    container: `${containerImagesUrl}${name}`,
+    profile: `${profilePicturesUrl}${name}`,
+  };
+
+  return { name, path: paths[urlKey] };
 }
 
-export function getContainerPlaceholderImagePath() {
-  return `${containerImagesUrl}default.png`;
+export function getPlaceholderImagePath(urlKey: 'container' | 'profile') {
+  const paths = {
+    container: `${containerImagesUrl}default.png`,
+    profile: `${profilePicturesUrl}default.jpg`,
+  };
+
+  return paths[urlKey];
 }

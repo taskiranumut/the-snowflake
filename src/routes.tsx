@@ -9,6 +9,7 @@ import {
   Checkin,
   Login,
   Users,
+  Account,
 } from '@/pages';
 import { UserProvider } from '@/providers';
 
@@ -29,6 +30,7 @@ const routes = createRoutesFromElements(
       <Route path="containers" element={<Containers />} />
       <Route path="users" element={<Users />} />
       <Route path="settings" element={<Settings />} />
+      <Route path="account" element={<Account />} />
     </Route>
 
     <Route path="login" element={<Login />} />

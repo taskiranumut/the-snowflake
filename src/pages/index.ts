@@ -6,3 +6,4 @@ export { Booking } from '@/pages/Booking';
 export { Checkin } from '@/pages/Checkin';
 export { Login } from '@/pages/Login';
 export { Users } from '@/pages/Users';
+export { Account } from '@/pages/Account';

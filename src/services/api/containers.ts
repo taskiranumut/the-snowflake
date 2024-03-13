@@ -2,7 +2,7 @@ import supabase from '@/services/supabase';
 import {
   convertRawContainerData,
   getImageInfo,
-  getContainerPlaceholderImagePath,
+  getPlaceholderImagePath,
 } from '@/services/api/utils';
 import {
   type DataContainer,
@@ -34,8 +34,8 @@ export async function addNewContainer(
   newContainerData: RawNewDataContainerWithImageFile,
 ): Promise<DataContainer[]> {
   const imageInfo: ImageInfo = newContainerData.image
-    ? getImageInfo(newContainerData.image)
-    : { name: '', path: getContainerPlaceholderImagePath() };
+    ? getImageInfo(newContainerData.image, 'container')
+    : { name: '', path: getPlaceholderImagePath('container') };
 
   const { data, error } = await supabase
     .from('containers')
@@ -73,7 +73,7 @@ export async function editContainer({
   let imageInfo: ImageInfo = { name: '', path: '' };
 
   if (newContainerData.image) {
-    imageInfo = getImageInfo(newContainerData.image);
+    imageInfo = getImageInfo(newContainerData.image, 'container');
     containerData = { ...newContainerData, image: imageInfo.path };
   } else {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
