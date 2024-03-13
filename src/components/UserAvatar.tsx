@@ -14,7 +14,7 @@ export function UserAvatar() {
         alt={`Avatar of ${user?.user_metadata.full_name || 'user'}`}
         className="block aspect-square size-10 rounded-full object-cover object-center outline-2 outline-gray-100"
       />
-      <span className="text-sm">{user?.user_metadata.full_name || 'user'}</span>
+      <span>{user?.user_metadata.full_name || 'user'}</span>
     </div>
   );
 }
