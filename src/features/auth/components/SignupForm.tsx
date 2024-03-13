@@ -20,7 +20,7 @@ export function SignUpForm() {
   } = useForm<FormFields>({
     defaultValues: {
       fullName: '',
-      email: 'a@g.com',
+      email: '',
       password: '',
       confirmPassword: '',
     },
@@ -32,6 +32,10 @@ export function SignUpForm() {
 
   function onSubmit({ fullName, email, password }: FormFields) {
     mutateSignUp({ fullName, email, password }, { onSettled: () => reset() });
+  }
+
+  function handleCancelForm() {
+    reset();
   }
 
   return (
@@ -93,7 +97,11 @@ export function SignUpForm() {
       </FormRow>
 
       <FormRow>
-        <Button color="secondary" type="reset" disabled={isLoading}>
+        <Button
+          color="secondary"
+          onClick={handleCancelForm}
+          disabled={isLoading}
+        >
           Cancel
         </Button>
         <Button type="submit" disabled={isLoading}>
