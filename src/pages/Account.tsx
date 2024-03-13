@@ -1,6 +1,7 @@
 import { Row, Heading } from '@/components/shared';
 import {
   UpdateUserDataForm,
+  UpdatePasswordForm,
 } from '@/features/auth/components';
 
 export function Account() {
@@ -15,6 +16,10 @@ export function Account() {
         <UpdateUserDataForm />
       </Row>
 
+      <Row>
+        <Heading as="h3"> Update password</Heading>
+        <UpdatePasswordForm />
+      </Row>
     </>
   );
 }
