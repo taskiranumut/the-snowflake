@@ -7,3 +7,4 @@ export { Navbar } from '@/components/Navbar';
 export { NavItem } from '@/components/NavItem';
 export { Sidebar } from '@/components/Sidebar';
 export { UserAvatar } from '@/components/UserAvatar';
+export { DarkModeToggle } from '@/components/DarkModeToggle';
