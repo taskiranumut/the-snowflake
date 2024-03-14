@@ -3,3 +3,4 @@ export { DashboardOperations } from '@/features/dashboard/components/DashboardOp
 export { Stat } from '@/features/dashboard/components/Stat';
 export { Stats } from '@/features/dashboard/components/Stats';
 export { DashboardBox } from '@/features/dashboard/components/DashboardBox';
+export { SalesChart } from '@/features/dashboard/components/SalesChart';
