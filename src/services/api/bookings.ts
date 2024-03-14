@@ -7,6 +7,7 @@ import {
   type UpdateBookingTypes,
 } from '@/services/api/bookings.types';
 import { PAGE_SIZE } from '@/utils/constants';
+import { getToday } from '@/utils';
 
 export async function getBookings(
   queryParams: GetBookingsTypes,
@@ -83,4 +84,34 @@ export async function deleteBooking(id: number): Promise<void> {
   if (error) {
     throw new Error('Booking could not be deleted!');
   }
+}
+
+export async function getBookingsAfterDate(
+  date: string,
+): Promise<DataBooking[]> {
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('*, guests(*), containers(*)')
+    .gte('created_at', date)
+    .lte('created_at', getToday({ end: true }));
+
+  if (error) {
+    throw new Error('Bookings could not get loaded');
+  }
+
+  return data.map((item) => convertRawBookingData(item));
+}
+
+export async function getStaysAfterDate(date: string): Promise<DataBooking[]> {
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('*, guests(*), containers(*)')
+    .gte('start_date', date)
+    .lte('start_date', getToday());
+
+  if (error) {
+    throw new Error('Bookings could not get loaded');
+  }
+
+  return data.map((item) => convertRawBookingData(item));
 }

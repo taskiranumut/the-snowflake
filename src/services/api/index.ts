@@ -11,6 +11,8 @@ export {
   getBooking,
   updateBooking,
   deleteBooking,
+  getBookingsAfterDate,
+  getStaysAfterDate,
 } from '@/services/api/bookings';
 export {
   login,
