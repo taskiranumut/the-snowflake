@@ -8,6 +8,7 @@ import {
   Modal,
   ConfirmDelete,
   Spinner,
+  Empty,
 } from '@/components/shared';
 import { useBooking, useDeleteBooking } from '@/features/bookings/hooks';
 import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
@@ -23,6 +24,8 @@ export function BookingDetail() {
   const { mutationDeleteBooking, isDeleting } = useDeleteBooking();
 
   if (isLoading) return <Spinner />;
+
+  if (!booking) return <Empty resource="booking" />;
 
   function handleDeleteBooking() {
     if (booking?.id) {

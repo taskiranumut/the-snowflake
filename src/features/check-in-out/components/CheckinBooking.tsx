@@ -7,6 +7,7 @@ import {
   ButtonText,
   Spinner,
   Checkbox,
+  Empty,
 } from '@/components/shared';
 import { useBooking } from '@/features/bookings/hooks';
 import { useMoveBack } from '@/hooks';
@@ -27,6 +28,8 @@ export function CheckinBooking() {
   useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking]);
 
   if (isLoadingBooking || isLoadingSettings) return <Spinner />;
+
+  if (!booking) return <Empty resource="checkin" />;
 
   const {
     id: bookingId,
