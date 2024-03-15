@@ -8,7 +8,7 @@ type UserProviderProps = {
 };
 
 export function UserProvider({ children }: UserProviderProps) {
-  const { user, isLoading, isAuth } = useUser();
+  const { isLoading, isAuth } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
