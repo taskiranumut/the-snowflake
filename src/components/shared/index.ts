@@ -6,6 +6,7 @@ export { Checkbox } from '@/components/shared/Checkbox';
 export { ConfirmDelete } from '@/components/shared/ConfirmDelete';
 export { DataItem } from '@/components/shared/DataItem';
 export { Empty } from '@/components/shared/Empty';
+export { ErrorFallback } from '@/components/shared/ErrorFallback';
 export { Filter } from '@/components/shared/Filter';
 export { Flag } from '@/components/shared/Flag';
 export { Form } from '@/components/shared/Form';

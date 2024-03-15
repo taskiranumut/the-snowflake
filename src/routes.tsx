@@ -12,9 +12,10 @@ import {
   Account,
 } from '@/pages';
 import { UserProvider } from '@/providers';
+import { ErrorFallback } from '@/components/shared';
 
 const routes = createRoutesFromElements(
-  <>
+  <Route errorElement={<ErrorFallback />}>
     <Route
       element={
         <UserProvider>
@@ -35,7 +36,7 @@ const routes = createRoutesFromElements(
 
     <Route path="login" element={<Login />} />
     <Route path="*" element={<Navigate replace to="/dashboard" />} />
-  </>,
+  </Route>,
 );
 
 export default routes;
