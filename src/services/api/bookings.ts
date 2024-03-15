@@ -8,6 +8,7 @@ import {
 } from '@/services/api/bookings.types';
 import { PAGE_SIZE } from '@/utils/constants';
 import { getToday } from '@/utils';
+import { isSameDay } from 'date-fns';
 
 export async function getBookings(
   queryParams: GetBookingsTypes,
@@ -114,4 +115,31 @@ export async function getStaysAfterDate(date: string): Promise<DataBooking[]> {
   }
 
   return data.map((item) => convertRawBookingData(item));
+}
+
+export async function getStaysTodayActivity(): Promise<DataBooking[]> {
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('*, guests(*), containers(*)')
+    .order('created_at');
+
+  if (error) {
+    throw new Error('Bookings could not get loaded');
+  }
+
+  const filteredData = data.filter((booking) => {
+    if (!booking.start_date || !booking.end_date) return false;
+
+    const isUnconfirmedAndStartToday =
+      booking.status === 'unconfirmed' &&
+      isSameDay(new Date(booking.start_date), new Date(getToday()));
+
+    const isCheckedInAndEndToday =
+      booking.status === 'checked-in' &&
+      isSameDay(new Date(booking.end_date), new Date(getToday({ end: true })));
+
+    return isUnconfirmedAndStartToday || isCheckedInAndEndToday;
+  });
+
+  return filteredData.map((item) => convertRawBookingData(item));
 }

@@ -5,6 +5,7 @@ import {
   SalesChart,
   DurationChart,
 } from '@/features/dashboard/components';
+import { TodayActivity } from '@/features/check-in-out/components';
 import { useContainers } from '@/features/containers/hooks';
 
 export function DashboardLayout() {
@@ -27,7 +28,7 @@ export function DashboardLayout() {
         daysNum={daysNum}
         containerCount={containers?.length || 0}
       />
-      <div>Today's activity</div>
+      <TodayActivity />
       <DurationChart confirmedStays={confirmedStays || []} />
       <SalesChart bookings={bookings || []} daysNum={daysNum} />
     </div>

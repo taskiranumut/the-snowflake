@@ -13,6 +13,7 @@ export {
   deleteBooking,
   getBookingsAfterDate,
   getStaysAfterDate,
+  getStaysTodayActivity,
 } from '@/services/api/bookings';
 export {
   login,
