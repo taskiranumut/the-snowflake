@@ -34,6 +34,7 @@ const routes = createRoutesFromElements(
     </Route>
 
     <Route path="login" element={<Login />} />
+    <Route path="*" element={<Navigate replace to="/dashboard" />} />
   </>,
 );
 
