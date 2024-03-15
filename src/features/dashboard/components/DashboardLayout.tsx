@@ -1,6 +1,10 @@
 import { Spinner } from '@/components/shared';
 import { useRecentBookings, useRecentStays } from '@/features/dashboard/hooks';
-import { Stats, SalesChart } from '@/features/dashboard/components';
+import {
+  Stats,
+  SalesChart,
+  DurationChart,
+} from '@/features/dashboard/components';
 import { useContainers } from '@/features/containers/hooks';
 
 export function DashboardLayout() {
@@ -24,7 +28,7 @@ export function DashboardLayout() {
         containerCount={containers?.length || 0}
       />
       <div>Today's activity</div>
-      <div>Chart stay durations</div>
+      <DurationChart confirmedStays={confirmedStays || []} />
       <SalesChart bookings={bookings || []} daysNum={daysNum} />
     </div>
   );
