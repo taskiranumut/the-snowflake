@@ -13,7 +13,7 @@ import { useBooking, useDeleteBooking } from '@/features/bookings/hooks';
 import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
 import { useMoveBack } from '@/hooks';
 import { BookingDetailData } from '@/features/bookings/components';
-import { useCheckout } from '@/features/check-in-out/hooks';
+import { CheckoutButton } from '@/features/check-in-out/components';
 
 export function BookingDetail() {
   const { isLoading, booking } = useBooking();
@@ -21,15 +21,8 @@ export function BookingDetail() {
   const moveBack = useMoveBack();
 
   const { mutationDeleteBooking, isDeleting } = useDeleteBooking();
-  const { mutateCheckout, isCheckingOut } = useCheckout();
 
   if (isLoading) return <Spinner />;
-
-  function handleCheckout() {
-    if (booking?.id) {
-      mutateCheckout(booking?.id);
-    }
-  }
 
   function handleDeleteBooking() {
     if (booking?.id) {
@@ -61,9 +54,7 @@ export function BookingDetail() {
         )}
 
         {booking?.status === 'checked-in' && (
-          <Button onClick={handleCheckout} disabled={isCheckingOut}>
-            Check out
-          </Button>
+          <CheckoutButton bookingId={booking?.id} />
         )}
 
         <Modal>
