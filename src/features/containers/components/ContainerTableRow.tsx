@@ -54,11 +54,22 @@ export function ContainerTableRow({ container }: ContainerTableRowProps) {
   return (
     <GridTable.Row>
       <GridTable.Cell>
-        <img
-          src={image || ''}
-          alt={`${name || 'Container'} image`}
-          className="aspect-[3/2] w-20 min-w-16 translate-x-1 scale-150 object-cover object-center text-xs"
-        />
+        <Modal>
+          <Modal.Open name="imagePreview">
+            <img
+              src={image || ''}
+              alt={`${name || 'Container'} image`}
+              className="aspect-[3/2] w-20 min-w-16 scale-[1.3] cursor-zoom-in object-cover object-center text-xs"
+            />
+          </Modal.Open>
+          <Modal.Window name="imagePreview" closeOutsideClick imagePreview>
+            <img
+              src={image || ''}
+              alt={`${name || 'Container'} image`}
+              className="aspect-[3/2] w-full min-w-16 rounded-lg object-cover object-center"
+            />
+          </Modal.Window>
+        </Modal>
       </GridTable.Cell>
       <GridTable.Cell className="font-sono font-semibold text-gray-600 dark:text-gray-300">
         {name}

@@ -9,6 +9,7 @@ import {
 import { createPortal } from 'react-dom';
 import { useOutsideClick } from '@/hooks';
 import { AiOutlineClose } from 'react-icons/ai';
+import { twMerge } from 'tailwind-merge';
 
 type ModalContextTypes = {
   openName: string;
@@ -25,7 +26,10 @@ type OpenProps = {
   name: string;
 };
 
-type WindowProps = OpenProps & { closeOutsideClick?: boolean };
+type WindowProps = OpenProps & {
+  closeOutsideClick?: boolean;
+  imagePreview?: boolean;
+};
 
 const ModalContext = createContext<ModalContextTypes | undefined>(undefined);
 
@@ -63,7 +67,12 @@ function Open({ children, name }: OpenProps) {
   return cloneElement(children, { onClick: () => handleOpen(name) });
 }
 
-function Window({ name, children, closeOutsideClick = false }: WindowProps) {
+function Window({
+  name,
+  children,
+  closeOutsideClick = false,
+  imagePreview = false,
+}: WindowProps) {
   const { openName, handleClose } = useModalContext();
   const modalWindowRef = useOutsideClick<HTMLDivElement>(handleClose);
 
@@ -72,11 +81,19 @@ function Window({ name, children, closeOutsideClick = false }: WindowProps) {
   return createPortal(
     <div className="fixed left-0 top-0 z-50 h-screen w-full bg-gray-500 bg-opacity-50 backdrop-blur-sm transition-all duration-500">
       <div
-        className="dark:bg-dark fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md bg-white p-4 shadow-md"
+        className={twMerge(
+          'dark:bg-dark fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md bg-white p-4 shadow-md',
+          imagePreview ? 'rounded-lg p-0' : '',
+        )}
         ref={closeOutsideClick ? modalWindowRef : null}
       >
         <button
-          className="absolute right-4 top-3 translate-x-2 rounded-md border-0 p-2 outline-none transition-all duration-200 hover:bg-gray-100 focus:border-0 focus:outline-none focus:ring-2 focus:ring-emerald-300 dark:hover:bg-gray-800"
+          className={twMerge(
+            'absolute right-4 top-3 translate-x-2 rounded-md border-0 p-2 outline-none transition-all duration-200 hover:bg-gray-100 focus:border-0 focus:outline-none focus:ring-2 focus:ring-emerald-300 dark:hover:bg-gray-800',
+            imagePreview
+              ? '-right-8 -top-8 hover:bg-gray-300 dark:hover:bg-gray-500'
+              : '',
+          )}
           type="button"
           onClick={handleClose}
         >
