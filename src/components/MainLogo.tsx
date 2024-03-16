@@ -11,8 +11,11 @@ export function MainLogo({ redirect = false }: MainLogoProps) {
   return (
     <div className="flex flex-col items-center justify-start gap-1">
       <img
-        className={twMerge('h-32 w-auto', redirect ? 'cursor-pointer' : '')}
-        src="/hotel-logo.png"
+        className={twMerge(
+          'h-32 w-auto scale-150',
+          redirect ? 'cursor-pointer' : '',
+        )}
+        src="/main-logo.png"
         alt="The Snowflake Logo"
         onClick={() => redirect && navigate('/dashboard')}
       />
