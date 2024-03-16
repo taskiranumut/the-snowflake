@@ -116,13 +116,21 @@ function Toggle({
 
     const rect = e.currentTarget?.getBoundingClientRect();
     const offset = 8;
+    const menuHeight = 144 + offset;
+
+    let yPosition = Math.round(rect.bottom + offset);
+    const isOverflowing = yPosition + menuHeight > window.innerHeight;
+
+    if (isOverflowing) {
+      yPosition = Math.round(rect.top - menuHeight);
+    }
 
     const position = {
       x: Math.round(window.innerWidth - rect.right),
-      y: Math.round(rect.y + rect.height + offset),
+      y: yPosition,
     };
-    handleSetPosition(position);
 
+    handleSetPosition(position);
     openId === '' || openId !== menuId ? handleOpen(menuId) : handleClose();
   }
 
