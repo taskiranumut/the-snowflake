@@ -17,7 +17,7 @@ export function Stat({ title, value, color, icon }: StatProps) {
   };
 
   return (
-    <div className="dark:bg-dark grid grid-cols-[4rem_1fr] grid-rows-[auto_auto] gap-x-4 gap-y-1 rounded-md border border-gray-100 p-4 dark:border-gray-800">
+    <div className="dark:bg-dark grid grid-cols-[4rem_1fr] grid-rows-[auto_auto] gap-x-4 gap-y-1 rounded-md border border-gray-100 bg-white p-4 dark:border-gray-800">
       <div
         className={twMerge(
           'row-span-full flex aspect-square items-center justify-center rounded-full',
