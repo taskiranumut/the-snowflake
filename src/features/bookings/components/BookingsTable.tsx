@@ -18,7 +18,7 @@ export function BookingsTable() {
 
   return (
     <Menus>
-      <GridTable columns="6">
+      <GridTable template="0.8fr 2fr 2.4fr 1.4fr 1fr 3.2rem">
         <GridTable.Header>
           <GridTable.Cell>Container</GridTable.Cell>
           <GridTable.Cell>Guest</GridTable.Cell>

@@ -19,11 +19,14 @@ type ColumnsType =
   | '9'
   | '10'
   | '11'
-  | '12';
+  | '12'
+  | 'equal'
+  | 'auto';
 
 type TableProps = {
-  columns: ColumnsType;
   children: ReactNode;
+  columns?: ColumnsType;
+  template?: string;
 } & ComponentPropsWithoutRef<'div'>;
 
 type CommonRowProps = {
@@ -61,6 +64,7 @@ type EmptyProps = {
 
 type TableContextType = {
   columns: ColumnsType;
+  template: string;
 };
 
 const TableContext = createContext<TableContextType | null>(null);
@@ -76,13 +80,14 @@ function useTableContext() {
 }
 
 export function GridTable({
-  columns,
   children,
+  columns = 'auto',
+  template = '',
   className = '',
   ...otherProps
 }: TableProps) {
   return (
-    <TableContext.Provider value={{ columns }}>
+    <TableContext.Provider value={{ columns, template }}>
       <div
         className={twMerge(
           'dark:bg-dark overflow-hidden rounded-md border border-gray-100 bg-white text-base shadow-sm dark:border-gray-800',
@@ -102,7 +107,7 @@ function CommonRow({
   className = '',
   ...otherProps
 }: CommonRowProps) {
-  const { columns } = useTableContext();
+  const { columns, template } = useTableContext();
 
   const gridCols = {
     1: 'grid-cols-1',
@@ -117,14 +122,18 @@ function CommonRow({
     10: 'grid-cols-10',
     11: 'grid-cols-11',
     12: 'grid-cols-12',
+    equal: 'auto-cols-fr grid-flow-col',
+    auto: 'auto-cols-auto grid-flow-col',
   };
 
   return (
     <div
       className={twMerge(
-        `grid gap-4 px-3 py-4 text-center transition-none ${gridCols[columns]}`,
+        'grid gap-4 px-3 py-4 text-center transition-none',
+        gridCols[columns],
         className,
       )}
+      style={{ gridTemplateColumns: template }}
       role="row"
       {...otherProps}
     >

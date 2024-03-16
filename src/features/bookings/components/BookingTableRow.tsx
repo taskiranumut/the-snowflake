@@ -83,7 +83,7 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
       <GridTable.Cell className="font-sono">
         {formatCurrency(totalPrice)}
       </GridTable.Cell>
-      <GridTable.Cell className="justify-end">
+      <GridTable.Cell>
         <Modal>
           <Menus.Menu>
             <Menus.Toggle menuId={bookingId} />
