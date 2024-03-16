@@ -11,6 +11,9 @@ export default {
         poppins: ['Poppins', defaultTheme.fontFamily.sans],
         sono: ['Sono', defaultTheme.fontFamily.sans],
       },
+      colors: {
+        dark: '#18212f',
+      },
     },
   },
   plugins: [],

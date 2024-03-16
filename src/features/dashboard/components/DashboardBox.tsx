@@ -14,7 +14,7 @@ export function DashboardBox({
   return (
     <div
       className={twMerge(
-        'flex flex-col gap-6 rounded-lg border border-gray-100 bg-white p-8',
+        'dark:bg-dark flex flex-col gap-6 rounded-lg border border-gray-100 bg-white p-8 dark:border-gray-800',
         className,
       )}
       {...props}

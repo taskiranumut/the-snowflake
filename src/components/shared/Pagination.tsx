@@ -16,7 +16,7 @@ function PaginationButton({ children, ...otherProps }: PaginationButtonProps) {
   return (
     <button
       type="button"
-      className="flex items-center justify-center gap-1 rounded-md border-0 bg-gray-50 px-2 py-1.5 text-base text-inherit transition-all duration-200 hover:bg-emerald-600 hover:text-emerald-50 active:bg-emerald-900 disabled:opacity-50 disabled:hover:bg-gray-50 disabled:hover:text-inherit"
+      className="flex items-center justify-center gap-1 rounded-md border-0 bg-gray-50 px-2 py-1.5 text-base text-inherit transition-colors duration-200 hover:bg-emerald-600 hover:text-emerald-50 active:bg-emerald-900 disabled:opacity-50 disabled:hover:bg-gray-50 disabled:hover:text-inherit dark:bg-gray-900 dark:disabled:hover:bg-gray-900"
       {...otherProps}
     >
       {children}

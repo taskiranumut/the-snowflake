@@ -36,7 +36,7 @@ export function BookingDetailData({ booking }: BookingDetailData) {
   return (
     <>
       <section className="overflow-hidden px-10 py-4">
-        <header className="flex items-center justify-between rounded-t-lg bg-emerald-500 px-10 py-6 text-lg text-gray-100">
+        <header className="flex items-center justify-between rounded-t-lg bg-emerald-500 px-10 py-6 text-lg text-gray-100 dark:text-gray-800">
           <div className="flex items-center gap-4 text-lg font-semibold">
             <AiFillBuild size="2.25rem" />
             <p>
@@ -53,15 +53,15 @@ export function BookingDetailData({ booking }: BookingDetailData) {
           </p>
         </header>
 
-        <section className="bg-white px-10 py-8">
-          <div className="mb-4 flex items-center gap-3 text-gray-500">
+        <section className="dark:bg-dark bg-white px-10 py-8">
+          <div className="mb-4 flex items-center gap-3 text-gray-500 dark:text-gray-400">
             {guests?.countryFlag && (
               <Flag
                 src={guests?.countryFlag}
                 alt={`Flag of ${guests?.nationality}`}
               />
             )}
-            <p className="text-gray-700">
+            <p className="text-gray-700 dark:text-gray-200">
               {guests?.fullName}{' '}
               {guestsNum && guestsNum > 1 ? `+ ${guestsNum - 1} guests` : ''}
             </p>
@@ -88,7 +88,7 @@ export function BookingDetailData({ booking }: BookingDetailData) {
             className={twMerge(
               'mt-6 flex items-center justify-between rounded-md px-8 py-4',
               isPaid
-                ? 'bg-green-100 text-green-700'
+                ? 'bg-emerald-100 text-emerald-700'
                 : 'bg-yellow-100 text-yellow-700',
             )}
           >
@@ -107,7 +107,7 @@ export function BookingDetailData({ booking }: BookingDetailData) {
           </div>
         </section>
 
-        <footer className="rounded-b-lg bg-white px-10 pb-6 text-right text-sm text-gray-500">
+        <footer className="dark:bg-dark rounded-b-lg bg-white px-10 pb-6 text-right text-sm text-gray-500 dark:text-gray-400">
           <p>Booked {format(new Date(createdAt), 'EEE, MMM dd yyyy, p')}</p>
         </footer>
       </section>

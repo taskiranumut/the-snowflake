@@ -130,13 +130,15 @@ function Toggle({
     <button
       type="button"
       className={twMerge(
-        'translate-x-2 rounded-md p-2 transition-all duration-200 hover:bg-gray-100',
+        'translate-x-2 rounded-md p-2 transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800',
         className,
       )}
       onClick={handleClick}
       {...otherProps}
     >
-      {children || <HiEllipsisVertical className="text-xl text-gray-700" />}
+      {children || (
+        <HiEllipsisVertical className="text-xl text-gray-700 dark:text-gray-200" />
+      )}
     </button>
   );
 }
@@ -150,7 +152,10 @@ function List({ menuId, children, className = '', ...otherProps }: ListProps) {
   return createPortal(
     <ul
       style={{ top: position?.y, right: position?.x }}
-      className={twMerge('fixed rounded-md bg-white shadow-md', className)}
+      className={twMerge(
+        'fixed rounded-md bg-white shadow-md dark:bg-gray-800',
+        className,
+      )}
       ref={ref}
       {...otherProps}
     >
@@ -179,14 +184,16 @@ function Button({
       <button
         type="button"
         className={twMerge(
-          'flex w-full items-center gap-4 px-6 py-3 text-left text-base transition-all duration-200 hover:bg-gray-50',
+          'flex w-full items-center gap-4 rounded-md px-6 py-3 text-left text-base transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-900',
           className,
         )}
         onClick={handleClick}
         {...otherProps}
       >
         {' '}
-        {icon && <span className="text-gray-400">{icon}</span>}
+        {icon && (
+          <span className="text-gray-400 dark:text-gray-500">{icon}</span>
+        )}
         <span>{children}</span>
       </button>
     </li>

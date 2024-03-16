@@ -11,7 +11,7 @@ export function TodayItem({ activity }: TodayItemsProps) {
   const { id, status, guests, nigthsNum } = activity;
 
   return (
-    <li className="grid grid-cols-[6rem_2rem_1fr_5.5rem] items-center gap-3 border-b border-gray-100 px-0 py-2 text-base first-of-type:border-t">
+    <li className="grid grid-cols-[6rem_2rem_1fr_5.5rem] items-center gap-3 border-b border-gray-100 px-0 py-2 text-base first-of-type:border-t dark:border-gray-800">
       {status === 'unconfirmed' && <Tag color="green">Arriving</Tag>}
       {status === 'checked-in' && <Tag color="blue">Departing</Tag>}
 

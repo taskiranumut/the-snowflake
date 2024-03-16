@@ -54,12 +54,14 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
 
   return (
     <GridTable.Row>
-      <GridTable.Cell className="font-sono text-base font-semibold text-gray-600">
+      <GridTable.Cell className="font-sono text-base font-semibold text-gray-600 dark:text-gray-300">
         {containers?.name}
       </GridTable.Cell>
       <GridTable.Cell className="flex flex-col items-start gap-1">
         <span>{guests?.fullName}</span>
-        <span className="text-sm text-gray-500">{guests?.email}</span>
+        <span className="text-sm text-gray-500 dark:text-gray-400">
+          {guests?.email}
+        </span>
       </GridTable.Cell>
       <GridTable.Cell className="flex flex-col items-start gap-1">
         <span>
@@ -69,7 +71,7 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
             : formatDistanceFromNow(startDate)}{' '}
           &rarr; {nigthsNum} night stay
         </span>
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-gray-500 dark:text-gray-400">
           {' '}
           {format(new Date(startDate || ''), 'MMM dd yyyy')} &mdash;{' '}
           {format(new Date(endDate || ''), 'MMM dd yyyy')}

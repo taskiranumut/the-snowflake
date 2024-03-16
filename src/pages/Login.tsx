@@ -4,7 +4,7 @@ import { LoginForm } from '@/features/auth/components';
 
 export function Login() {
   return (
-    <div className="grid min-h-screen grid-cols-[32rem] content-center justify-center gap-8 bg-gray-50">
+    <div className="grid min-h-screen grid-cols-[32rem] content-center justify-center gap-8 bg-gray-50 dark:bg-gray-900">
       <MainLogo />
       <Heading as="h4" className="text-center">
         Log in to your account

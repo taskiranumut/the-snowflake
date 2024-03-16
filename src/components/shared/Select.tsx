@@ -19,8 +19,11 @@ export function Select({
   ...otherProps
 }: SelectProps) {
   const selectBaseStyle =
-    'rounded-md border border-gray-300 bg-white px-3 py-3 text-base shadow-sm focus:border-0 focus:outline-none focus:ring-2 focus:ring-emerald-300 disabled:pointer-events-none disabled:opacity-50';
-  const selectStyle = twMerge(selectBaseStyle, white ? 'border-gray-100' : '');
+    'rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark px-3 py-3 text-base shadow-sm focus:border-0 focus:outline-none focus:ring-2 focus:ring-emerald-300 disabled:pointer-events-none disabled:opacity-50';
+  const selectStyle = twMerge(
+    selectBaseStyle,
+    white ? 'border-gray-100 dark:border-gray-800' : '',
+  );
 
   return (
     <select name="" id="" value={value} className={selectStyle} {...otherProps}>

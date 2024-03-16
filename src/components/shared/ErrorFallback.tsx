@@ -14,12 +14,14 @@ export function ErrorFallback({
   const navigate = useNavigate();
 
   return (
-    <main className="flex h-screen items-center justify-center bg-gray-50 p-10">
-      <div className="shrink grow-0 basis-[64rem] rounded-lg border border-gray-100 bg-white px-10 py-16 text-center">
+    <main className="flex h-screen items-center justify-center bg-gray-50 p-10 dark:bg-gray-900">
+      <div className="dark:bg-dark shrink grow-0 basis-[64rem] rounded-lg border border-gray-100 bg-white px-10 py-16 text-center dark:border-gray-800">
         <Heading as="h1" className="mb-4">
           {title}
         </Heading>
-        <p className="mb-8 font-sono text-gray-500">{message}</p>
+        <p className="mb-8 font-sono text-gray-500 dark:text-gray-400">
+          {message}
+        </p>
         <div className="flex justify-center gap-4">
           <Button size="lg" onClick={() => window.location.reload()}>
             Try Again

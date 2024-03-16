@@ -20,7 +20,7 @@ export function ConfirmDelete({
   return (
     <div className="flex w-96 flex-col gap-4 p-4">
       <Heading as="h3">Delete {resource}</Heading>
-      <p className="mb-4 text-gray-500">
+      <p className="mb-4 text-gray-500 dark:text-gray-400">
         {' '}
         Are you sure you want to delete this {resource} permanently? This action
         cannot be undone.

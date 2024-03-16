@@ -8,7 +8,7 @@ export function UserAvatar() {
   if (isLoading) return null;
 
   return (
-    <div className="flex items-center gap-3 text-base text-gray-600">
+    <div className="flex items-center gap-3 text-base text-gray-600 dark:text-gray-300">
       <img
         src={user?.user_metadata?.avatar || `${profilePicturesUrl}default.jpg`}
         alt={`Avatar of ${user?.user_metadata.full_name || 'user'}`}

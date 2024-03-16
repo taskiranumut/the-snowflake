@@ -17,7 +17,7 @@ export function UserProvider({ children }: UserProviderProps) {
 
   if (isLoading)
     return (
-      <div className="flex h-screen items-center justify-center bg-gray-50">
+      <div className="flex h-screen items-center justify-center bg-gray-50 dark:bg-gray-900">
         <Spinner />
       </div>
     );

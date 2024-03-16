@@ -60,7 +60,7 @@ export function ContainerTableRow({ container }: ContainerTableRowProps) {
           className="aspect-[3/2] w-20 min-w-16 translate-x-1 scale-150 object-cover object-center text-xs"
         />
       </GridTable.Cell>
-      <GridTable.Cell className='text-gray-600" font-sono font-semibold'>
+      <GridTable.Cell className="font-sono font-semibold text-gray-600 dark:text-gray-300">
         {name}
       </GridTable.Cell>
       <GridTable.Cell className="font-sono">
@@ -71,7 +71,7 @@ export function ContainerTableRow({ container }: ContainerTableRowProps) {
       </GridTable.Cell>
       <GridTable.Cell className="font-sono">
         {discount ? (
-          <span className="text-green-700">{formatCurrency(discount)}</span>
+          <span className="text-emerald-600">{formatCurrency(discount)}</span>
         ) : (
           <span>—</span>
         )}

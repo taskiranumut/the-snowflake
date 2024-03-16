@@ -85,7 +85,7 @@ export function GridTable({
     <TableContext.Provider value={{ columns }}>
       <div
         className={twMerge(
-          'overflow-hidden rounded-md border bg-white text-base shadow-sm',
+          'dark:bg-dark overflow-hidden rounded-md border border-gray-100 bg-white text-base shadow-sm dark:border-gray-800',
           className,
         )}
         role="table"
@@ -137,7 +137,7 @@ function Header({ children, className = '', ...otherProps }: HeaderProps) {
   return (
     <CommonRow
       className={twMerge(
-        'border-b border-gray-100 bg-gray-50 px-4 py-3 font-semibold tracking-tight text-gray-600 last-of-type:border-0',
+        'border-b border-gray-100 bg-gray-50 px-4 py-3 font-semibold tracking-tight text-gray-600 last-of-type:border-0 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300',
         className,
       )}
       {...otherProps}
@@ -151,7 +151,7 @@ function Row({ children, className = '', ...otherProps }: RowProps) {
   return (
     <CommonRow
       className={twMerge(
-        'border-b border-gray-100 px-4 py-3 last-of-type:border-b-0',
+        'border-b border-gray-100 px-4 py-3 last-of-type:border-b-0 dark:border-gray-800',
         className,
       )}
       {...otherProps}
@@ -191,7 +191,10 @@ function Body<T>({
 function Footer({ children, className = '', ...otherProps }: FooterProps) {
   return (
     <div
-      className={twMerge('flex justify-center bg-gray-50 px-4 py-3', className)}
+      className={twMerge(
+        'flex justify-center bg-gray-50 px-4 py-3 dark:bg-gray-900',
+        className,
+      )}
       {...otherProps}
     >
       {children}

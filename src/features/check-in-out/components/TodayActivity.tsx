@@ -8,7 +8,7 @@ export function TodayActivity() {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className="col-span-2 col-start-1 flex flex-col gap-6 rounded-lg border border-gray-100 bg-white p-8 pt-6">
+    <div className="dark:bg-dark col-span-2 col-start-1 flex flex-col gap-6 rounded-lg border border-gray-100 bg-white p-8 pt-6 dark:border-gray-800">
       <Row type="horizontal">
         <Heading as="h2">Today</Heading>
       </Row>

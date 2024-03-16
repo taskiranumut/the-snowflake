@@ -15,7 +15,7 @@ export function DataItem({ children, label, icon }: DataItemProps) {
             size: '1.25rem',
             className: 'text-emerald-600',
           })}
-        <span className="text-gray-700">{label}</span>
+        <span className="text-gray-700 dark:text-gray-500">{label}</span>
       </span>
       {children}
     </div>

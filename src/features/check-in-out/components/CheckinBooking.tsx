@@ -118,7 +118,7 @@ export function CheckinBooking() {
       <BookingDetailData booking={booking} />
 
       {!hasBreakfast && (
-        <Box className="mx-10 rounded-lg bg-white px-10 py-4">
+        <Box className="dark:bg-dark mx-10 rounded-lg bg-white px-10 py-4">
           <Checkbox
             id="breakfast"
             label={breakfastAddingCheckboxLabel}
@@ -128,7 +128,7 @@ export function CheckinBooking() {
         </Box>
       )}
 
-      <Box className="mx-10 rounded-lg bg-white px-10 py-4">
+      <Box className="dark:bg-dark mx-10 rounded-lg bg-white px-10 py-4">
         <Checkbox
           id="confirm"
           label={totalPriceConfirmCheckboxLabel}

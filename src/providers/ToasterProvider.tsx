@@ -9,7 +9,8 @@ export function ToasterProvider() {
       toastOptions={{
         success: { duration: 3000 },
         error: { duration: 5000 },
-        className: 'text-base max-w-[500px] px-4 py-3 bg-white color-gray-700',
+        className:
+          'text-base max-w-[500px] px-4 py-3 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200',
       }}
     />
   );

@@ -19,7 +19,9 @@ export function MainLogo({ redirect = false }: MainLogoProps) {
         alt="The Snowflake Logo"
         onClick={() => redirect && navigate('/dashboard')}
       />
-      <h1 className="text-xl text-gray-600">The Snowflake</h1>
+      <h1 className="text-xl text-gray-600 dark:text-gray-300">
+        The Snowflake
+      </h1>
     </div>
   );
 }

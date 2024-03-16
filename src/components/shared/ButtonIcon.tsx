@@ -15,7 +15,7 @@ export function ButtonIcon({
     <button
       type="button"
       className={twMerge(
-        'rounded-md p-2 transition-all duration-200 hover:bg-gray-100',
+        'rounded-md p-2 transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800',
         className,
       )}
       {...otherProps}

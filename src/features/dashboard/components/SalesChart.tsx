@@ -11,6 +11,7 @@ import {
 import { eachDayOfInterval, format, isSameDay, subDays } from 'date-fns';
 import { Heading } from '@/components/shared';
 import { DashboardBox } from '@/features/dashboard/components';
+import { useThemeContext } from '@/context';
 
 type SalesChartProps = {
   bookings: DataBooking[];
@@ -18,6 +19,7 @@ type SalesChartProps = {
 };
 
 export function SalesChart({ bookings, daysNum }: SalesChartProps) {
+  const { theme } = useThemeContext();
   const allDates = eachDayOfInterval({
     start: subDays(new Date(), daysNum - 1),
     end: new Date(),
@@ -35,12 +37,20 @@ export function SalesChart({ bookings, daysNum }: SalesChartProps) {
     };
   });
 
-  const colors = {
-    totalSales: { stroke: '#4f46e5', fill: '#c7d2fe' },
-    extrasSales: { stroke: '#16a34a', fill: '#dcfce7' },
-    text: '#374151',
-    background: '#fff',
-  };
+  const colors =
+    theme === 'dark'
+      ? {
+          totalSales: { stroke: '#059669', fill: '#059669' },
+          extrasSales: { stroke: '#4338ca', fill: '#4338ca' },
+          text: '#e5e7eb',
+          background: '#18212f',
+        }
+      : {
+          totalSales: { stroke: '#10b981', fill: '#6ee7b7' },
+          extrasSales: { stroke: '#4f46e5', fill: '#818cf8' },
+          text: '#374151',
+          background: '#fff',
+        };
 
   return (
     <DashboardBox className="col-span-full">
