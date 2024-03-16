@@ -76,7 +76,7 @@ export function ContainerTableRow({ container }: ContainerTableRowProps) {
           <span>—</span>
         )}
       </GridTable.Cell>
-      <GridTable.Cell>
+      <GridTable.Cell className="justify-end">
         <Row type="horizontal">
           <Modal>
             <Menus.Menu>

@@ -7,7 +7,8 @@ import {
   HiOutlineCheckCircle,
   HiOutlineCurrencyDollar,
 } from 'react-icons/hi2';
-import { AiFillBuild } from 'react-icons/ai';
+import { HiCube } from 'react-icons/hi2';
+
 import { twMerge } from 'tailwind-merge';
 
 type BookingDetailData = {
@@ -38,7 +39,7 @@ export function BookingDetailData({ booking }: BookingDetailData) {
       <section className="overflow-hidden">
         <header className="flex items-center justify-between rounded-t-lg bg-emerald-500 px-10 py-6 text-lg text-gray-100 dark:text-gray-800">
           <div className="flex items-center gap-4 text-lg font-semibold">
-            <AiFillBuild size="2.25rem" />
+            <HiCube size="2.25rem" />
             <p>
               {nigthsNum} nights in Container{' '}
               <span className="ml-2 font-sono text-xl">{containers?.name}</span>
