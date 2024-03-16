@@ -35,7 +35,7 @@ export function BookingDetailData({ booking }: BookingDetailData) {
 
   return (
     <>
-      <section className="overflow-hidden px-10 py-4">
+      <section className="overflow-hidden">
         <header className="flex items-center justify-between rounded-t-lg bg-emerald-500 px-10 py-6 text-lg text-gray-100 dark:text-gray-800">
           <div className="flex items-center gap-4 text-lg font-semibold">
             <AiFillBuild size="2.25rem" />
