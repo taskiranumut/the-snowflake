@@ -15,6 +15,7 @@ import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
 import { useMoveBack } from '@/hooks';
 import { BookingDetailData } from '@/features/bookings/components';
 import { CheckoutButton } from '@/features/check-in-out/components';
+import { HiTrash, HiArrowUpOnSquare } from 'react-icons/hi2';
 
 export function BookingDetail() {
   const { isLoading, booking } = useBooking();
@@ -51,7 +52,10 @@ export function BookingDetail() {
 
       <div className="flex justify-end gap-3">
         {booking?.status === 'unconfirmed' && (
-          <Button onClick={() => navigate(`/checkin/${booking?.id}`)}>
+          <Button
+            onClick={() => navigate(`/checkin/${booking?.id}`)}
+            icon={<HiArrowUpOnSquare size="1.25rem" />}
+          >
             Check in
           </Button>
         )}
@@ -62,7 +66,9 @@ export function BookingDetail() {
 
         <Modal>
           <Modal.Open name="delete">
-            <Button color="danger">Delete booking</Button>
+            <Button color="danger" icon={<HiTrash size="1.25rem" />}>
+              Delete booking
+            </Button>
           </Modal.Open>
           <Modal.Window name="delete">
             <ConfirmDelete

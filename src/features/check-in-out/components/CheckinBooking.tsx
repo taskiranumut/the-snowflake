@@ -15,6 +15,7 @@ import { BookingDetailData } from '@/features/bookings/components';
 import { useSettings } from '@/features/settings/hooks';
 import { formatCurrency } from '@/utils';
 import { useCheckin } from '@/features/check-in-out/hooks';
+import { HiArrowUpOnSquare } from 'react-icons/hi2';
 
 export function CheckinBooking() {
   const [confirmPaid, setConfirmPaid] = useState(false);
@@ -139,8 +140,12 @@ export function CheckinBooking() {
       </Box>
 
       <div className="flex justify-end gap-3">
-        <Button onClick={handleCheckin} disabled={!confirmPaid || isCheckingIn}>
-          Check in booking #{bookingId}
+        <Button
+          onClick={handleCheckin}
+          disabled={!confirmPaid || isCheckingIn}
+          icon={<HiArrowUpOnSquare size="1.25rem" />}
+        >
+          Check in
         </Button>
         <Button onClick={moveBack} color="secondary">
           Back

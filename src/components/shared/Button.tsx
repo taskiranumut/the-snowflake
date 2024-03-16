@@ -7,6 +7,7 @@ type ButtonProps = {
   size?: 'sm' | 'md' | 'lg';
   color?: 'primary' | 'secondary' | 'danger';
   className?: string;
+  icon?: ReactNode;
 } & ComponentPropsWithoutRef<'button'>;
 
 export function Button({
@@ -15,6 +16,7 @@ export function Button({
   size = 'md',
   color = 'primary',
   className = '',
+  icon = null,
   ...props
 }: ButtonProps) {
   const base =
@@ -33,10 +35,17 @@ export function Button({
     danger: 'text-red-100 bg-red-700 hover:bg-red-800',
   };
 
-  const styles = twMerge(base, sizes[size], colors[color], className);
+  const styles = twMerge(
+    base,
+    sizes[size],
+    colors[color],
+    icon ? 'flex items-center justify-center gap-2' : '',
+    className,
+  );
 
   return (
     <button type="button" className={styles} {...props}>
+      {icon}
       {content || children}
     </button>
   );
