@@ -1,15 +1,17 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import routes from '@/routes';
 import { ReactQueryProvider, ToasterProvider } from './providers';
-import { ThemeContextProvider } from '@/context';
+import { ThemeContextProvider, ToggleSidebarContextProvider } from '@/context';
 
 function App() {
   return (
     <ReactQueryProvider>
-      <ThemeContextProvider>
-        <RouterProvider router={createBrowserRouter(routes)} />
-        <ToasterProvider />
-      </ThemeContextProvider>
+      <ToggleSidebarContextProvider>
+        <ThemeContextProvider>
+          <RouterProvider router={createBrowserRouter(routes)} />
+          <ToasterProvider />
+        </ThemeContextProvider>
+      </ToggleSidebarContextProvider>
     </ReactQueryProvider>
   );
 }
