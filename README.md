@@ -1,7 +1,7 @@
 # The Snowflake
 
 <p align="center">
-  <img src="https://i.ibb.co/zsqdRPs/logo-dark-org.jpg" alt="The Snowflake Logo" width="200" />
+  <img src="https://github.com/taskiranumut/the-snowflake/blob/main/public/main-logo.png" alt="The Snowflake Logo" width="200" />
 </p>
 
 <h3>The Snowflake web application is a reservation and container management panel developed for the employees of a winter, forest and container themed luxury hotel.</h3>
@@ -23,7 +23,7 @@
 - **Global Settings Configuration:** Provides the ability to adjust settings for breakfast pricing, the number of nights per booking, and maximum guest allowance.
 - **Dark Mode Availability:** Includes a dark mode setting for improved visual ergonomics in low-light conditions.
   
-## Teck Stack
+## Tech Stack
 
 - [React](https://react.dev/)
 - [Typescript](https://www.typescriptlang.org/)
