@@ -3,7 +3,7 @@ import { Button, Form, FormRow, FormInput, Spinner } from '@/components/shared';
 import { useLogin } from '@/features/auth/hooks';
 
 export function LoginForm() {
-  const [email, setEmail] = useState('umut@example.com');
+  const [email, setEmail] = useState('test@test.com');
   const [password, setPassword] = useState('123123123');
 
   const { isLoading, mutateLogin } = useLogin();
