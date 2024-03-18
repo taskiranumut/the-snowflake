@@ -1,8 +1,12 @@
 # The Snowflake
 
-The Snowflake web application is a reservation and container management panel developed for the employees of a winter, forest and container themed luxury hotel.
+<p align="center">
+  <img src="https://i.ibb.co/zsqdRPs/logo-dark-org.jpg" alt="The Snowflake Logo" width="200" />
+</p>
 
-➡️ [PROJECT LINK](https://the-snowflake.vercel.app/login)
+<h3>The Snowflake web application is a reservation and container management panel developed for the employees of a winter, forest and container themed luxury hotel.</h3>
+
+👉 [PROJECT LINK](https://the-snowflake.vercel.app/login)
 
 ## Features
 
@@ -18,8 +22,8 @@ The Snowflake web application is a reservation and container management panel de
 - **Sales and Stay Duration Analytics:** Features charts that depict total and additional sales, with a focus on the duration of stays as a metric.
 - **Global Settings Configuration:** Provides the ability to adjust settings for breakfast pricing, the number of nights per booking, and maximum guest allowance.
 - **Dark Mode Availability:** Includes a dark mode setting for improved visual ergonomics in low-light conditions.
-
-## Tech Stack
+  
+## Teck Stack
 
 - [React](https://react.dev/)
 - [Typescript](https://www.typescriptlang.org/)
@@ -31,7 +35,7 @@ The Snowflake web application is a reservation and container management panel de
 - [Recharts](https://recharts.org/en-US)
 - [React Icons](https://react-icons.github.io/react-icons/)
 
-## Usage of Application
+## Usage of Application
 
 - First, the application must be logged in.
 - `test@test.com` and `123123123` login information can be used for the first login.
