@@ -1,30 +1,66 @@
-# React + TypeScript + Vite
+# The Snowflake
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Snowflake web application is a reservation and container management panel developed for the employees of a winter, forest and container themed luxury hotel.
 
-Currently, two official plugins are available:
+➡️ [PROJECT LINK](https://the-snowflake.vercel.app/login)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Employee-Exclusive Access:** Registration and application use are restricted to hotel employees. A personal account is created for hotel employees within the application.
+- **User Profile Customization:** Profiles can be personalized by adding a photo and updating names and passwords.
+- **Container Management Interface:** The application presents a table view for managing container details such as photos, names, capacities, prices, and discounts, with options to add, edit, or remove listings.
+- **Booking Management:** The system displays a overview of bookings, including dates, statuses, payments, and guest information, with filters for status categorization.
+- **Detailed Booking Records:** Tracks guest numbers, duration of stays, special requests, and breakfast bookings, alongside associated costs.
+- **Check-In and Check-Out Management:** Allows the confirmation of payments and the management of guest arrivals and departures directly within the app.
+- **Breakfast Option During Check-In:** Guests have the option to add breakfast for their entire stay at the time of check-in.
+- **Guest Database:** A database stores detailed guest information such as names, emails, IDs, nationalities, and flags for identification purposes.
+- **Dashboard Insights:** Offers a dashboard that summarizes critical information and statistics for the past 7, 30, or 90 days, including guest activities and financial data.
+- **Sales and Stay Duration Analytics:** Features charts that depict total and additional sales, with a focus on the duration of stays as a metric.
+- **Global Settings Configuration:** Provides the ability to adjust settings for breakfast pricing, the number of nights per booking, and maximum guest allowance.
+- **Dark Mode Availability:** Includes a dark mode setting for improved visual ergonomics in low-light conditions.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
 
-- Configure the top-level `parserOptions` property like this:
+- [React](https://react.dev/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [React Query](https://tanstack.com/query/latest)
+- [React Router](https://reactrouter.com/en/main)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Supabase](https://supabase.com/)
+- [Recharts](https://recharts.org/en-US)
+- [React Icons](https://react-icons.github.io/react-icons/)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Usage of Application
+
+- First, the application must be logged in.
+- `test@test.com` and `123123123` login information can be used for the first login.
+- Afterwards, if desired, a new account can be created from the Users tab. Account information is secured by [Supabase Auth](https://supabase.com/docs/guides/auth).
+- All accounts view a single data set and manipulate the same data set.
+- Since the application is a general admin panel, a user-specific database table is not created.
+- Now, can be played with all data freely. Enjoy.
+
+## Installation and Development
+
+To run the application in locale, a database structure must first be created in Supabase. You must create a free account (or login) on [Supabase](https://supabase.com/dashboard/sign-up) and create tables according to the [API schema](https://github.com/taskiranumut/the-snowflake/blob/main/src/services/supabase/schema.types.ts). For image storage, areas should be created for profile pictures and containers under [Supabase storage](https://supabase.com/docs/guides/storage). Environment variables should be defined in the `.env` file in the project root directory as follows:
+
+```
+VITE_SUPABASE_URL = <your_supabase_url>
+VITE_SUPABASE_KEY = <your_anon_key>
+VITE_SUPABASE_CONTAINER_IMAGES_URL = <your_supabase_url>/storage/v1/object/public/<your_container_storage_name>/
+VITE_SUPABASE_PROFILE_PICTURES_URL = <your_supabase_url>/storage/v1/object/public/<your_profile_picture_storage_name>/
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+RLS policy configurations must be done for tables and storages, [more information](https://supabase.com/docs/guides/auth/row-level-security).
+
+After the database installations are completed, the npm project can be run.
+
+```
+npm install
+npm run dev
+npm run build
+```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
