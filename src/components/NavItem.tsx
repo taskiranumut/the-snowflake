@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { type ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { useToggleSidebarContext } from '@/context';
 
 type NavItemProps = {
   to: string;
@@ -10,6 +11,7 @@ type NavItemProps = {
 };
 
 export function NavItem({ to, icon, title, children }: NavItemProps) {
+  const { isOpen } = useToggleSidebarContext();
   const activeLink = 'rounded-md bg-gray-100 dark:bg-gray-900';
   const passiveLink = 'text-gray-600 dark:text-gray-300';
 
@@ -21,10 +23,12 @@ export function NavItem({ to, icon, title, children }: NavItemProps) {
       to={to}
       className={({ isActive }) =>
         twMerge(
-          'flex items-center gap-2 px-4 py-3 text-base font-normal hover:rounded-md hover:bg-gray-100 hover:text-gray-800 hover:transition-colors hover:duration-200 dark:hover:bg-gray-900 dark:hover:text-gray-100',
+          'flex items-center gap-2 py-3 text-base font-normal hover:rounded-md hover:bg-gray-100 hover:text-gray-800 hover:transition-colors hover:duration-200 dark:hover:bg-gray-900 dark:hover:text-gray-100',
           isActive ? activeLink : passiveLink,
+          isOpen ? 'px-4' : 'px-3',
         ) as string
       }
+      title={title || ''}
       children={({ isActive }) => (
         <>
           {icon && (
@@ -37,7 +41,7 @@ export function NavItem({ to, icon, title, children }: NavItemProps) {
               {icon}
             </span>
           )}
-          {title && <span>{title}</span>}
+          {isOpen && title && <span>{title}</span>}
           {children}
         </>
       )}
