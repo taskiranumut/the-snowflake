@@ -24,7 +24,7 @@ export function LoginForm() {
   }
 
   return (
-    <Form onSubmit={handleSubmit} className="p-8">
+    <Form onSubmit={handleSubmit} className="p-4 sm:p-8">
       <FormRow type="vertical">
         <FormInput
           label="Email address"
@@ -47,7 +47,7 @@ export function LoginForm() {
           disabled={isLoading}
         />
       </FormRow>
-      <FormRow type="vertical" className="pt-6">
+      <FormRow type="vertical" className="pt-4 sm:pt-6">
         <Button
           type="submit"
           className="flex w-full items-center justify-center gap-3"
