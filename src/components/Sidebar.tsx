@@ -1,18 +1,31 @@
 import { MainLogo, Navbar } from '@/components';
-import { useToggleSidebarContext } from '@/context';
+import { useToggleSidebarContext, useScreenSizeContext } from '@/context';
 import { twMerge } from 'tailwind-merge';
+import { AiOutlineClose } from 'react-icons/ai';
 
 export function Sidebar() {
-  const { isOpen } = useToggleSidebarContext();
+  const { isOpen, onClose } = useToggleSidebarContext();
+  const { isSm } = useScreenSizeContext();
 
   return (
     <aside
       className={twMerge(
-        'row-span-2 row-start-1 flex flex-col gap-8 border-r border-gray-100 bg-white py-4 dark:border-gray-800 dark:bg-dark',
-        !isOpen ? 'px-2' : 'px-6',
+        'fixed left-0 top-0 z-40 flex h-full w-3/5 transform flex-col gap-8 border-r border-gray-100 bg-white py-4 pt-12 transition-transform duration-200 ease-in-out sm:relative sm:row-span-2 sm:row-start-1 sm:w-auto sm:pt-4 sm:transition-none dark:border-gray-800 dark:bg-dark',
+        isOpen
+          ? 'translate-x-0 px-6'
+          : '-translate-x-full px-2 sm:translate-x-0',
       )}
     >
-      <MainLogo redirect mini={!isOpen} />
+      {isSm && (
+        <button
+          className="absolute right-4 top-3 translate-x-2 rounded-md border-0 bg-gray-100 p-2 outline-none dark:bg-gray-800"
+          type="button"
+          onClick={onClose}
+        >
+          <AiOutlineClose />
+        </button>
+      )}
+      <MainLogo redirect mini={!isSm && !isOpen} />
       <Navbar />
     </aside>
   );

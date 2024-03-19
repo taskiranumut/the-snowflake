@@ -8,8 +8,8 @@ export function AppLayout() {
   const { isOpen } = useToggleSidebarContext();
 
   const layout = {
-    openSidebar: 'grid-cols-[16rem_1fr]',
-    closeSidebar: 'grid-cols-[auto_1fr]',
+    openSidebar: 'grid-cols-1 sm:grid-cols-[16rem_1fr]',
+    closeSidebar: 'grid-cols-1 sm:grid-cols-[auto_1fr]',
   };
 
   return (
