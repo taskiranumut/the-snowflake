@@ -1,8 +1,11 @@
-import { useState, createContext, type ReactNode } from 'react';
+import { useState, createContext, type ReactNode, useMemo } from 'react';
+import { useScreenSizeContext } from '.';
 
 type ToggleSidebarContextType = {
   isOpen: boolean;
-  toggleSidebar: () => void;
+  onOpen: () => void;
+  onClose: () => void;
+  onToggle: () => void;
 };
 
 type ToggleSidebarContextProviderProps = {
@@ -16,14 +19,33 @@ export const ToggleSidebarContext = createContext<
 export function ToggleSidebarContextProvider({
   children,
 }: ToggleSidebarContextProviderProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const { isSm } = useScreenSizeContext();
+  console.log('isSm :>> ', isSm);
+  const [isOpen, setIsOpen] = useState(!isSm);
 
-  function toggleSidebar() {
+  function onOpen() {
+    setIsOpen(true);
+  }
+
+  function onClose() {
+    setIsOpen(false);
+  }
+
+  function onToggle() {
     setIsOpen((is) => !is);
   }
 
+  const value = useMemo(() => {
+    return {
+      isOpen,
+      onOpen,
+      onClose,
+      onToggle,
+    };
+  }, [isOpen]);
+
   return (
-    <ToggleSidebarContext.Provider value={{ isOpen, toggleSidebar }}>
+    <ToggleSidebarContext.Provider value={value}>
       {children}
     </ToggleSidebarContext.Provider>
   );
