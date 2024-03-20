@@ -18,7 +18,7 @@ export function ConfirmDelete({
   }
 
   return (
-    <div className="flex w-96 flex-col gap-4 p-4">
+    <div className="flex w-72 flex-col gap-4 p-4 sm:w-96">
       <Heading as="h3">Delete {resource}</Heading>
       <p className="mb-4 text-gray-500 dark:text-gray-400">
         {' '}
