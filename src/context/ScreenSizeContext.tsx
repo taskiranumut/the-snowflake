@@ -7,12 +7,38 @@ import {
 } from 'react';
 
 type ScreenSizes = {
+  /**
+   * Indicates if the screen size is small (width < 640).
+   */
   isSm: boolean;
+  /**
+   * Indicates if the screen size is medium (width >= 640 && width < 768).
+   */
   isMd: boolean;
+  /**
+   * Indicates if the screen size is large (width >= 768 && width < 1024).
+   */
   isLg: boolean;
+  /**
+   * Indicates if the screen size is extra large (width >= 1024 && width < 1280).
+   */
   isXl: boolean;
+  /**
+   * Indicates if the screen size is 2 extra large (width >= 1280 && width < 1536).
+   */
   is2Xl: boolean;
-  isHuge: boolean;
+  /**
+   * Indicates if the screen size is mobile (width < 768).
+   */
+  isMobile: boolean;
+  /**
+   * Indicates if the screen size is tablet (width >= 768 && width < 1280).
+   */
+  isTablet: boolean;
+  /**
+   * Indicates if the screen size is desktop (width >= 1280).
+   */
+  isDesktop: boolean;
 };
 
 type ScreenSizeContextProviderProps = {
@@ -42,14 +68,17 @@ export const ScreenSizeContextProvider = ({
 
   const value = useMemo(() => {
     // Tailwind CSS breakpoints
-    const isSm = width < 640;
-    const isMd = width >= 640 && width < 768;
-    const isLg = width >= 768 && width < 1024;
-    const isXl = width >= 1024 && width < 1280;
-    const is2Xl = width >= 1280 && width < 1536;
-    const isHuge = width >= 1536;
 
-    return { isSm, isMd, isLg, isXl, is2Xl, isHuge };
+    return {
+      isSm: width < 640,
+      isMd: width >= 640 && width < 768,
+      isLg: width >= 768 && width < 1024,
+      isXl: width >= 1024 && width < 1280,
+      is2Xl: width >= 1280 && width < 1536,
+      isMobile: width < 768,
+      isTablet: width >= 768 && width < 1280,
+      isDesktop: width >= 1280,
+    };
   }, [width]);
 
   return (
