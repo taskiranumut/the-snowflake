@@ -15,7 +15,7 @@ export function AppLayout() {
   return (
     <div
       className={twMerge(
-        'grid h-screen grid-rows-[auto_1fr]',
+        'grid h-dvh grid-rows-[auto_1fr]',
         layout[isOpen ? 'openSidebar' : 'closeSidebar'],
       )}
     >
