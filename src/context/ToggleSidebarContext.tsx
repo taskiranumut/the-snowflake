@@ -20,7 +20,6 @@ export function ToggleSidebarContextProvider({
   children,
 }: ToggleSidebarContextProviderProps) {
   const { isSm } = useScreenSizeContext();
-  console.log('isSm :>> ', isSm);
   const [isOpen, setIsOpen] = useState(!isSm);
 
   function onOpen() {
