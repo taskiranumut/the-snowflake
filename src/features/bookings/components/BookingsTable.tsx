@@ -19,7 +19,7 @@ export function BookingsTable() {
   return (
     <Menus>
       <GridTable template="0.8fr 2fr 2.4fr 1.4fr 1fr 3.2rem">
-        <GridTable.Header>
+        <GridTable.Header className="w-[300vw] sm:w-[180vw] md:w-[120vw]">
           <GridTable.Cell>Container</GridTable.Cell>
           <GridTable.Cell>Guest</GridTable.Cell>
           <GridTable.Cell>Dates</GridTable.Cell>
