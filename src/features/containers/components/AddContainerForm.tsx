@@ -171,7 +171,7 @@ export function AddContainerForm({
           disabled={isAdding || isEditing}
         />
       </FormRow>
-      <FormRow>
+      <FormRow className="mt-6 md:mt-4">
         <Button
           color="secondary"
           type="reset"
