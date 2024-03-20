@@ -66,7 +66,7 @@ export function UpdatePasswordForm() {
         />
       </FormRow>
 
-      <FormRow>
+      <FormRow className="mt-2 md:mt-1">
         <Button onClick={handleCancel} color="secondary" disabled={isUpdating}>
           Cancel
         </Button>

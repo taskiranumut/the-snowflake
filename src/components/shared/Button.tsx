@@ -1,4 +1,5 @@
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
+import { useScreenSizeContext } from '@/context';
 import { twMerge } from 'tailwind-merge';
 
 type ButtonProps = {
@@ -8,6 +9,7 @@ type ButtonProps = {
   color?: 'primary' | 'secondary' | 'danger';
   className?: string;
   icon?: ReactNode;
+  constantSize?: boolean;
 } & ComponentPropsWithoutRef<'button'>;
 
 export function Button({
@@ -17,8 +19,11 @@ export function Button({
   color = 'primary',
   className = '',
   icon = null,
+  constantSize = false,
   ...props
 }: ButtonProps) {
+  const { isMobile } = useScreenSizeContext();
+
   const base =
     'rounded-md shadow-sm text-center hover:transition-colors hover:duration-200 font-normal disabled:opacity-50 disabled:pointer-events-none focus:border-0 focus:outline-none focus:ring-2 focus:ring-emerald-300';
 
@@ -37,7 +42,7 @@ export function Button({
 
   const styles = twMerge(
     base,
-    sizes[size],
+    sizes[constantSize ? size : isMobile ? 'lg' : size],
     colors[color],
     icon ? 'flex items-center justify-center gap-2' : '',
     className,

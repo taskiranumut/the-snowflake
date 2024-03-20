@@ -96,7 +96,7 @@ export function SignUpForm() {
         />
       </FormRow>
 
-      <FormRow>
+      <FormRow className="mt-2 md:mt-1">
         <Button
           color="secondary"
           onClick={handleCancelForm}

@@ -69,7 +69,7 @@ export function UpdateUserDataForm() {
         />
       </FormRow>
 
-      <FormRow>
+      <FormRow className="mt-2 md:mt-1">
         <Button
           onClick={handleCancel}
           type="reset"

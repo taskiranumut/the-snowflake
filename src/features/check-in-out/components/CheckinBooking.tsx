@@ -16,8 +16,10 @@ import { useSettings } from '@/features/settings/hooks';
 import { formatCurrency } from '@/utils';
 import { useCheckin } from '@/features/check-in-out/hooks';
 import { HiArrowUpOnSquare } from 'react-icons/hi2';
+import { useScreenSizeContext } from '@/context';
 
 export function CheckinBooking() {
+  const { isSm } = useScreenSizeContext();
   const [confirmPaid, setConfirmPaid] = useState(false);
   const [addBreakfast, setAddBreakfast] = useState(false);
 
@@ -112,14 +114,14 @@ export function CheckinBooking() {
   return (
     <>
       <Row type="horizontal">
-        <Heading as="h1">Check in booking #{bookingId}</Heading>
+        <Heading as="h1">Check in #{bookingId}</Heading>
         <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
       </Row>
 
       <BookingDetailData booking={booking} />
 
       {!hasBreakfast && (
-        <Box className="dark:bg-dark w-full rounded-lg bg-white px-10 py-4">
+        <Box className="w-full rounded-lg bg-white p-4 sm:p-6 md:px-10 md:py-4 dark:bg-dark">
           <Checkbox
             id="breakfast"
             label={breakfastAddingCheckboxLabel}
@@ -129,7 +131,7 @@ export function CheckinBooking() {
         </Box>
       )}
 
-      <Box className="dark:bg-dark w-full rounded-lg bg-white px-10 py-4">
+      <Box className="w-full rounded-lg bg-white p-4 sm:p-6 md:px-10 md:py-4 dark:bg-dark">
         <Checkbox
           id="confirm"
           label={totalPriceConfirmCheckboxLabel}
@@ -147,9 +149,11 @@ export function CheckinBooking() {
         >
           Check in
         </Button>
-        <Button onClick={moveBack} color="secondary">
-          Back
-        </Button>
+        {!isSm && (
+          <Button onClick={moveBack} color="secondary">
+            Back
+          </Button>
+        )}
       </div>
     </>
   );

@@ -7,8 +7,11 @@ import {
 export function Bookings() {
   return (
     <>
-      <Row type="horizontal">
-        <Heading as="h1">All Bookings</Heading>
+      <Row
+        type="horizontal"
+        className="flex-col items-start gap-6 lg:flex-row lg:items-center"
+      >
+        <Heading as="h1">Bookings</Heading>
         <BookingTableOperations />
       </Row>
       <Row>

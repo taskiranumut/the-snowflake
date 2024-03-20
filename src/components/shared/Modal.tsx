@@ -82,7 +82,7 @@ function Window({
     <div className="fixed left-0 top-0 z-50 h-screen w-full bg-gray-500 bg-opacity-50 backdrop-blur-sm transition-all duration-500">
       <div
         className={twMerge(
-          'dark:bg-dark fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md bg-white p-4 shadow-md',
+          'fixed left-1/2 top-1/2 max-h-[80vh] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-md bg-white p-4 shadow-md dark:bg-dark',
           imagePreview ? 'rounded-lg p-0' : '',
         )}
         ref={closeOutsideClick ? modalWindowRef : null}
@@ -99,7 +99,9 @@ function Window({
         >
           <AiOutlineClose />
         </button>
-        <div>{cloneElement(children, { onCloseModal: handleClose })}</div>
+        <div className="w-full">
+          {cloneElement(children, { onCloseModal: handleClose })}
+        </div>
       </div>
     </div>,
     document.body,

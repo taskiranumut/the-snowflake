@@ -48,8 +48,8 @@ export function ContainerTable() {
 
   return (
     <Menus>
-      <GridTable template="1fr 1.5fr 1.5fr 1.2fr 1fr 3.2rem">
-        <GridTable.Header>
+      <GridTable template="1.1fr 1.2fr 1.5fr 1.2fr 1fr 3.2rem">
+        <GridTable.Header className="w-[180vw] sm:w-[120vw] md:w-[100vw]">
           <GridTable.Cell></GridTable.Cell>
           <GridTable.Cell>Container</GridTable.Cell>
           <GridTable.Cell>Capacity</GridTable.Cell>

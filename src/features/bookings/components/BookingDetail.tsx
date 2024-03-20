@@ -16,8 +16,10 @@ import { useMoveBack } from '@/hooks';
 import { BookingDetailData } from '@/features/bookings/components';
 import { CheckoutButton } from '@/features/check-in-out/components';
 import { HiTrash, HiArrowUpOnSquare } from 'react-icons/hi2';
+import { useScreenSizeContext } from '@/context';
 
 export function BookingDetail() {
+  const { isSm } = useScreenSizeContext();
   const { isLoading, booking } = useBooking();
   const navigate = useNavigate();
   const moveBack = useMoveBack();
@@ -40,9 +42,11 @@ export function BookingDetail() {
 
   return (
     <>
-      <Row type="horizontal">
-        <div className="flex items-center gap-6">
-          <Heading as="h1">Booking #{booking?.id}</Heading>
+      <Row type="horizontal" className="items-start md:items-center">
+        <div className="flex flex-col items-start justify-between gap-2 sm:basis-auto sm:justify-start sm:gap-4 md:flex-row md:items-center md:gap-6">
+          <Heading as="h1" className="text-2xl sm:text-3xl">
+            Booking #{booking?.id}
+          </Heading>
           <Tag color={tagColor}>{booking?.status?.replace('-', ' ')}</Tag>
         </div>
         <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
@@ -67,7 +71,7 @@ export function BookingDetail() {
         <Modal>
           <Modal.Open name="delete">
             <Button color="danger" icon={<HiTrash size="1.25rem" />}>
-              Delete booking
+              Delete
             </Button>
           </Modal.Open>
           <Modal.Window name="delete">
@@ -79,9 +83,11 @@ export function BookingDetail() {
           </Modal.Window>
         </Modal>
 
-        <Button onClick={moveBack} color="secondary">
-          Back
-        </Button>
+        {!isSm && (
+          <Button onClick={moveBack} color="secondary">
+            Back
+          </Button>
+        )}
       </div>
     </>
   );

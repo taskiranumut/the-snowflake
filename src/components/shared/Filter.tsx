@@ -18,17 +18,18 @@ type FilterButtonProps = {
 } & ComponentPropsWithoutRef<'button'>;
 
 function FilterButton({ active, children, ...otherProps }: FilterButtonProps) {
-  const filterButtonBaseStyle =
-    'text-base rounded-md border-0 bg-white dark:bg-dark px-2 py-1 hover:text-emerald-50 hover:bg-emerald-600 disabled:pointer-events-none disabled:hover:bg-white dark:disabled:hover:bg-dark disabled:hover:text-inherit hover:transition-colors hover:duration-200';
   const filterButtonActiveStyle =
     'text-emerald-50 bg-emerald-600 dark:text-emerald-50 dark:bg-emerald-600';
-  const filterButtonStyle = twMerge(
-    filterButtonBaseStyle,
-    active ? filterButtonActiveStyle : '',
-  );
 
   return (
-    <button type="button" className={filterButtonStyle} {...otherProps}>
+    <button
+      type="button"
+      className={twMerge(
+        'rounded-md border-0 bg-white px-1 py-1 text-base leading-5 disabled:pointer-events-none sm:px-2 md:hover:bg-emerald-600 md:hover:text-emerald-50 md:hover:transition-colors md:hover:duration-200 md:disabled:hover:bg-white md:disabled:hover:text-inherit dark:bg-dark dark:md:disabled:hover:bg-dark',
+        active ? filterButtonActiveStyle : '',
+      )}
+      {...otherProps}
+    >
       {children}
     </button>
   );
@@ -50,7 +51,7 @@ export function Filter({ queryField, options }: FilterProps) {
   }
 
   return (
-    <div className="dark:bg-dark flex gap-2 rounded-md border border-gray-100 bg-white p-2 shadow-sm dark:border-gray-800">
+    <div className="flex gap-2 rounded-md border border-gray-100 bg-white p-2 shadow-sm dark:border-gray-800 dark:bg-dark">
       {options.map(({ value, label }) => (
         <FilterButton
           key={value}
