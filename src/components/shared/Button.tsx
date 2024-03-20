@@ -9,6 +9,7 @@ type ButtonProps = {
   color?: 'primary' | 'secondary' | 'danger';
   className?: string;
   icon?: ReactNode;
+  constantSize?: boolean;
 } & ComponentPropsWithoutRef<'button'>;
 
 export function Button({
@@ -18,6 +19,7 @@ export function Button({
   color = 'primary',
   className = '',
   icon = null,
+  constantSize = false,
   ...props
 }: ButtonProps) {
   const { isMobile } = useScreenSizeContext();
@@ -40,7 +42,7 @@ export function Button({
 
   const styles = twMerge(
     base,
-    sizes[isMobile ? 'lg' : size],
+    sizes[constantSize ? size : isMobile ? 'lg' : size],
     colors[color],
     icon ? 'flex items-center justify-center gap-2' : '',
     className,

@@ -37,7 +37,9 @@ export function TodayItem({ activity }: TodayItemsProps) {
       <div className="flex basis-full items-center justify-end pr-1">
         {status === 'unconfirmed' && (
           <Link to={`/checkin/${id}`}>
-            <Button size="sm">Check in</Button>
+            <Button size="sm" constantSize>
+              Check in
+            </Button>
           </Link>
         )}
         {status === 'checked-in' && <CheckoutButton bookingId={id} />}
