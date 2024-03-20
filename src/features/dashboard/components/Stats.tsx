@@ -32,7 +32,7 @@ export function Stats({
     (daysNum * containerCount);
 
   return (
-    <>
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:col-span-2 md:col-start-1 md:gap-6 xl:grid-cols-4">
       <Stat
         title="Bookings"
         color="blue"
@@ -57,6 +57,6 @@ export function Stats({
         icon={<HiOutlineChartBar />}
         value={Math.round(occupation * 100) + '%'}
       />
-    </>
+    </div>
   );
 }

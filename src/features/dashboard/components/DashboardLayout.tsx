@@ -21,7 +21,7 @@ export function DashboardLayout() {
     return <Spinner />;
 
   return (
-    <div className="grid grid-cols-4 grid-rows-[auto_24rem_auto] gap-6">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
       <Stats
         bookings={bookings || []}
         confirmedStays={confirmedStays || []}

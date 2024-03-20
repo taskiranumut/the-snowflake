@@ -11,7 +11,7 @@ import {
 import { eachDayOfInterval, format, isSameDay, subDays } from 'date-fns';
 import { Heading } from '@/components/shared';
 import { DashboardBox } from '@/features/dashboard/components';
-import { useThemeContext } from '@/context';
+import { useScreenSizeContext, useThemeContext } from '@/context';
 
 type SalesChartProps = {
   bookings: DataBooking[];
@@ -19,6 +19,7 @@ type SalesChartProps = {
 };
 
 export function SalesChart({ bookings, daysNum }: SalesChartProps) {
+  const { isSm } = useScreenSizeContext();
   const { theme } = useThemeContext();
   const allDates = eachDayOfInterval({
     start: subDays(new Date(), daysNum - 1),
@@ -53,13 +54,13 @@ export function SalesChart({ bookings, daysNum }: SalesChartProps) {
         };
 
   return (
-    <DashboardBox className="col-span-full">
+    <DashboardBox className="col-span-full col-start-1 overflow-x-auto md:overflow-x-hidden">
       <Heading as="h2">
         Sales from {format(allDates.at(0)!, 'MMM dd yyyy')} &mdash;{' '}
         {format(allDates.at(-1)!, 'MMM dd yyyy')}{' '}
       </Heading>
 
-      <ResponsiveContainer height={300} width="100%">
+      <ResponsiveContainer height={300} width={isSm ? 800 : '100%'}>
         <AreaChart data={data}>
           <XAxis
             dataKey="label"
