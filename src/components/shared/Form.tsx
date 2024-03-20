@@ -8,13 +8,17 @@ type FormProps = {
 } & ComponentPropsWithoutRef<'form'>;
 
 export function Form({ children, modal, className = '', ...props }: FormProps) {
-  const baseStyle = 'overflow-hidden text-base';
-  const modalFormStyle = `${baseStyle} w-[54rem] p-4`;
-  const formStyle = `${baseStyle} px-3 py-2 bg-white dark:bg-dark border border-gray-100 dark:border-gray-800 rounded-md`;
+  const modalFormStyle = 'w-[54rem]';
+  const formStyle =
+    'bg-white dark:bg-dark border border-gray-100 dark:border-gray-800 rounded-md';
 
   return (
     <form
-      className={twMerge(modal ? modalFormStyle : formStyle, className)}
+      className={twMerge(
+        'overflow-hidden p-3 text-base sm:p-4',
+        modal ? modalFormStyle : formStyle,
+        className,
+      )}
       {...props}
     >
       {children}
