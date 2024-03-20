@@ -15,7 +15,7 @@ export function Checkbox({
   ...otherProps
 }: CheckboxProps) {
   return (
-    <div className="flex gap-4">
+    <div className="flex items-center gap-4">
       <input
         id={id}
         disabled={disabled}

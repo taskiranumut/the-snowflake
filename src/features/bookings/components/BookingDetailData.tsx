@@ -37,15 +37,17 @@ export function BookingDetailData({ booking }: BookingDetailData) {
   return (
     <>
       <section className="overflow-hidden">
-        <header className="flex items-center justify-between rounded-t-lg bg-emerald-500 px-10 py-6 text-lg text-gray-100 dark:text-gray-800">
-          <div className="flex items-center gap-4 text-lg font-semibold">
+        <header className="flex flex-col items-start justify-between gap-4 rounded-t-lg bg-emerald-500 p-4 text-lg text-gray-100 sm:p-6 md:flex-row md:items-center md:gap-0 md:px-10 md:py-6 dark:text-gray-800">
+          <div className="flex items-center gap-4 text-base font-semibold sm:text-lg">
             <HiCube size="2.25rem" />
             <p>
               {nigthsNum} nights in Container{' '}
-              <span className="ml-2 font-sono text-xl">{containers?.name}</span>
+              <span className="ml-2 font-sono text-lg sm:text-xl">
+                {containers?.name}
+              </span>
             </p>
           </div>
-          <p>
+          <p className="text-base sm:text-lg">
             {format(new Date(startDate || ''), 'EEE, MMM dd yyyy')} (
             {isToday(new Date(startDate || ''))
               ? 'Today'
@@ -54,22 +56,30 @@ export function BookingDetailData({ booking }: BookingDetailData) {
           </p>
         </header>
 
-        <section className="dark:bg-dark bg-white px-10 py-8">
-          <div className="mb-4 flex items-center gap-3 text-gray-500 dark:text-gray-400">
-            {guests?.countryFlag && (
-              <Flag
-                src={guests?.countryFlag}
-                alt={`Flag of ${guests?.nationality}`}
-              />
-            )}
-            <p className="text-gray-700 dark:text-gray-200">
-              {guests?.fullName}{' '}
-              {guestsNum && guestsNum > 1 ? `+ ${guestsNum - 1} guests` : ''}
-            </p>
-            <span>&bull;</span>
-            <p>{guests?.email}</p>
-            <span>&bull;</span>
-            <p>National ID {guests?.nationalId}</p>
+        <section className="bg-white p-4 sm:p-6 md:px-10 md:py-8 dark:bg-dark">
+          <div className="mb-4 flex flex-col items-start gap-3 text-gray-500 md:flex-row md:items-center dark:text-gray-400">
+            <div className="flex basis-full gap-2 md:basis-auto">
+              {guests?.countryFlag && (
+                <Flag
+                  src={guests?.countryFlag}
+                  alt={`Flag of ${guests?.nationality}`}
+                />
+              )}
+              <p className="text-gray-700 dark:text-gray-200">
+                {guests?.fullName}{' '}
+                {guestsNum && guestsNum > 1 ? `+ ${guestsNum - 1} guests` : ''}
+              </p>
+            </div>
+
+            <span className="flex gap-2">
+              <span>&bull;</span>
+              <p>{guests?.email}</p>
+            </span>
+
+            <span className="flex gap-2">
+              <span>&bull;</span>
+              <p>National ID {guests?.nationalId}</p>
+            </span>
           </div>
 
           {observations && (
@@ -87,7 +97,7 @@ export function BookingDetailData({ booking }: BookingDetailData) {
 
           <div
             className={twMerge(
-              'mt-6 flex items-center justify-between rounded-md px-8 py-4',
+              'mt-4 flex flex-col items-start justify-between gap-4 rounded-md p-4 sm:p-6 md:mt-6 md:flex-row md:items-center md:gap-0 md:px-8 md:py-4',
               isPaid
                 ? 'bg-emerald-100 text-emerald-700'
                 : 'bg-yellow-100 text-yellow-700',
@@ -108,7 +118,7 @@ export function BookingDetailData({ booking }: BookingDetailData) {
           </div>
         </section>
 
-        <footer className="dark:bg-dark rounded-b-lg bg-white px-10 pb-6 text-right text-sm text-gray-500 dark:text-gray-400">
+        <footer className="rounded-b-lg bg-white p-4 text-left text-sm text-gray-500 sm:p-6 sm:text-right md:px-10 md:pb-6 dark:bg-dark dark:text-gray-400">
           <p>Booked {format(new Date(createdAt), 'EEE, MMM dd yyyy, p')}</p>
         </footer>
       </section>
