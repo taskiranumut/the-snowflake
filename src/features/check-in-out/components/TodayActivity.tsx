@@ -8,13 +8,13 @@ export function TodayActivity() {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className="dark:bg-dark col-span-2 col-start-1 flex flex-col gap-6 rounded-lg border border-gray-100 bg-white p-8 pt-6 dark:border-gray-800">
+    <div className="flex max-h-[22rem] flex-col gap-4 rounded-lg border border-gray-100 bg-white p-4 md:gap-6 md:p-8 md:pt-6 dark:border-gray-800 dark:bg-dark">
       <Row type="horizontal">
         <Heading as="h2">Today</Heading>
       </Row>
 
       {activities?.length > 0 ? (
-        <ul className="overflow-auto overflow-x-hidden">
+        <ul className="overflow-auto">
           {activities.map((activity) => (
             <TodayItem key={activity.id} activity={activity} />
           ))}

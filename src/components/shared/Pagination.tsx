@@ -51,7 +51,7 @@ export function Pagination({ count, pageSize = PAGE_SIZE }: PaginationProps) {
   return (
     <div className="flex w-full items-center justify-between">
       <p className="text-base">
-        Showing{' '}
+        <span className="hidden sm:inline">Showing </span>
         <span className="font-semibold">
           {(currentPage - 1) * pageSize + 1}
         </span>{' '}

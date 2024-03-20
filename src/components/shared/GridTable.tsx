@@ -90,7 +90,7 @@ export function GridTable({
     <TableContext.Provider value={{ columns, template }}>
       <div
         className={twMerge(
-          'dark:bg-dark overflow-hidden rounded-md border border-gray-100 bg-white text-base shadow-sm dark:border-gray-800',
+          'w-full overflow-x-auto overflow-y-hidden rounded-md border border-gray-100 bg-white text-base shadow-sm dark:border-gray-800 dark:bg-dark',
           className,
         )}
         role="table"
@@ -129,7 +129,7 @@ function CommonRow({
   return (
     <div
       className={twMerge(
-        'grid gap-4 px-3 py-4 text-center transition-none',
+        'grid gap-4 px-3 py-4 text-center transition-none lg:w-auto',
         gridCols[columns],
         className,
       )}
@@ -201,7 +201,7 @@ function Footer({ children, className = '', ...otherProps }: FooterProps) {
   return (
     <div
       className={twMerge(
-        'flex justify-center bg-gray-50 px-4 py-3 dark:bg-gray-900',
+        'sticky left-0 flex justify-center bg-gray-50 px-4 py-3 dark:bg-gray-900',
         className,
       )}
       {...otherProps}

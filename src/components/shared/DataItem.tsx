@@ -8,7 +8,7 @@ type DataItemProps = {
 
 export function DataItem({ children, label, icon }: DataItemProps) {
   return (
-    <div className="flex items-center gap-4 px-0 py-2">
+    <div className="flex flex-col items-start gap-2 px-0 py-2 md:flex-row md:items-center md:gap-4">
       <span className="flex items-center gap-2">
         {icon &&
           cloneElement(icon, {

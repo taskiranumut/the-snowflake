@@ -16,31 +16,18 @@ export function Login() {
   }, [isAuth, navigate]);
 
   return (
-    <>
-      <div className="hidden md:block">
-        <div className="grid min-h-screen grid-cols-[32rem] content-center justify-center gap-8 bg-gray-50 dark:bg-gray-900">
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            <>
-              <MainLogo />
-              <Heading as="h4" className="text-center">
-                Log in to your account
-              </Heading>
-              <LoginForm />
-            </>
-          )}
-        </div>
-      </div>
-      <div className="flex h-screen flex-col items-center px-8 pt-40 text-gray-900 md:hidden">
-        <div className="mb-12">
+    <div className="grid min-h-screen grid-cols-1 content-start justify-center gap-8 bg-gray-50 px-8 pt-20 sm:grid-cols-[32rem] sm:content-center sm:px-0 sm:pt-0 dark:bg-gray-900">
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
           <MainLogo />
-        </div>
-        <Heading as="h3" className="text-center font-sono leading-8">
-          Mobile screens are in development. Please use the app from desktop
-          devices.
-        </Heading>
-      </div>
-    </>
+          <Heading as="h4" className="text-center">
+            Log in to your account
+          </Heading>
+          <LoginForm />
+        </>
+      )}
+    </div>
   );
 }

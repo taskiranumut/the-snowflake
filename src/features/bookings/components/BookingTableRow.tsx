@@ -53,7 +53,7 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
   const tagColor = getTagColorForBookingStatus(status);
 
   return (
-    <GridTable.Row>
+    <GridTable.Row className="w-[300vw] sm:w-[180vw] md:w-[120vw]">
       <GridTable.Cell className="font-sono text-base font-semibold text-gray-600 dark:text-gray-300">
         {containers?.name}
       </GridTable.Cell>

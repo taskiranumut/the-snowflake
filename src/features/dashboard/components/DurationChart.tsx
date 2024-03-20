@@ -9,6 +9,7 @@ import {
 } from 'recharts';
 import { Heading } from '@/components/shared';
 import { DashboardBox } from '@/features/dashboard/components';
+import { useScreenSizeContext } from '@/context';
 
 type DurationChartProps = {
   confirmedStays: DataBooking[];
@@ -89,41 +90,46 @@ function prepareData(startData: StartData[], stays: DataBooking[]) {
 }
 
 export function DurationChart({ confirmedStays }: DurationChartProps) {
+  const { isMobile, isTablet, isLg } = useScreenSizeContext();
   const data = prepareData(startData, confirmedStays);
 
   return (
-    <DashboardBox className="col-span-2 col-start-3 px-8 py-6">
+    <DashboardBox className="p-4 md:px-8 md:py-6">
       <Heading as="h2">Stay duration summary</Heading>
-      <ResponsiveContainer width="100%" height={240}>
-        <PieChart>
-          <Pie
-            data={data}
-            nameKey="duration"
-            dataKey="value"
-            innerRadius={85}
-            outerRadius={110}
-            cx="40%"
-            cy="50%"
-            paddingAngle={3}
-          >
-            {data.map((entry) => (
-              <Cell
-                fill={entry.color}
-                stroke={entry.color}
-                key={entry.duration}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend
-            verticalAlign="middle"
-            align="right"
-            layout="vertical"
-            iconSize={15}
-            iconType="circle"
-          />
-        </PieChart>
-      </ResponsiveContainer>
+      <div className="flex size-full items-center justify-center">
+        <ResponsiveContainer
+          width={isMobile ? '100%' : isTablet ? '90%' : '80%'}
+          height={isMobile || isLg ? 170 : 240}
+        >
+          <PieChart>
+            <Pie
+              data={data}
+              nameKey="duration"
+              dataKey="value"
+              innerRadius={'60%'}
+              cx="40%"
+              cy="50%"
+              paddingAngle={3}
+            >
+              {data.map((entry) => (
+                <Cell
+                  fill={entry.color}
+                  stroke={entry.color}
+                  key={entry.duration}
+                />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend
+              verticalAlign="middle"
+              align="right"
+              layout="vertical"
+              iconSize={15}
+              iconType="circle"
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
     </DashboardBox>
   );
 }

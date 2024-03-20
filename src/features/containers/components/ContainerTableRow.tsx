@@ -52,7 +52,7 @@ export function ContainerTableRow({ container }: ContainerTableRowProps) {
   }
 
   return (
-    <GridTable.Row>
+    <GridTable.Row className="w-[180vw] sm:w-[120vw] md:w-[100vw]">
       <GridTable.Cell>
         <Modal>
           <Modal.Open name="imagePreview">
