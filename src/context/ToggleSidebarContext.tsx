@@ -1,5 +1,5 @@
 import { useState, createContext, type ReactNode, useMemo } from 'react';
-import { useScreenSizeContext } from '.';
+import { useIsMobileDevice } from '@/hooks';
 
 type ToggleSidebarContextType = {
   isOpen: boolean;
@@ -19,8 +19,8 @@ export const ToggleSidebarContext = createContext<
 export function ToggleSidebarContextProvider({
   children,
 }: ToggleSidebarContextProviderProps) {
-  const { isSm } = useScreenSizeContext();
-  const [isOpen, setIsOpen] = useState(!isSm);
+  const isMobileDevice = useIsMobileDevice();
+  const [isOpen, setIsOpen] = useState(!isMobileDevice);
 
   function onOpen() {
     setIsOpen(true);
