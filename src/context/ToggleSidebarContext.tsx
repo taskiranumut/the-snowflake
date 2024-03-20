@@ -1,4 +1,10 @@
-import { useState, createContext, type ReactNode, useMemo } from 'react';
+import {
+  useState,
+  createContext,
+  type ReactNode,
+  useMemo,
+  useEffect,
+} from 'react';
 import { useIsMobileDevice } from '@/hooks';
 
 type ToggleSidebarContextType = {
@@ -21,6 +27,10 @@ export function ToggleSidebarContextProvider({
 }: ToggleSidebarContextProviderProps) {
   const isMobileDevice = useIsMobileDevice();
   const [isOpen, setIsOpen] = useState(!isMobileDevice);
+
+  useEffect(() => {
+    setIsOpen(!isMobileDevice);
+  }, [isMobileDevice]);
 
   function onOpen() {
     setIsOpen(true);
