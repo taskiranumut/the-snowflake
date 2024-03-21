@@ -22,7 +22,7 @@
 - **Sales and Stay Duration Analytics:** Features charts that depict total and additional sales, with a focus on the duration of stays as a metric.
 - **Global Settings Configuration:** Provides the ability to adjust settings for breakfast pricing, the number of nights per booking, and maximum guest allowance.
 - **Dark Mode Availability:** Includes a dark mode setting for improved visual ergonomics in low-light conditions.
-  
+
 ## Tech Stack
 
 - [React](https://react.dev/)
@@ -46,14 +46,7 @@
 
 ## Installation and Development
 
-To run the application in locale, a database structure must first be created in Supabase. You must create a free account (or login) on [Supabase](https://supabase.com/dashboard/sign-up) and create tables according to the [API schema](https://github.com/taskiranumut/the-snowflake/blob/main/src/services/supabase/schema.types.ts). For image storage, areas should be created for profile pictures and containers under [Supabase storage](https://supabase.com/docs/guides/storage). Environment variables should be defined in the `.env` file in the project root directory as follows:
-
-```
-VITE_SUPABASE_URL = <your_supabase_url>
-VITE_SUPABASE_KEY = <your_anon_key>
-VITE_SUPABASE_CONTAINER_IMAGES_URL = <your_supabase_url>/storage/v1/object/public/<your_container_storage_name>/
-VITE_SUPABASE_PROFILE_PICTURES_URL = <your_supabase_url>/storage/v1/object/public/<your_profile_picture_storage_name>/
-```
+To run the application in locale, a database structure must first be created in Supabase. You must create a free account (or login) on [Supabase](https://supabase.com/dashboard/sign-up) and create tables according to the [API schema](https://github.com/taskiranumut/the-snowflake/blob/main/src/services/supabase/schema.types.ts). For image storage, areas should be created for profile pictures and containers under [Supabase storage](https://supabase.com/docs/guides/storage). Environment variables must be defined in the `.env` file in the project root directory, as in the [example file](https://github.com/taskiranumut/the-snowflake/blob/main/.env.example).
 
 RLS policy configurations must be done for tables and storages, [more information](https://supabase.com/docs/guides/auth/row-level-security).
 
