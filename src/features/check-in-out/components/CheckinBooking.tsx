@@ -15,7 +15,7 @@ import { BookingDetailData } from '@/features/bookings/components';
 import { useSettings } from '@/features/settings/hooks';
 import { formatCurrency } from '@/utils';
 import { useCheckin } from '@/features/check-in-out/hooks';
-import { HiArrowUpOnSquare } from 'react-icons/hi2';
+import { HiArrowDownOnSquare } from 'react-icons/hi2';
 import { useScreenSizeContext } from '@/context';
 
 export function CheckinBooking() {
@@ -145,7 +145,7 @@ export function CheckinBooking() {
         <Button
           onClick={handleCheckin}
           disabled={!confirmPaid || isCheckingIn}
-          icon={<HiArrowUpOnSquare size="1.25rem" />}
+          icon={<HiArrowDownOnSquare size="1.25rem" />}
         >
           Check in
         </Button>

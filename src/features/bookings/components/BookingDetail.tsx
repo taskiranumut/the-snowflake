@@ -15,7 +15,7 @@ import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
 import { useMoveBack } from '@/hooks';
 import { BookingDetailData } from '@/features/bookings/components';
 import { CheckoutButton } from '@/features/check-in-out/components';
-import { HiTrash, HiArrowUpOnSquare } from 'react-icons/hi2';
+import { HiTrash, HiArrowDownOnSquare } from 'react-icons/hi2';
 import { useScreenSizeContext } from '@/context';
 
 export function BookingDetail() {
@@ -58,14 +58,14 @@ export function BookingDetail() {
         {booking?.status === 'unconfirmed' && (
           <Button
             onClick={() => navigate(`/checkin/${booking?.id}`)}
-            icon={<HiArrowUpOnSquare size="1.25rem" />}
+            icon={<HiArrowDownOnSquare size="1.25rem" />}
           >
             Check in
           </Button>
         )}
 
         {booking?.status === 'checked-in' && (
-          <CheckoutButton bookingId={booking?.id} />
+          <CheckoutButton bookingId={booking?.id} withIcon />
         )}
 
         <Modal>

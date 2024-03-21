@@ -1,11 +1,20 @@
 import { Button } from '@/components/shared';
 import { useCheckout } from '@/features/check-in-out/hooks';
+import { HiArrowUpOnSquare } from 'react-icons/hi2';
 
 type CheckoutButtonProps = {
   bookingId: number | string | undefined;
+  constantSize?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  withIcon?: boolean;
 };
 
-export function CheckoutButton({ bookingId }: CheckoutButtonProps) {
+export function CheckoutButton({
+  bookingId,
+  constantSize = false,
+  size = 'md',
+  withIcon = false,
+}: CheckoutButtonProps) {
   const { mutateCheckout, isCheckingOut } = useCheckout();
 
   function handleCheckout() {
@@ -15,7 +24,14 @@ export function CheckoutButton({ bookingId }: CheckoutButtonProps) {
   }
 
   return (
-    <Button onClick={handleCheckout} disabled={isCheckingOut}>
+    <Button
+      onClick={handleCheckout}
+      disabled={isCheckingOut}
+      constantSize={constantSize}
+      size={size}
+      className="max-content"
+      icon={withIcon ? <HiArrowUpOnSquare size="1.25rem" /> : null}
+    >
       Check out
     </Button>
   );

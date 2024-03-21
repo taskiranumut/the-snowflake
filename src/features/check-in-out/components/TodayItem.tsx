@@ -18,8 +18,8 @@ export function TodayItem({ activity }: TodayItemsProps) {
       className={twMerge(
         'grid items-center gap-1 border-b border-gray-100 px-0 py-2 text-base first-of-type:border-t md:gap-3 dark:border-gray-800',
         isSm || isLg
-          ? 'grid-cols-[6rem_1fr_5.5rem]'
-          : 'grid-cols-[6rem_2rem_1fr_5.5rem]',
+          ? 'grid-cols-[6.5rem_1fr_6rem]'
+          : 'grid-cols-[6.5rem_2rem_1fr_6rem]',
       )}
     >
       {status === 'unconfirmed' && <Tag color="green">Arriving</Tag>}
@@ -42,7 +42,9 @@ export function TodayItem({ activity }: TodayItemsProps) {
             </Button>
           </Link>
         )}
-        {status === 'checked-in' && <CheckoutButton bookingId={id} />}
+        {status === 'checked-in' && (
+          <CheckoutButton bookingId={id} size="sm" constantSize />
+        )}
       </div>
     </li>
   );
