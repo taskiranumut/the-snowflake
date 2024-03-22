@@ -1,4 +1,3 @@
-import { type ChangeEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Select } from '@/components/shared';
 
@@ -17,18 +16,18 @@ export function SortBy({ options, queryField = 'sort-by' }: SortByProps) {
 
   const queryValue = searchParams.get(queryField) || '';
 
-  function handleChange(e: ChangeEvent<HTMLSelectElement>) {
-    const value = e.target.value;
-    searchParams.set(queryField, value);
+  function handleChange(data: string) {
+    searchParams.set(queryField, data);
     setSearchParams(searchParams);
   }
 
   return (
     <Select
+      className="px-4 py-3"
       options={options}
-      onChange={handleChange}
       value={queryValue}
-      white
+      onChange={handleChange}
+      secondary
     />
   );
 }
