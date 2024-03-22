@@ -25,7 +25,7 @@ function FilterButton({ active, children, ...otherProps }: FilterButtonProps) {
     <button
       type="button"
       className={twMerge(
-        'rounded-md border-0 bg-white px-1 py-1 text-base leading-5 disabled:pointer-events-none sm:px-2 md:hover:bg-emerald-600 md:hover:text-emerald-50 md:hover:transition-colors md:hover:duration-200 md:disabled:hover:bg-white md:disabled:hover:text-inherit dark:bg-dark dark:md:disabled:hover:bg-dark',
+        'rounded-md border-0 bg-white px-1 py-1 text-base leading-5 disabled:pointer-events-none sm:px-2 md:w-max md:hover:bg-emerald-600 md:hover:text-emerald-50 md:hover:transition-colors md:hover:duration-200 md:disabled:hover:bg-white md:disabled:hover:text-inherit dark:bg-dark dark:md:disabled:hover:bg-dark',
         active ? filterButtonActiveStyle : '',
       )}
       {...otherProps}

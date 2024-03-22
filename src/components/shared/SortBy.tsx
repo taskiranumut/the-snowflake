@@ -24,6 +24,7 @@ export function SortBy({ options, queryField = 'sort-by' }: SortByProps) {
   return (
     <Select
       className="px-4 py-3"
+      width="w-full lg:w-72"
       options={options}
       value={queryValue}
       onChange={handleChange}
