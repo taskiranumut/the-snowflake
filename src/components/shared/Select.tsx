@@ -1,4 +1,5 @@
 import { Listbox } from '@headlessui/react';
+import { Fragment } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { HiChevronDown } from 'react-icons/hi2';
 
@@ -49,11 +50,20 @@ export function Select({
         <Listbox.Options className="absolute z-50 mt-3 max-h-[220px] w-full overflow-y-auto rounded-md text-base shadow-md dark:shadow-lg">
           {options.map((option) => (
             <Listbox.Option
-              className="w-full border-b border-gray-100 bg-white p-3 leading-5 text-gray-900 text-inherit first-of-type:rounded-t-md last-of-type:rounded-b-md last-of-type:border-b-0 hover:cursor-pointer hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-900"
               key={option.value}
               value={option.value}
+              as={Fragment}
             >
-              {option.label}
+              {({ selected }) => (
+                <li
+                  className={twMerge(
+                    'w-full border-b border-gray-100 bg-white p-3 leading-5 text-gray-900 text-inherit first-of-type:rounded-t-md last-of-type:rounded-b-md last-of-type:border-b-0 hover:cursor-pointer hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-900',
+                    selected ? 'bg-gray-50 dark:bg-dark' : '',
+                  )}
+                >
+                  {option.label}
+                </li>
+              )}
             </Listbox.Option>
           ))}
         </Listbox.Options>
