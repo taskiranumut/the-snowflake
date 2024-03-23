@@ -1,6 +1,8 @@
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
+import { Select } from '@/components/shared';
+import { useScreenSizeContext } from '@/context';
 
 type FilterOption = {
   value: string;
@@ -36,12 +38,13 @@ function FilterButton({ active, children, ...otherProps }: FilterButtonProps) {
 }
 
 export function Filter({ queryField, options }: FilterProps) {
+  const { isMobile, isLg } = useScreenSizeContext();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const selectedOption = searchParams.get(queryField) || options.at(0)?.value;
 
-  function handleChangeTab(option: string) {
-    searchParams.set(queryField, option);
+  function handleChangeQuery(data: string) {
+    searchParams.set(queryField, data);
 
     if (searchParams.get('page')) {
       searchParams.set('page', '1');
@@ -50,12 +53,20 @@ export function Filter({ queryField, options }: FilterProps) {
     setSearchParams(searchParams);
   }
 
-  return (
+  return isMobile || isLg ? (
+    <Select
+      width="w-full"
+      options={options}
+      value={selectedOption}
+      onChange={handleChangeQuery}
+      secondary
+    />
+  ) : (
     <div className="flex gap-2 rounded-md border border-gray-100 bg-white p-2 shadow-sm dark:border-gray-800 dark:bg-dark">
       {options.map(({ value, label }) => (
         <FilterButton
           key={value}
-          onClick={() => handleChangeTab(value)}
+          onClick={() => handleChangeQuery(value)}
           active={selectedOption === value}
           disabled={selectedOption === value}
         >

@@ -2,7 +2,7 @@ import { Filter, SortBy } from '@/components/shared';
 
 export function BookingTableOperations() {
   return (
-    <div className="flex flex-col items-start gap-4 lg:flex-row lg:items-center">
+    <div className="flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 lg:w-auto">
       <Filter
         queryField="status"
         options={[
