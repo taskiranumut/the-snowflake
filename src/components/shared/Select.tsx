@@ -10,7 +10,7 @@ type SelectOption = {
 
 type SelectProps = {
   options: SelectOption[];
-  value: string;
+  value: string | undefined;
   onChange: (data: string) => void;
   secondary?: boolean;
   /** Only regular classname or tailwind classes are valid for width. */
@@ -35,7 +35,7 @@ export function Select({
       <div className={twMerge('relative', width, height)}>
         <Listbox.Button
           className={twMerge(
-            'font-base relative h-full w-full truncate rounded-md border border-gray-300 bg-white p-3 text-base leading-5 shadow-sm hover:bg-gray-100/40 hover:transition-colors hover:duration-200 active:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-600 dark:bg-dark dark:hover:bg-gray-800 dark:active:bg-gray-900',
+            'font-base relative h-full w-full truncate rounded-md border border-gray-300 bg-white p-2 text-base leading-5 shadow-sm hover:bg-gray-100/40 hover:transition-colors hover:duration-200 active:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 sm:px-4 sm:py-3 dark:border-gray-600 dark:bg-dark dark:hover:bg-gray-800 dark:active:bg-gray-900',
             secondary ? 'border-gray-100 dark:border-gray-800' : '',
             className,
             'pr-8',
