@@ -25,7 +25,7 @@ const dateFormats: DateFormats = {
       short: 'dd MMM',
       long: 'dd MMM yyyy',
       longWithDay: 'dd MMM yyyy, EEE',
-      longWithDayAndTime: 'dd MMM yyyy EEEE, p',
+      longWithDayAndTime: 'dd MMM yyyy EEE, p',
     },
     locale: tr,
   } as DateFormat,
