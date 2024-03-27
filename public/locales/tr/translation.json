@@ -116,7 +116,7 @@
       },
       "updatePassword": {
         "newPassword": "Yeni parola (en az 8 karakter)",
-        "confirmPassword": "Parolayı tekrarı",
+        "confirmPassword": "Parola tekrarı",
         "errors": {
           "newPassword": {
             "required": "Yeni parola boş bırakılamaz",
@@ -138,7 +138,7 @@
         "fullName": "Ad soyad",
         "emailAddress": "Email adresi",
         "password": "Parola (en az 8 karakter)",
-        "confirmPassword": "Parolayı tekrarı",
+        "confirmPassword": "Parola tekrarı",
         "errors": {
           "fullName": {
             "required": "Ad soyad boş bırakılamaz"
@@ -188,7 +188,9 @@
       }
     },
     "common": {
-      "today": "Bugün"
+      "today": "Bugün",
+      "password": "Parola",
+      "userData": "Kullanıcı bilgileri"
     }
   },
   "message": {
@@ -221,6 +223,91 @@
     "dashboard": {
       "todayActivity": {
         "empty": "Bugün için herhangi bir aktivite bulunamadı."
+      }
+    },
+    "api": {
+      "supabase": {
+        "key": {
+          "error": "Supabase API anahtarı tanımlı değil!"
+        }
+      },
+      "auth": {
+        "login": {
+          "success": "Başarıyla giriş yapıldı!",
+          "error": "Girilen email veya parola yanlış!"
+        },
+        "logout": {
+          "error": "Bir hata oluştu. Lütfen birkaç dakika sonra tekrar deneyin."
+        },
+        "signUp": {
+          "success": "Kullanıcı başarıyla oluşturuldu!",
+          "error": "Bir hata oluştu. Lütfen birkaç dakika sonra tekrar deneyin."
+        },
+        "getCurrentUser": {
+          "error": "Mevcut kullanıcı yüklenemedi!"
+        },
+        "updateCurrentUser": {
+          "success": "{{resource}} başarıyla güncellendi!",
+          "error": {
+            "image": "Profil resmi yüklenemedi!",
+            "account": "Kullanıcı bilgileri güncellenemedi!"
+          }
+        }
+      },
+      "bookings": {
+        "getBooking": {
+          "error": "Rezervasyon yüklenemedi!"
+        },
+        "updateBooking": {
+          "success": {
+            "checkIn": "Rezervasyon #{{id}} için başarıyla giriş yapıldı!",
+            "checkOut": "Rezervasyon #{{id}} için başarıyla çıkış yapıldı!"
+          },
+          "error": "Rezervasyon güncellenemedi!"
+        },
+        "deleteBooking": {
+          "success": "Rezervasyon başarıyla silindi!",
+          "error": "Rezervasyon silinemedi!"
+        },
+        "common": {
+          "error": "Rezervasyonlar yüklenemedi!"
+        }
+      },
+      "containers": {
+        "getContainers": {
+          "error": "Kabinler yüklenemedi!"
+        },
+        "deleteContainer": {
+          "success": "Kabin başarıyla silindi!",
+          "error": "Kabin silinemedi!"
+        },
+        "addNewContainer": {
+          "success": "Kabin başarıyla eklendi!",
+          "error": {
+            "container": "Kabin eklenemedi!",
+            "image": "Kabin resmi yüklenemedi ve kabin eklenemedi!"
+          }
+        },
+        "editContainer": {
+          "success": "Kabin başarıyla düzenlendi!",
+          "error": {
+            "container": "Kabin düzenlenemedi!",
+            "image": "Kabin resmi yüklenemedi!"
+          }
+        },
+        "dupliateContainer": {
+          "success": "Kabin başarıyla çoğaltıldı!",
+          "error": "Kabin çoğaltılamadı!"
+        }
+      },
+      "settings": {
+        "getSettings": {
+          "error": "Ayarlar yüklenemedi!"
+        },
+        "updateSettings": {
+          "success": "Ayarlar başarıyla güncellendi!",
+          "error": "Ayarlar güncellenemedi!"
+        }
       }
     },
     "empty": {

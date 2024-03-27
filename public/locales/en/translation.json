@@ -188,7 +188,9 @@
       }
     },
     "common": {
-      "today": "Today"
+      "today": "Today",
+      "password": "Password",
+      "userData": "User data"
     }
   },
   "message": {
@@ -222,6 +224,91 @@
     "dashboard": {
       "todayActivity": {
         "empty": "No activity today..."
+      }
+    },
+    "api": {
+      "supabase": {
+        "key": {
+          "error": "Supabase Key is not defined"
+        }
+      },
+      "auth": {
+        "login": {
+          "success": "You have successfully logged in!",
+          "error": "Provided email or password are incorrect!"
+        },
+        "logout": {
+          "error": "There was an error. Please try again a few minutes later."
+        },
+        "signUp": {
+          "success": "User successfully created!",
+          "error": "There was an error. Please try again a few minutes later."
+        },
+        "getCurrentUser": {
+          "error": "Current user could not be loaded!"
+        },
+        "updateCurrentUser": {
+          "success": "{{resource}} successfully updated!",
+          "error": {
+            "image": "Avatar could not be uploaded!",
+            "account": "User account data could not be uploaded!"
+          }
+        }
+      },
+      "bookings": {
+        "getBooking": {
+          "error": "Booking could not be loaded!"
+        },
+        "updateBooking": {
+          "success": {
+            "checkIn": "Booking #{{id}} successfully checked in!",
+            "checkOut": "Booking #{{id}} successfully checked out!"
+          },
+          "error": "Booking could not be updated!"
+        },
+        "deleteBooking": {
+          "success": "Booking successfully deleted!",
+          "error": "Booking could not be deleted!"
+        },
+        "common": {
+          "error": "Bookings could not be loaded!"
+        }
+      },
+      "containers": {
+        "getContainers": {
+          "error": "Containers could not be loaded!"
+        },
+        "deleteContainer": {
+          "success": "Container successfully deleted!",
+          "error": "Container could not be deleted!"
+        },
+        "addNewContainer": {
+          "success": "Container successfully added!",
+          "error": {
+            "container": "Container could not be added!",
+            "image": "Container image could not be uploaded and the container was not added!"
+          }
+        },
+        "editContainer": {
+          "success": "Container successfully edited!",
+          "error": {
+            "container": "Container could not be edited!",
+            "image": "Container image could not be updated!"
+          }
+        },
+        "dupliateContainer": {
+          "success": "Container successfully duplicated!",
+          "error": "Container could not be duplicated!"
+        }
+      },
+      "settings": {
+        "getSettings": {
+          "error": "Settings could not be loaded!"
+        },
+        "updateSettings": {
+          "success": "Settings successfully updated!",
+          "error": "Settings could not be updated!"
+        }
       }
     },
     "empty": {

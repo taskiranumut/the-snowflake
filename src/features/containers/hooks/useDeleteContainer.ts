@@ -1,8 +1,10 @@
 import { deleteContainer } from '@/services/api';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 export function useDeleteContainer() {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const { isPending: isDeleting, mutate: mutationDeleteContainer } =
@@ -12,7 +14,7 @@ export function useDeleteContainer() {
         queryClient.invalidateQueries({
           queryKey: ['containers'],
         });
-        toast.success('Container successfully deleted!');
+        toast.success(t('message.api.containers.deleteContainer.success'));
       },
       onError: (err) => {
         toast.error(err.message);

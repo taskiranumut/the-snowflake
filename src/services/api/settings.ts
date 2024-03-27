@@ -4,12 +4,13 @@ import {
   type RawSettingsData,
   type SettingsData,
 } from '@/services/api/settings.type';
+import { t } from 'i18next';
 
 export async function getSettings(): Promise<SettingsData> {
   const { data, error } = await supabase.from('settings').select('*').single();
 
   if (error) {
-    throw new Error('Settings could not be loaded!');
+    throw new Error(t('message.api.settings.getSettings.error'));
   }
 
   return convertRawSettingsData(data);
@@ -25,6 +26,6 @@ export async function updateSettings(
     .single();
 
   if (error) {
-    throw new Error('Settings could not be updated!');
+    throw new Error(t('message.api.settings.updateSettings.error'));
   }
 }

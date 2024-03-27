@@ -9,6 +9,7 @@ import {
 import { PAGE_SIZE } from '@/utils/constants';
 import { getToday } from '@/utils';
 import { isSameDay } from 'date-fns';
+import { t } from 'i18next';
 
 export async function getBookings(
   queryParams: GetBookingsTypes,
@@ -38,7 +39,7 @@ export async function getBookings(
   const { data, error, count } = await query;
 
   if (error) {
-    throw new Error('Bookings could not be loaded!');
+    throw new Error(t('message.api.bookings.common.error'));
   }
 
   return {
@@ -55,7 +56,7 @@ export async function getBooking(id: number | string): Promise<DataBooking> {
     .single();
 
   if (error) {
-    throw new Error('Booking not found!');
+    throw new Error(t('message.api.bookings.getBooking.error'));
   }
 
   return convertRawBookingData(data);
@@ -73,7 +74,7 @@ export async function updateBooking({
     .single();
 
   if (error) {
-    throw new Error('Booking could not be updated!');
+    throw new Error(t('message.api.bookings.updateBooking.error'));
   }
 
   return convertRawBookingData(data);
@@ -83,7 +84,7 @@ export async function deleteBooking(id: number): Promise<void> {
   const { error } = await supabase.from('bookings').delete().eq('id', id);
 
   if (error) {
-    throw new Error('Booking could not be deleted!');
+    throw new Error(t('message.api.bookings.deleteBooking.error'));
   }
 }
 
@@ -97,7 +98,7 @@ export async function getBookingsAfterDate(
     .lte('created_at', getToday({ end: true }));
 
   if (error) {
-    throw new Error('Bookings could not get loaded');
+    throw new Error(t('message.api.bookings.common.error'));
   }
 
   return data.map((item) => convertRawBookingData(item));
@@ -111,7 +112,7 @@ export async function getStaysAfterDate(date: string): Promise<DataBooking[]> {
     .lte('start_date', getToday());
 
   if (error) {
-    throw new Error('Bookings could not get loaded');
+    throw new Error(t('message.api.bookings.common.error'));
   }
 
   return data.map((item) => convertRawBookingData(item));
@@ -124,7 +125,7 @@ export async function getStaysTodayActivity(): Promise<DataBooking[]> {
     .order('created_at');
 
   if (error) {
-    throw new Error('Bookings could not get loaded');
+    throw new Error(t('message.api.bookings.common.error'));
   }
 
   const filteredData = data.filter((booking) => {

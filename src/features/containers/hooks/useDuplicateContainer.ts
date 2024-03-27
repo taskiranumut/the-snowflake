@@ -1,8 +1,10 @@
 import { dupliateContainer } from '@/services/api';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 export function useDuplicateContainer() {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const { isPending: isDuplicating, mutate: mutateDuplciateContainer } =
@@ -12,7 +14,7 @@ export function useDuplicateContainer() {
         queryClient.invalidateQueries({
           queryKey: ['containers'],
         });
-        toast.success('Container successfully duplicated!');
+        toast.success(t('message.api.containers.dupliateContainer.success'));
       },
       onError: (err) => {
         toast.error(err.message);
