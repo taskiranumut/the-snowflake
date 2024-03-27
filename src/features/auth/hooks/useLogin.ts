@@ -1,9 +1,11 @@
 import { login } from '@/services/api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 export function useLogin() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -12,10 +14,10 @@ export function useLogin() {
     onSuccess: (user) => {
       queryClient.setQueryData(['user'], user);
       navigate('/dashboard', { replace: true });
-      toast.success('Successfully logged in!');
+      toast.success(t('message.api.auth.login.success'));
     },
-    onError: () => {
-      toast.error('Provided email or password are incorrect!');
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 

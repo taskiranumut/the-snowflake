@@ -3,9 +3,11 @@ import { Heading, Spinner } from '@/components/shared';
 import { LoginForm } from '@/features/auth/components';
 import { useUser } from '@/features/auth/hooks';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 export function Login() {
+  const { t } = useTranslation();
   const { isLoading, isAuth } = useUser();
   const navigate = useNavigate();
 
@@ -23,7 +25,7 @@ export function Login() {
         <>
           <MainLogo />
           <Heading as="h4" className="text-center">
-            Log in to your account
+            {t('title.page.login')}
           </Heading>
           <LoginForm />
         </>

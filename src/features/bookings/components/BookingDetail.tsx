@@ -11,14 +11,19 @@ import {
   Empty,
 } from '@/components/shared';
 import { useBooking, useDeleteBooking } from '@/features/bookings/hooks';
-import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
+import {
+  getFormattedStatus,
+  getTagColorForBookingStatus,
+} from '@/features/bookings/helpers';
 import { useMoveBack } from '@/hooks';
 import { BookingDetailData } from '@/features/bookings/components';
 import { CheckoutButton } from '@/features/check-in-out/components';
 import { HiTrash, HiArrowDownOnSquare } from 'react-icons/hi2';
 import { useScreenSizeContext } from '@/context';
+import { useTranslation } from 'react-i18next';
 
 export function BookingDetail() {
+  const { t } = useTranslation();
   const { isSm } = useScreenSizeContext();
   const { isLoading, booking } = useBooking();
   const navigate = useNavigate();
@@ -28,7 +33,7 @@ export function BookingDetail() {
 
   if (isLoading) return <Spinner />;
 
-  if (!booking) return <Empty resource="booking" />;
+  if (!booking) return <Empty resource={t('message.empty.resource.booking')} />;
 
   function handleDeleteBooking() {
     if (booking?.id) {
@@ -39,17 +44,18 @@ export function BookingDetail() {
   }
 
   const tagColor = getTagColorForBookingStatus(booking?.status);
+  const formattedStatus = getFormattedStatus(booking?.status);
 
   return (
     <>
       <Row type="horizontal" className="items-start md:items-center">
         <div className="flex flex-col items-start justify-between gap-2 sm:basis-auto sm:justify-start sm:gap-4 md:flex-row md:items-center md:gap-6">
           <Heading as="h1" className="text-2xl sm:text-3xl">
-            Booking #{booking?.id}
+            {t('title.page.bookingDetail', { id: booking?.id })}
           </Heading>
-          <Tag color={tagColor}>{booking?.status?.replace('-', ' ')}</Tag>
+          <Tag color={tagColor}>{formattedStatus}</Tag>
         </div>
-        <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
+        <ButtonText onClick={moveBack}>&larr; {t('action.back')}</ButtonText>
       </Row>
 
       <BookingDetailData booking={booking} />
@@ -60,7 +66,7 @@ export function BookingDetail() {
             onClick={() => navigate(`/checkin/${booking?.id}`)}
             icon={<HiArrowDownOnSquare size="1.25rem" />}
           >
-            Check in
+            {t('action.bookings.checkIn')}
           </Button>
         )}
 
@@ -71,7 +77,7 @@ export function BookingDetail() {
         <Modal>
           <Modal.Open name="delete">
             <Button color="danger" icon={<HiTrash size="1.25rem" />}>
-              Delete
+              {t('action.delete')}
             </Button>
           </Modal.Open>
           <Modal.Window name="delete">
@@ -85,7 +91,7 @@ export function BookingDetail() {
 
         {!isSm && (
           <Button onClick={moveBack} color="secondary">
-            Back
+            {t('action.back')}
           </Button>
         )}
       </div>

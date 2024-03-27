@@ -1,8 +1,10 @@
 import { updateBooking } from '@/services/api';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 export function useCheckout() {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const { isPending: isCheckingOut, mutate: mutateCheckout } = useMutation({
@@ -15,7 +17,11 @@ export function useCheckout() {
       queryClient.invalidateQueries({
         queryKey: ['bookings'],
       });
-      toast.success(`Booking #${data.id} successfully checked out!`);
+      toast.success(
+        t('message.api.bookings.updateBooking.success.checkOut', {
+          id: data.id,
+        }),
+      );
     },
     onError: (err) => {
       toast.error(err.message);

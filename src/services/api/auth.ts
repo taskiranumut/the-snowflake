@@ -6,6 +6,7 @@ import {
 } from '@/services/api/auth.types';
 import { getImageInfo } from '@/services/api/utils';
 import { type ImageInfo } from '@/services/api/containers.types';
+import { t } from 'i18next';
 
 const profilePicturesUrl = import.meta.env.VITE_SUPABASE_PROFILE_PICTURES_URL;
 
@@ -16,7 +17,7 @@ export async function login({ email, password }: LoginTypes) {
   });
 
   if (error) {
-    throw new Error('User could not be logged in!');
+    throw new Error(t('message.api.auth.login.error'));
   }
 
   return data?.user;
@@ -30,7 +31,7 @@ export async function getCurrentUser() {
   const { data, error } = await supabase.auth.getUser();
 
   if (error) {
-    throw new Error('User could not be logged in!');
+    throw new Error(t('message.api.auth.getCurrentUser.error'));
   }
 
   return data?.user;
@@ -40,7 +41,7 @@ export async function logout() {
   const { error } = await supabase.auth.signOut();
 
   if (error) {
-    throw new Error('User could not be logged out!');
+    throw new Error(t('message.api.auth.logout.error'));
   }
 }
 
@@ -57,7 +58,7 @@ export async function signUp({ fullName, email, password }: SignUpTypes) {
   });
 
   if (error) {
-    throw new Error('User could not be created!');
+    throw new Error(t('message.api.auth.signUp.error'));
   }
 }
 
@@ -80,7 +81,7 @@ export async function updateCurrentUser({
       .upload(imageInfo.name, avatar);
 
     if (storageError) {
-      throw new Error('Avatar could not be uploaded!');
+      throw new Error(t('message.api.auth.updateCurrentUser.error.image'));
     }
 
     udpatedData = { data: { ...udpatedData?.data, avatar: imageInfo.path } };
@@ -91,8 +92,13 @@ export async function updateCurrentUser({
   const { data, error } = await supabase.auth.updateUser(udpatedData);
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(t('message.api.auth.updateCurrentUser.error.account'));
   }
 
-  return { data, resource: password ? 'Password' : 'User data' };
+  return {
+    data,
+    resource: password
+      ? t('label.common.password')
+      : t('label.common.userData'),
+  };
 }

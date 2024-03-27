@@ -1,6 +1,7 @@
 import { updateBooking } from '@/services/api';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 type UpdateArgs = {
@@ -15,6 +16,7 @@ type UpdateArgs = {
 };
 
 export function useCheckin() {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -28,7 +30,11 @@ export function useCheckin() {
       queryClient.invalidateQueries({
         queryKey: ['bookings'],
       });
-      toast.success(`Booking #${data.id} successfully checked in!`);
+      toast.success(
+        t('message.api.bookings.updateBooking.success.checkIn', {
+          id: data.id,
+        }),
+      );
       navigate('/bookings');
     },
     onError: (err) => {

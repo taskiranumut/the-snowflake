@@ -10,6 +10,7 @@ import { createPortal } from 'react-dom';
 import { useOutsideClick } from '@/hooks';
 import { AiOutlineClose } from 'react-icons/ai';
 import { twMerge } from 'tailwind-merge';
+import { useTranslation } from 'react-i18next';
 
 type ModalContextTypes = {
   openName: string;
@@ -34,10 +35,13 @@ type WindowProps = OpenProps & {
 const ModalContext = createContext<ModalContextTypes | undefined>(undefined);
 
 function useModalContext() {
+  const { t } = useTranslation();
   const context = useContext(ModalContext);
 
   if (!context) {
-    throw new Error('ModalContext does not exist!');
+    throw new Error(
+      t('message.context.common.error', { context: 'ModalContext' }),
+    );
   }
 
   return context;

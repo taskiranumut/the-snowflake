@@ -15,6 +15,7 @@ export { FormRow } from '@/components/shared/FormRow';
 export { FormTextArea } from '@/components/shared/FormTextArea';
 export { GridTable } from '@/components/shared/GridTable';
 export { Heading } from '@/components/shared/Heading';
+export { Language } from '@/components/shared/Language';
 export { Menus } from '@/components/shared/Menus';
 export { Modal } from '@/components/shared/Modal';
 export { Pagination } from '@/components/shared/Pagination';

@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import routes from '@/routes';
-import { ReactQueryProvider, ToasterProvider } from './providers';
+import { ReactQueryProvider, ToasterProvider } from '@/providers';
 import {
   ThemeContextProvider,
   ToggleSidebarContextProvider,

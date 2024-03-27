@@ -1,6 +1,7 @@
 import { useUpdateUser } from '@/features/auth/hooks';
 import { Button, Form, FormInput, FormRow } from '@/components/shared';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 type FormFields = {
   password: string;
@@ -8,6 +9,7 @@ type FormFields = {
 };
 
 export function UpdatePasswordForm() {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -38,15 +40,19 @@ export function UpdatePasswordForm() {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow error={errors?.password?.message}>
         <FormInput
-          label="New password (min 8 chars)"
+          label={t('label.forms.updatePassword.newPassword')}
           type="password"
           id="password"
           disabled={isUpdating}
           {...register('password', {
-            required: 'Password is required',
+            required: t(
+              'label.forms.updatePassword.errors.newPassword.required',
+            ),
             minLength: {
               value: 8,
-              message: 'Password needs a minimum of 8 characters',
+              message: t(
+                'label.forms.updatePassword.errors.newPassword.minlength',
+              ),
             },
           })}
         />
@@ -54,24 +60,27 @@ export function UpdatePasswordForm() {
 
       <FormRow error={errors?.confirmPassword?.message}>
         <FormInput
-          label="Repeat password"
+          label={t('label.forms.updatePassword.confirmPassword')}
           type="password"
           id="confirmPassword"
           disabled={!password || isUpdating}
           {...register('confirmPassword', {
-            required: 'Password confirmation is required',
+            required: t(
+              'label.forms.updatePassword.errors.confirmPassword.required',
+            ),
             validate: (value) =>
-              value === getValues().password || 'Password needs to match',
+              value === getValues().password ||
+              t('label.forms.updatePassword.errors.confirmPassword.mustMatch'),
           })}
         />
       </FormRow>
 
       <FormRow className="mt-2 md:mt-1">
         <Button onClick={handleCancel} color="secondary" disabled={isUpdating}>
-          Cancel
+          {t('action.cancel')}
         </Button>
         <Button type="submit" disabled={isUpdating}>
-          Update password
+          {t('action.account.updatePassword')}
         </Button>
       </FormRow>
     </Form>

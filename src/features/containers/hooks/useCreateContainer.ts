@@ -1,8 +1,10 @@
 import { addNewContainer } from '@/services/api';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 export function useCreateContainer() {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const { isPending: isAdding, mutate: mutateAddNewContainer } = useMutation({
@@ -11,7 +13,7 @@ export function useCreateContainer() {
       queryClient.invalidateQueries({
         queryKey: ['containers'],
       });
-      toast.success('Container successfully added!');
+      toast.success(t('message.api.containers.addNewContainer.success'));
     },
     onError: (err) => {
       toast.error(err.message);

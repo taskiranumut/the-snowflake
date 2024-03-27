@@ -1,6 +1,7 @@
 import { Button, Form, FormRow, FormInput } from '@/components/shared';
 import { useForm } from 'react-hook-form';
 import { useSignUp } from '@/features/auth/hooks';
+import { useTranslation } from 'react-i18next';
 
 type FormFields = {
   fullName: string;
@@ -10,6 +11,7 @@ type FormFields = {
 };
 
 export function SignUpForm() {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -42,25 +44,25 @@ export function SignUpForm() {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow error={errors?.fullName?.message}>
         <FormInput
-          label="Full name"
+          label={t('label.forms.signUp.fullName')}
           id="fullName"
           disabled={isLoading}
           {...register('fullName', {
-            required: 'Full name is required',
+            required: t('label.forms.signUp.errors.fullName.required'),
           })}
         />
       </FormRow>
 
       <FormRow error={errors?.email?.message}>
         <FormInput
-          label="Email address"
+          label={t('label.forms.signUp.emailAddress')}
           id="email"
           disabled={isLoading}
           {...register('email', {
-            required: 'Email is required',
+            required: t('label.forms.signUp.errors.emailAddress.required'),
             pattern: {
               value: /\S+@\S+\.\S+/,
-              message: 'Please provide a valid email address',
+              message: t('label.forms.signUp.errors.emailAddress.valid'),
             },
           })}
         />
@@ -68,15 +70,15 @@ export function SignUpForm() {
 
       <FormRow error={errors?.password?.message}>
         <FormInput
-          label="Password (min 8 characters)"
+          label={t('label.forms.signUp.password')}
           type="password"
           id="password"
           disabled={isLoading}
           {...register('password', {
-            required: 'Password is required',
+            required: t('label.forms.signUp.errors.password.required'),
             minLength: {
               value: 8,
-              message: 'Password needs a minimum of 8 characters',
+              message: t('label.forms.signUp.errors.password.minlength'),
             },
           })}
         />
@@ -84,14 +86,15 @@ export function SignUpForm() {
 
       <FormRow error={errors?.confirmPassword?.message}>
         <FormInput
-          label="Repeat password"
+          label={t('label.forms.signUp.confirmPassword')}
           type="password"
           id="confirmPassword"
           disabled={!password || isLoading}
           {...register('confirmPassword', {
-            required: 'Password confirmation is required',
+            required: t('label.forms.signUp.errors.confirmPassword.required'),
             validate: (value) =>
-              value === getValues().password || 'Password needs to match',
+              value === getValues().password ||
+              t('label.forms.signUp.errors.confirmPassword.mustMatch'),
           })}
         />
       </FormRow>
@@ -102,10 +105,10 @@ export function SignUpForm() {
           onClick={handleCancelForm}
           disabled={isLoading}
         >
-          Cancel
+          {t('action.cancel')}
         </Button>
         <Button type="submit" disabled={isLoading}>
-          Add User
+          {t('action.user.addUser')}
         </Button>
       </FormRow>
     </Form>

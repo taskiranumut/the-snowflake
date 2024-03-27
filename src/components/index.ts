@@ -9,3 +9,4 @@ export { Sidebar } from '@/components/Sidebar';
 export { UserAvatar } from '@/components/UserAvatar';
 export { DarkModeToggle } from '@/components/DarkModeToggle';
 export { SidebarToggleButton } from '@/components/SidebarToggleButton';
+export { LanguageSelect } from '@/components/LanguageSelect';

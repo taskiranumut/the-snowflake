@@ -17,8 +17,10 @@ import { formatCurrency } from '@/utils';
 import { useCheckin } from '@/features/check-in-out/hooks';
 import { HiArrowDownOnSquare } from 'react-icons/hi2';
 import { useScreenSizeContext } from '@/context';
+import { useTranslation } from 'react-i18next';
 
 export function CheckinBooking() {
+  const { t } = useTranslation();
   const { isSm } = useScreenSizeContext();
   const [confirmPaid, setConfirmPaid] = useState(false);
   const [addBreakfast, setAddBreakfast] = useState(false);
@@ -32,7 +34,7 @@ export function CheckinBooking() {
 
   if (isLoadingBooking || isLoadingSettings) return <Spinner />;
 
-  if (!booking) return <Empty resource="checkin" />;
+  if (!booking) return <Empty resource={t('message.empty.resource.booking')} />;
 
   const {
     id: bookingId,
@@ -84,15 +86,29 @@ export function CheckinBooking() {
     const optionalBreakfastPrice = getOptionalBreakfastPrice();
 
     if (optionalBreakfastPrice && totalPrice) {
-      return `I confirm that ${guests?.fullName || 'booking owner'} has paid the total amount of ${
-        !addBreakfast
-          ? formatCurrency(totalPrice)
-          : `${formatCurrency(
-              totalPrice + optionalBreakfastPrice,
-            )} (${formatCurrency(totalPrice)} + ${formatCurrency(
-              optionalBreakfastPrice,
-            )} for breakfast)`
-      }`;
+      const guestName = guests?.fullName || t('message.checkIn.bookingOwner');
+      const breakfastCost = addBreakfast ? optionalBreakfastPrice : 0;
+      const totalPriceWithBreakfast = totalPrice + breakfastCost;
+
+      const formattedTotalPrice = formatCurrency(totalPrice);
+      const formattedBreakfastPrice = formatCurrency(optionalBreakfastPrice);
+      const formattedTotalPriceWithBreakfast = formatCurrency(
+        totalPriceWithBreakfast,
+      );
+
+      if (addBreakfast) {
+        return t('message.checkIn.confirmPrice.withBreakfast', {
+          owner: guestName,
+          amount: formattedTotalPriceWithBreakfast,
+          booking: formattedTotalPrice,
+          breakfast: formattedBreakfastPrice,
+        });
+      } else {
+        return t('message.checkIn.confirmPrice.withoutBreakfast', {
+          owner: guestName,
+          amount: formattedTotalPrice,
+        });
+      }
     }
 
     return null;
@@ -102,7 +118,9 @@ export function CheckinBooking() {
     const optionalBreakfastPrice = getOptionalBreakfastPrice();
 
     if (optionalBreakfastPrice) {
-      return `Want to add breakfast for ${formatCurrency(optionalBreakfastPrice)}?`;
+      return t('message.checkIn.confirmBreakfast', {
+        breakfast: formatCurrency(optionalBreakfastPrice),
+      });
     }
 
     return null;
@@ -114,13 +132,15 @@ export function CheckinBooking() {
   return (
     <>
       <Row type="horizontal">
-        <Heading as="h1">Check in #{bookingId}</Heading>
-        <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
+        <Heading as="h1">
+          {t('title.page.checkInDetail', { id: bookingId })}
+        </Heading>
+        <ButtonText onClick={moveBack}>&larr; {t('action.back')}</ButtonText>
       </Row>
 
       <BookingDetailData booking={booking} />
 
-      {!hasBreakfast && (
+      {hasBreakfast && (
         <Box className="w-full rounded-lg bg-white p-4 sm:p-6 md:px-10 md:py-4 dark:bg-dark">
           <Checkbox
             id="breakfast"
@@ -147,11 +167,11 @@ export function CheckinBooking() {
           disabled={!confirmPaid || isCheckingIn}
           icon={<HiArrowDownOnSquare size="1.25rem" />}
         >
-          Check in
+          {t('action.bookings.checkIn')}
         </Button>
         {!isSm && (
           <Button onClick={moveBack} color="secondary">
-            Back
+            {t('action.back')}
           </Button>
         )}
       </div>
