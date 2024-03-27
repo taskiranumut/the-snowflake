@@ -13,6 +13,7 @@ import { Heading } from '@/components/shared';
 import { DashboardBox } from '@/features/dashboard/components';
 import { useScreenSizeContext, useThemeContext } from '@/context';
 import { useTranslation } from 'react-i18next';
+import { useLocaleDateFormat } from '@/hooks';
 
 type SalesChartProps = {
   bookings: DataBooking[];
@@ -23,6 +24,9 @@ export function SalesChart({ bookings, daysNum }: SalesChartProps) {
   const { t } = useTranslation();
   const { isSm } = useScreenSizeContext();
   const { theme } = useThemeContext();
+
+  const { formats, locale } = useLocaleDateFormat();
+
   const allDates = eachDayOfInterval({
     start: subDays(new Date(), daysNum - 1),
     end: new Date(),
@@ -30,7 +34,9 @@ export function SalesChart({ bookings, daysNum }: SalesChartProps) {
 
   const data = allDates.map((date) => {
     return {
-      label: format(date, 'MMM dd'),
+      label: format(date, formats.short, {
+        locale,
+      }),
       totalSales: bookings
         .filter((booking) => isSameDay(date, new Date(booking.createdAt)))
         .reduce((acc, cur) => acc + cur.totalPrice!, 0),
@@ -59,8 +65,12 @@ export function SalesChart({ bookings, daysNum }: SalesChartProps) {
     <DashboardBox className="col-span-full col-start-1 overflow-x-auto md:overflow-x-hidden">
       <Heading as="h2">
         {t('label.dashboard.salesChart.title', {
-          from: format(allDates.at(0)!, 'MMM dd yyyy'),
-          to: format(allDates.at(-1)!, 'MMM dd yyyy'),
+          from: format(allDates.at(0)!, formats.long, {
+            locale,
+          }),
+          to: format(allDates.at(-1)!, formats.long, {
+            locale,
+          }),
         })}
       </Heading>
 

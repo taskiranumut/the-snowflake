@@ -56,8 +56,8 @@
         "unconfirmed": "Onay bekleyen"
       },
       "sort": {
-        "startDateDesc": "Tarihe göre sırala (artan)",
-        "startDateAsc": "Tarihe göre sırala (azalan)",
+        "startDateDesc": "Tarihe göre sırala (geriye)",
+        "startDateAsc": "Tarihe göre sırala (ileriye)",
         "totalPriceDesc": "Fiyata göre sırala (azalan)",
         "totalPriceAsc": "Fiyata göre sırala (artan)"
       },
@@ -73,7 +73,7 @@
       "status": {
         "checkedIn": "Giriş yapıldı",
         "checkedOut": "Çıkış yapıldı",
-        "unconfirmed": "Onay bekleyen"
+        "unconfirmed": "Onay bekle"
       }
     },
     "dashboard": {
@@ -224,7 +224,11 @@
       "containerAndBreakfast": "({{container}} kabin + {{breakfast}} kahvaltı)",
       "paid": "Ödendi",
       "willPay": "Tesiste ödeme yapılacak",
-      "booked": "Rezervasyon tarihi: {{date}}"
+      "booked": "Rezervasyon tarihi: {{date}}",
+      "nightStay": "{{start}} → {{count}} gece konaklama",
+      "nightStay_other": "{{start}} → {{count}} gece konaklama",
+      "dateRange": "{{start}} — {{end}}",
+      "dateRangeWithDistance": "{{start}} ({{distance}}) — {{end}}"
     },
     "dashboard": {
       "todayActivity": {

@@ -10,6 +10,7 @@ import {
 import { HiCube } from 'react-icons/hi2';
 import { twMerge } from 'tailwind-merge';
 import { Trans, useTranslation } from 'react-i18next';
+import { useLocaleDateFormat } from '@/hooks';
 
 type BookingDetailData = {
   booking: DataBooking | undefined;
@@ -17,6 +18,9 @@ type BookingDetailData = {
 
 export function BookingDetailData({ booking }: BookingDetailData) {
   const { t } = useTranslation();
+
+  const { formats, locale } = useLocaleDateFormat();
+
   if (!booking) return null;
 
   const {
@@ -34,6 +38,18 @@ export function BookingDetailData({ booking }: BookingDetailData) {
     guests,
     containers,
   } = booking;
+
+  const dateRangeWithDistance = t('message.bookingData.dateRangeWithDistance', {
+    start: format(new Date(startDate || ''), formats.longWithDay, {
+      locale,
+    }),
+    end: format(new Date(endDate || ''), formats.longWithDay, {
+      locale,
+    }),
+    distance: isToday(new Date(startDate || ''))
+      ? t('label.common.today')
+      : formatDistanceFromNow(startDate, locale),
+  });
 
   const additionalGuestsText =
     guestsNum && guestsNum > 1
@@ -55,13 +71,7 @@ export function BookingDetailData({ booking }: BookingDetailData) {
               ></Trans>
             </p>
           </div>
-          <p className="text-base sm:text-lg">
-            {format(new Date(startDate || ''), 'EEE, MMM dd yyyy')} (
-            {isToday(new Date(startDate || ''))
-              ? t('label.common.today')
-              : formatDistanceFromNow(startDate)}
-            ) &mdash; {format(new Date(endDate || ''), 'EEE, MMM dd yyyy')}
-          </p>
+          <p className="text-base sm:text-lg">{dateRangeWithDistance}</p>
         </header>
 
         <section className="bg-white p-4 sm:p-6 md:px-10 md:py-8 dark:bg-dark">
@@ -141,7 +151,9 @@ export function BookingDetailData({ booking }: BookingDetailData) {
         <footer className="rounded-b-lg bg-white p-4 text-left text-sm text-gray-500 sm:p-6 sm:text-right md:px-10 md:pb-6 dark:bg-dark dark:text-gray-400">
           <p>
             {t('message.bookingData.booked', {
-              date: format(new Date(createdAt), 'EEE, MMM dd yyyy, p'),
+              date: format(new Date(createdAt), formats.longWithDayAndTime, {
+                locale,
+              }),
             })}
           </p>
         </footer>
