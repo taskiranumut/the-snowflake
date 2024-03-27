@@ -1,7 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 type EmptyProps = {
   resource: string;
 };
 
 export function Empty({ resource }: EmptyProps) {
-  return <p>No {resource} could be found.</p>;
+  const { t } = useTranslation();
+
+  return <p>{t('message.empty.content', { resource })}</p>;
 }

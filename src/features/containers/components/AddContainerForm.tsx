@@ -14,6 +14,7 @@ import {
   useCreateContainer,
   useEditContainer,
 } from '@/features/containers/hooks';
+import { useTranslation } from 'react-i18next';
 
 type FormFields = {
   name: string;
@@ -33,6 +34,7 @@ export function AddContainerForm({
   container,
   onCloseModal,
 }: AddContainerFormProps) {
+  const { t } = useTranslation();
   const { isAdding, mutateAddNewContainer } = useCreateContainer();
   const { isEditing, mutateEditContainer } = useEditContainer();
 
@@ -101,9 +103,11 @@ export function AddContainerForm({
       <FormRow error={errors?.name?.message}>
         <FormInput
           id="name"
-          label="Container Name *"
+          label={t('label.forms.addContainer.containerName')}
           {...register('name', {
-            required: 'Container name is required',
+            required: t(
+              'label.forms.addContainer.errors.containerName.required',
+            ),
           })}
           disabled={isAdding || isEditing}
         />
@@ -112,13 +116,13 @@ export function AddContainerForm({
         <FormInput
           type="number"
           id="maxCapacity"
-          label="Maximum Capacity *"
+          label={t('label.forms.addContainer.maxCapacity')}
           step="1"
           {...register('maxCapacity', {
-            required: 'Capacity is required',
+            required: t('label.forms.addContainer.errors.maxCapacity.required'),
             min: {
               value: 1,
-              message: 'Capacity should be at least 1',
+              message: t('label.forms.addContainer.errors.maxCapacity.min'),
             },
           })}
           disabled={isAdding || isEditing}
@@ -128,12 +132,14 @@ export function AddContainerForm({
         <FormInput
           type="number"
           id="regularPrice"
-          label="Regular Price *"
+          label={t('label.forms.addContainer.regularPrice')}
           {...register('regularPrice', {
-            required: 'Regular price is required',
+            required: t(
+              'label.forms.addContainer.errors.regularPrice.required',
+            ),
             min: {
               value: 1,
-              message: 'Capacity should be at least 1',
+              message: t('label.forms.addContainer.errors.regularPrice.min'),
             },
           })}
           disabled={isAdding || isEditing}
@@ -143,12 +149,16 @@ export function AddContainerForm({
         <FormInput
           type="number"
           id="discount"
-          label="Discount *"
+          label={t('label.forms.addContainer.discount')}
           {...register('discount', {
-            required: 'Discount is required',
+            required: t(
+              'label.forms.addContainer.errors.discount.required',
+            ),
             validate: (value) =>
               Number(value) < Number(getValues('regularPrice')) ||
-              'Discount should be less than regular price',
+              t(
+                'label.forms.addContainer.errors.discount.must',
+              ),
           })}
           disabled={isAdding || isEditing}
         />
@@ -156,7 +166,7 @@ export function AddContainerForm({
       <FormRow error={errors?.description?.message}>
         <FormTextArea
           id="description"
-          label="Description For Website"
+          label={t('label.forms.addContainer.description')}
           {...register('description')}
           disabled={isAdding || isEditing}
         />
@@ -166,7 +176,7 @@ export function AddContainerForm({
           type="file"
           id="image"
           accept="image/*"
-          label="Container Photo"
+          label={t('label.forms.addContainer.image')}
           {...register('image')}
           disabled={isAdding || isEditing}
         />
@@ -178,10 +188,10 @@ export function AddContainerForm({
           onClick={() => onCloseModal?.()}
           disabled={isAdding || isEditing}
         >
-          Cancel
+          {t('action.cancel')}
         </Button>
         <Button type="submit" disabled={isAdding || isEditing}>
-          {container ? 'Edit Container' : 'Add Container'}
+          {container ? t('action.edit') : t('action.add')}
         </Button>
       </FormRow>
     </Form>

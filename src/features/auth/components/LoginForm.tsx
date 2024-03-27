@@ -1,8 +1,10 @@
 import { FormEvent, useState } from 'react';
 import { Button, Form, FormRow, FormInput, Spinner } from '@/components/shared';
 import { useLogin } from '@/features/auth/hooks';
+import { useTranslation } from 'react-i18next';
 
 export function LoginForm() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('test@test.com');
   const [password, setPassword] = useState('123123123');
 
@@ -27,7 +29,7 @@ export function LoginForm() {
     <Form onSubmit={handleSubmit} className="p-4 sm:p-8">
       <FormRow type="vertical">
         <FormInput
-          label="Email address"
+          label={t('label.forms.login.emailAddress')}
           type="email"
           id="email"
           autoComplete="username"
@@ -38,7 +40,7 @@ export function LoginForm() {
       </FormRow>
       <FormRow type="vertical">
         <FormInput
-          label="Password"
+          label={t('label.forms.login.password')}
           type="password"
           id="password"
           autoComplete="current-password"
@@ -54,7 +56,7 @@ export function LoginForm() {
           size="lg"
           disabled={isLoading}
         >
-          Login
+          {t('action.user.login')}
           {isLoading && <Spinner mini />}
         </Button>
       </FormRow>

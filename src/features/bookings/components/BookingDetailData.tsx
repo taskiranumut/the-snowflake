@@ -8,14 +8,15 @@ import {
   HiOutlineCurrencyDollar,
 } from 'react-icons/hi2';
 import { HiCube } from 'react-icons/hi2';
-
 import { twMerge } from 'tailwind-merge';
+import { Trans, useTranslation } from 'react-i18next';
 
 type BookingDetailData = {
   booking: DataBooking | undefined;
 };
 
 export function BookingDetailData({ booking }: BookingDetailData) {
+  const { t } = useTranslation();
   if (!booking) return null;
 
   const {
@@ -34,6 +35,11 @@ export function BookingDetailData({ booking }: BookingDetailData) {
     containers,
   } = booking;
 
+  const additionalGuestsText =
+    guestsNum && guestsNum > 1
+      ? ` + ${t('message.common.guestWithCount', { count: guestsNum - 1 })}`
+      : '';
+
   return (
     <>
       <section className="overflow-hidden">
@@ -41,16 +47,18 @@ export function BookingDetailData({ booking }: BookingDetailData) {
           <div className="flex items-center gap-4 text-base font-semibold sm:text-lg">
             <HiCube size="2.25rem" />
             <p>
-              {nigthsNum} nights in Container{' '}
-              <span className="ml-2 font-sono text-lg sm:text-xl">
-                {containers?.name}
-              </span>
+              <Trans
+                i18nKey="message.bookingData.nightsInContainer"
+                count={nigthsNum || 0}
+                components={[<span className="font-sono text-lg sm:text-xl" />]}
+                values={{ name: containers?.name }}
+              ></Trans>
             </p>
           </div>
           <p className="text-base sm:text-lg">
             {format(new Date(startDate || ''), 'EEE, MMM dd yyyy')} (
             {isToday(new Date(startDate || ''))
-              ? 'Today'
+              ? t('label.common.today')
               : formatDistanceFromNow(startDate)}
             ) &mdash; {format(new Date(endDate || ''), 'EEE, MMM dd yyyy')}
           </p>
@@ -62,12 +70,14 @@ export function BookingDetailData({ booking }: BookingDetailData) {
               {guests?.countryFlag && (
                 <Flag
                   src={guests?.countryFlag}
-                  alt={`Flag of ${guests?.nationality}`}
+                  title={guests?.nationality || ''}
+                  alt={t('message.common.flag', {
+                    country: guests?.nationality,
+                  })}
                 />
               )}
               <p className="text-gray-700 dark:text-gray-200">
-                {guests?.fullName}{' '}
-                {guestsNum && guestsNum > 1 ? `+ ${guestsNum - 1} guests` : ''}
+                {`${guests?.fullName}${additionalGuestsText}`}
               </p>
             </div>
 
@@ -78,21 +88,26 @@ export function BookingDetailData({ booking }: BookingDetailData) {
 
             <span className="flex gap-2">
               <span>&bull;</span>
-              <p>National ID {guests?.nationalId}</p>
+              <p>
+                {t('message.bookingData.nationalId')}: {guests?.nationalId}
+              </p>
             </span>
           </div>
 
           {observations && (
             <DataItem
               icon={<HiOutlineChatBubbleBottomCenterText />}
-              label="Observations"
+              label={t('message.bookingData.observations')}
             >
               {observations}
             </DataItem>
           )}
 
-          <DataItem icon={<HiOutlineCheckCircle />} label="Breakfast included?">
-            {hasBreakfast ? 'Yes' : 'No'}
+          <DataItem
+            icon={<HiOutlineCheckCircle />}
+            label={t('message.bookingData.hasBreakfast')}
+          >
+            {hasBreakfast ? t('common.yes') : t('common.no')}
           </DataItem>
 
           <div
@@ -103,23 +118,32 @@ export function BookingDetailData({ booking }: BookingDetailData) {
                 : 'bg-yellow-100 text-yellow-700',
             )}
           >
-            <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}>
-              {formatCurrency(totalPrice)}
-
+            <DataItem
+              icon={<HiOutlineCurrencyDollar />}
+              label={t('message.bookingData.totalPrice')}
+            >
+              {formatCurrency(totalPrice)}{' '}
               {hasBreakfast &&
-                ` (${formatCurrency(containerPrice)} container + ${formatCurrency(
-                  extrasPrice,
-                )} breakfast)`}
+                t('message.bookingData.containerAndBreakfast', {
+                  container: formatCurrency(containerPrice),
+                  breakfast: formatCurrency(extrasPrice),
+                })}
             </DataItem>
 
             <p className="text-base font-semibold">
-              {isPaid ? 'Paid' : 'Will pay at property'}
+              {isPaid
+                ? t('message.bookingData.paid')
+                : t('message.bookingData.willPay')}
             </p>
           </div>
         </section>
 
         <footer className="rounded-b-lg bg-white p-4 text-left text-sm text-gray-500 sm:p-6 sm:text-right md:px-10 md:pb-6 dark:bg-dark dark:text-gray-400">
-          <p>Booked {format(new Date(createdAt), 'EEE, MMM dd yyyy, p')}</p>
+          <p>
+            {t('message.bookingData.booked', {
+              date: format(new Date(createdAt), 'EEE, MMM dd yyyy, p'),
+            })}
+          </p>
         </footer>
       </section>
     </>

@@ -1,1 +1,270 @@
-{}
+{
+  "title": {
+    "app": "The Snowflake",
+    "sidebar": {
+      "home": "Ana Sayfa",
+      "bookings": "Rezervasyonlar",
+      "containers": "Kabinler",
+      "users": "Kullanıcılar",
+      "settings": "Ayarlar"
+    },
+    "page": {
+      "dashboard": "Ana Sayfa",
+      "bookings": "Rezervasyonlar",
+      "containers": "Kabinler",
+      "users": "Yeni kullanıcı ekle",
+      "settings": "Hotel ayarlarını güncelle",
+      "bookingDetail": "Rezervasyon #{{id}}",
+      "checkInDetail": "Giriş #{{id}}",
+      "account": {
+        "main": "Kullanıcı bilgileri",
+        "userData": "Bilgileri güncelle",
+        "password": "Parola değiştir"
+      },
+      "login": "Hesabınıza giriş yapın"
+    }
+  },
+  "label": {
+    "containers": {
+      "filter": {
+        "all": "Tümü",
+        "noDiscount": "İndirimsiz",
+        "withDiscount": "İndirimli"
+      },
+      "sort": {
+        "nameAsc": "İsme göre sırala (A-Z)",
+        "nameDesc": "İsme göre sırala (Z-A)",
+        "regularPriceAsc": "Fiyata göre sırala (artan)",
+        "regularPriceDesc": "Fiyata göre sırala (azalan)",
+        "maxCapacityAsc": "Kapasiteye göre sırala (artan)",
+        "maxCapacityDesc": "Kapasiteye göre sırala (azalan)"
+      },
+      "table": {
+        "header": {
+          "container": "Kabin",
+          "capacity": "Kapasite",
+          "price": "Fiyat",
+          "discount": "İndirim"
+        }
+      }
+    },
+    "bookings": {
+      "filter": {
+        "all": "Tümü",
+        "checkedOut": "Çıkışlar",
+        "checkedIn": "Girişler",
+        "unconfirmed": "Onay bekleyen"
+      },
+      "sort": {
+        "startDateDesc": "Tarihe göre sırala (artan)",
+        "startDateAsc": "Tarihe göre sırala (azalan)",
+        "totalPriceDesc": "Fiyata göre sırala (azalan)",
+        "totalPriceAsc": "Fiyata göre sırala (artan)"
+      },
+      "table": {
+        "header": {
+          "container": "Kabin",
+          "guest": "Misafir",
+          "dates": "Tarihler",
+          "status": "Durum",
+          "amount": "Tutar"
+        }
+      }
+    },
+    "dashboard": {
+      "filter": {
+        "last7": "Son 7 gün",
+        "last30": "Son 30 gün",
+        "last90": "Son 90 gün"
+      },
+      "stats": {
+        "header": {
+          "bookings": "Rezervasyonlar",
+          "sales": "Satışlar",
+          "checkIns": "Girişler",
+          "occupancyRate": "Doluluk oranı"
+        }
+      },
+      "todayActivity": {
+        "arriving": "Gelen",
+        "departing": "Giden"
+      },
+      "durationChart": {
+        "title": "Konaklama süresi özeti",
+        "durations": {
+          "night1": "1 gece",
+          "night2": "2 gece",
+          "night3": "3 gece",
+          "night4_5": "4-5 gece",
+          "night6_7": "6-7 gece",
+          "night8_14": "8-14 gece",
+          "night15_21": "15-21 gece",
+          "night21plus": "21+ gece"
+        }
+      },
+      "salesChart": {
+        "title": "{{from}} — {{to}} tarihleri arasındaki satışlar",
+        "totalSales": "Toplam satış",
+        "extraSales": "Ekstra satış"
+      }
+    },
+    "forms": {
+      "updateUserData": {
+        "emailAddress": "Email adresi",
+        "fullName": "Ad soyad",
+        "avatar": "Profil resmi"
+      },
+      "updatePassword": {
+        "newPassword": "Yeni parola (en az 8 karakter)",
+        "confirmPassword": "Parolayı tekrarı",
+        "errors": {
+          "newPassword": {
+            "required": "Yeni parola boş bırakılamaz",
+            "minlength": "Parola en az 8 karakter olmalıdır"
+          },
+          "confirmPassword": {
+            "required": "Parola tekrarı boş bırakılamaz",
+            "mustMatch": "Parolalar eşleşmiyor"
+          }
+        }
+      },
+      "updateSettings": {
+        "minNights": "Minimum gece sayısı",
+        "maxNights": "Maksimum gece sayısı",
+        "maxGuests": "Maksimum misafir sayısı",
+        "breakfastPrice": "Kahvaltı fiyatı"
+      },
+      "signUp": {
+        "fullName": "Ad soyad",
+        "emailAddress": "Email adresi",
+        "password": "Parola (en az 8 karakter)",
+        "confirmPassword": "Parolayı tekrarı",
+        "errors": {
+          "fullName": {
+            "required": "Ad soyad boş bırakılamaz"
+          },
+          "emailAddress": {
+            "required": "Email adresi boş bırakılamaz",
+            "valid": "Geçerli bir email adresi girin"
+          },
+          "password": {
+            "required": "Parola boş bırakılamaz",
+            "minlength": "Parola en az 8 karakter olmalıdır"
+          },
+          "confirmPassword": {
+            "required": "Parola tekrarı boş bırakılamaz",
+            "mustMatch": "Parolalar eşleşmiyor"
+          }
+        }
+      },
+      "addContainer": {
+        "containerName": "Kabin adı *",
+        "maxCapacity": "Maksimum kapasite *",
+        "regularPrice": "Standart fiyat *",
+        "discount": "İndirim *",
+        "description": "Web sitesi için açıklama",
+        "image": "Kabin resmi",
+        "errors": {
+          "containerName": {
+            "required": "Kabin adı boş bırakılamaz"
+          },
+          "maxCapacity": {
+            "required": "Maksimum kapasite boş bırakılamaz",
+            "min": "Maksimum kapasite en az 1 olmalıdır"
+          },
+          "regularPrice": {
+            "required": "Standart fiyat boş bırakılamaz",
+            "min": "Standart fiyat en az 1 olmalıdır"
+          },
+          "discount": {
+            "required": "İndirim boş bırakılamaz",
+            "must": "İndirim, standart fiyattan düşük olmalıdır"
+          }
+        }
+      },
+      "login": {
+        "emailAddress": "Email adresi",
+        "password": "Parola"
+      }
+    },
+    "common": {
+      "today": "Bugün"
+    }
+  },
+  "message": {
+    "modal": {
+      "delete": {
+        "title": "Emin misiniz?",
+        "content": "Kalıcı olarak silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
+      }
+    },
+    "checkIn": {
+      "confirmPrice": {
+        "withBreakfast": "{{owner}} tarafından toplam {{amount}} ({{booking}} + {{breakfast}} kahvaltı için) tutarındaki ödemenin yapıldığını onaylıyorum.",
+        "withoutBreakfast": "{{owner}} tarafından toplam {{amount}} tutarındaki ödemenin yapıldığını onaylıyorum."
+      },
+      "confirmBreakfast": "{{breakfast}} tutarında kahvaltı eklemek ister misiniz?",
+      "bookingOwner": "Rezervasyon sahibi"
+    },
+    "bookingData": {
+      "nightsInContainer": "Kabin <0>{{name}}</0> için {{count}} gece",
+      "nightsInContainer_other": "Kabin <0>{{name}}</0> için {{count}} gece",
+      "nationalId": "Kimlik No",
+      "observations": "Misafir notları",
+      "hasBreakfast": "Kahvaltı dahil mi?",
+      "totalPrice": "Toplam tutar",
+      "containerAndBreakfast": "({{container}} kabin + {{breakfast}} kahvaltı)",
+      "paid": "Ödendi",
+      "willPay": "Tesiste ödeme yapılacak",
+      "booked": "Rezervasyon tarihi: {{date}}"
+    },
+    "dashboard": {
+      "todayActivity": {
+        "empty": "Bugün için herhangi bir aktivite bulunamadı."
+      }
+    },
+    "empty": {
+      "content": "Herhangi bir {{resource}} bulunamadı.",
+      "resource": {
+        "booking": "rezervasyon",
+        "container": "kabin"
+      }
+    },
+    "common": {
+      "guestWithCount": "{{count}} misafir",
+      "guestWithCount_other": "{{count}} misafir",
+      "flag": "{{country}} bayrağı",
+      "nights": "{{count}} gece",
+      "nights_other": "{{count}} gece"
+    }
+  },
+  "tooltip": {},
+  "action": {
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "duplicate": "Çoğalt",
+    "cancel": "Vazgeç",
+    "back": "Geri",
+    "add": "Ekle",
+    "bookings": {
+      "checkIn": "Giriş yap",
+      "checkOut": "Çıkış yap",
+      "details": "Detaylar"
+    },
+    "containers": {
+      "add": "Yeni kabin ekle"
+    },
+    "account": {
+      "updateAccount": "Bilgileri güncelle",
+      "updatePassword": "Parolayı güncelle"
+    },
+    "user": {
+      "addUser": "Yeni kullanıcı ekle",
+      "login": "Giriş yap"
+    }
+  },
+  "common": {
+    "yes": "Evet",
+    "no": "Hayır"
+  }
+}

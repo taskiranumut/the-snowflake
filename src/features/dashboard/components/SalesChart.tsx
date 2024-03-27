@@ -12,6 +12,7 @@ import { eachDayOfInterval, format, isSameDay, subDays } from 'date-fns';
 import { Heading } from '@/components/shared';
 import { DashboardBox } from '@/features/dashboard/components';
 import { useScreenSizeContext, useThemeContext } from '@/context';
+import { useTranslation } from 'react-i18next';
 
 type SalesChartProps = {
   bookings: DataBooking[];
@@ -19,6 +20,7 @@ type SalesChartProps = {
 };
 
 export function SalesChart({ bookings, daysNum }: SalesChartProps) {
+  const { t } = useTranslation();
   const { isSm } = useScreenSizeContext();
   const { theme } = useThemeContext();
   const allDates = eachDayOfInterval({
@@ -56,8 +58,10 @@ export function SalesChart({ bookings, daysNum }: SalesChartProps) {
   return (
     <DashboardBox className="col-span-full col-start-1 overflow-x-auto md:overflow-x-hidden">
       <Heading as="h2">
-        Sales from {format(allDates.at(0)!, 'MMM dd yyyy')} &mdash;{' '}
-        {format(allDates.at(-1)!, 'MMM dd yyyy')}{' '}
+        {t('label.dashboard.salesChart.title', {
+          from: format(allDates.at(0)!, 'MMM dd yyyy'),
+          to: format(allDates.at(-1)!, 'MMM dd yyyy'),
+        })}
       </Heading>
 
       <ResponsiveContainer height={300} width={isSm ? 800 : '100%'}>
@@ -80,7 +84,7 @@ export function SalesChart({ bookings, daysNum }: SalesChartProps) {
             stroke={colors.totalSales.stroke}
             fill={colors.totalSales.fill}
             strokeWidth={2}
-            name="Total sales"
+            name={t('label.dashboard.salesChart.totalSales')}
             unit="$"
           />
           <Area
@@ -89,7 +93,7 @@ export function SalesChart({ bookings, daysNum }: SalesChartProps) {
             stroke={colors.extrasSales.stroke}
             fill={colors.extrasSales.fill}
             strokeWidth={2}
-            name="Extras sales"
+            name={t('label.dashboard.salesChart.extraSales')}
             unit="$"
           />
         </AreaChart>

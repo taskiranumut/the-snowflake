@@ -1,1 +1,270 @@
-{}
+{
+  "title": {
+    "app": "The Snowflake",
+    "sidebar": {
+      "home": "Home",
+      "bookings": "Bookings",
+      "containers": "Containers",
+      "users": "Users",
+      "settings": "Settings"
+    },
+    "page": {
+      "dashboard": "Dashboard",
+      "bookings": "Bookings",
+      "containers": "Containers",
+      "users": "Create a new user",
+      "settings": "Update hotel settings",
+      "bookingDetail": "Booking #{{id}}",
+      "checkInDetail": "Check in #{{id}}",
+      "account": {
+        "main": "User informations",
+        "userData": "Update user data",
+        "password": "Update password"
+      },
+      "login": "Log in to your account"
+    }
+  },
+  "label": {
+    "containers": {
+      "filter": {
+        "all": "All",
+        "noDiscount": "No Discount",
+        "withDiscount": "With Discount"
+      },
+      "sort": {
+        "nameAsc": "Sort by name (A-Z)",
+        "nameDesc": "Sort by name (Z-A)",
+        "regularPriceAsc": "Sort by price (low first)",
+        "regularPriceDesc": "Sort by price (high first)",
+        "maxCapacityAsc": "Sort by capacity (low first)",
+        "maxCapacityDesc": "Sort by capacity (high first)"
+      },
+      "table": {
+        "header": {
+          "container": "Container",
+          "capacity": "Capacity",
+          "price": "Price",
+          "discount": "Discount"
+        }
+      }
+    },
+    "bookings": {
+      "filter": {
+        "all": "All",
+        "checkedOut": "Checked out",
+        "checkedIn": "Checked in",
+        "unconfirmed": "Unconfirmed"
+      },
+      "sort": {
+        "startDateDesc": "Sort by date (recent first)",
+        "startDateAsc": "Sort by date (earlier first)",
+        "totalPriceDesc": "Sort by amount (high first)",
+        "totalPriceAsc": "Sort by amount (low first)"
+      },
+      "table": {
+        "header": {
+          "container": "Container",
+          "guest": "Guest",
+          "dates": "Dates",
+          "status": "Status",
+          "amount": "Amount"
+        }
+      }
+    },
+    "dashboard": {
+      "filter": {
+        "last7": "Last 7 days",
+        "last30": "Last 30 days",
+        "last90": "Last 90 days"
+      },
+      "stats": {
+        "header": {
+          "bookings": "Bookings",
+          "sales": "Sales",
+          "checkIns": "Check ins",
+          "occupancyRate": "Occupancy rate"
+        }
+      },
+      "todayActivity": {
+        "arriving": "Arriving",
+        "departing": "Departing"
+      },
+      "durationChart": {
+        "title": "Stay duration summary",
+        "durations": {
+          "night1": "1 night",
+          "night2": "2 nights",
+          "night3": "3 nights",
+          "night4_5": "4-5 nights",
+          "night6_7": "6-7 nights",
+          "night8_14": "8-14 nights",
+          "night15_21": "15-21 nights",
+          "night21plus": "21+ nights"
+        }
+      },
+      "salesChart": {
+        "title": "Sales from {{from}} — {{to}}",
+        "totalSales": "Total sales",
+        "extraSales": "Extra sales"
+      }
+    },
+    "forms": {
+      "updateUserData": {
+        "emailAddress": "Email address",
+        "fullName": "Full name",
+        "avatar": "Avatar"
+      },
+      "updatePassword": {
+        "newPassword": "New password (min 8 chars)",
+        "confirmPassword": "Repeat password",
+        "errors": {
+          "newPassword": {
+            "required": "Password is required",
+            "minlength": "Password must be at least 8 characters long"
+          },
+          "confirmPassword": {
+            "required": "Password confirmation is required",
+            "mustMatch": "Passwords must match"
+          }
+        }
+      },
+      "updateSettings": {
+        "minNights": "Minimum nights/booking",
+        "maxNights": "Maximum nights/booking",
+        "maxGuests": "Maximum guests/booking",
+        "breakfastPrice": "Breakfast price"
+      },
+      "signUp": {
+        "fullName": "Full name",
+        "emailAddress": "Email address",
+        "password": "Password (min 8 chars)",
+        "confirmPassword": "Repeat password",
+        "errors": {
+          "fullName": {
+            "required": "Full name is required"
+          },
+          "emailAddress": {
+            "required": "Email address is required",
+            "valid": "Please provide a valid email address"
+          },
+          "password": {
+            "required": "Password is required",
+            "minlength": "Password must be at least 8 characters long"
+          },
+          "confirmPassword": {
+            "required": "Password confirmation is required",
+            "mustMatch": "Passwords must match"
+          }
+        }
+      },
+      "addContainer": {
+        "containerName": "Container name *",
+        "maxCapacity": "Max capacity *",
+        "regularPrice": "Regular price *",
+        "discount": "Discount *",
+        "description": "Description for website",
+        "image": "Container image",
+        "errors": {
+          "containerName": {
+            "required": "Container name is required"
+          },
+          "maxCapacity": {
+            "required": "Max capacity is required",
+            "min": "Max capacity must be at least 1"
+          },
+          "regularPrice": {
+            "required": "Regular price is required",
+            "min": "Regular price must be at least 1"
+          },
+          "discount": {
+            "required": "Discount is required",
+            "must": "Discount should be less than regular price"
+          }
+        }
+      },
+      "login": {
+        "emailAddress": "Email address",
+        "password": "Password"
+      }
+    },
+    "common": {
+      "today": "Today"
+    }
+  },
+  "message": {
+    "modal": {
+      "delete": {
+        "title": "Delete {{resource}}",
+        "content": "Are you sure you want to delete this {{resource}} permanently? This action cannot be undone."
+      }
+    },
+    "checkIn": {
+      "confirmPrice": {
+        "withBreakfast": "I confirm that {{owner}} has paid the total amount of {{amount}} ({{booking}} + {{breakfast}} for breakfast)",
+        "withoutBreakfast": "I confirm that {{owner}} has paid the total amount of {{amount}}"
+      },
+      "confirmBreakfast": "Want to add breakfast for {{breakfast}}?",
+      "bookingOwner": "booking owner"
+    },
+    "bookingData": {
+      "nightsInContainer": "{{count}} night in Container <0>{{name}}</0>",
+      "nightsInContainer_other": "{{count}} nights in Container <0>{{name}}</0>",
+      "flag": "Flag of {{country}}",
+      "nationalId": "National ID",
+      "observations": "Observations",
+      "hasBreakfast": "Breakfast included?",
+      "totalPrice": "Total price",
+      "containerAndBreakfast": "({{container}} container + {{breakfast}} breakfast)",
+      "paid": "Paid",
+      "willPay": "Will pay at property",
+      "booked": "Booked on {{date}}"
+    },
+    "dashboard": {
+      "todayActivity": {
+        "empty": "No activity today..."
+      }
+    },
+    "empty": {
+      "content": "No {{resource}} could be found.",
+      "resource": {
+        "booking": "booking",
+        "container": "container"
+      }
+    },
+    "common": {
+      "guestWithCount": "{{count}} guest",
+      "guestWithCount_other": "{{count}} guests",
+      "nights": "{{count}} night",
+      "nights_other": "{{count}} nights"
+    }
+  },
+  "action": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "duplicate": "Duplicate",
+    "cancel": "Cancel",
+    "back": "Back",
+    "add": "Add",
+    "bookings": {
+      "checkIn": "Check in",
+      "checkOut": "Check out",
+      "details": "See details"
+    },
+    "containers": {
+      "add": "Add new container"
+    },
+    "account": {
+      "updateAccount": "Update user data",
+      "updatePassword": "Update password"
+    },
+    "user": {
+      "addUser": "Add new user",
+      "login": "Login"
+    }
+  },
+  "tooltip": {},
+  "common": {
+    "yes": "Yes",
+    "no": "No"
+  }
+}
