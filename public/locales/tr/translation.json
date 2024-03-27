@@ -69,6 +69,11 @@
           "status": "Durum",
           "amount": "Tutar"
         }
+      },
+      "status": {
+        "checkedIn": "Giriş yapıldı",
+        "checkedOut": "Çıkış yapıldı",
+        "unconfirmed": "Onay bekleyen"
       }
     },
     "dashboard": {

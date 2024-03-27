@@ -11,7 +11,10 @@ import {
   Empty,
 } from '@/components/shared';
 import { useBooking, useDeleteBooking } from '@/features/bookings/hooks';
-import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
+import {
+  getFormattedStatus,
+  getTagColorForBookingStatus,
+} from '@/features/bookings/helpers';
 import { useMoveBack } from '@/hooks';
 import { BookingDetailData } from '@/features/bookings/components';
 import { CheckoutButton } from '@/features/check-in-out/components';
@@ -41,6 +44,7 @@ export function BookingDetail() {
   }
 
   const tagColor = getTagColorForBookingStatus(booking?.status);
+  const formattedStatus = getFormattedStatus(booking?.status);
 
   return (
     <>
@@ -49,7 +53,7 @@ export function BookingDetail() {
           <Heading as="h1" className="text-2xl sm:text-3xl">
             {t('title.page.bookingDetail', { id: booking?.id })}
           </Heading>
-          <Tag color={tagColor}>{booking?.status?.replace('-', ' ')}</Tag>
+          <Tag color={tagColor}>{formattedStatus}</Tag>
         </div>
         <ButtonText onClick={moveBack}>&larr; {t('action.back')}</ButtonText>
       </Row>

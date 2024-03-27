@@ -15,7 +15,10 @@ import {
   HiEye,
   HiTrash,
 } from 'react-icons/hi2';
-import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
+import {
+  getTagColorForBookingStatus,
+  getFormattedStatus,
+} from '@/features/bookings/helpers';
 import { useCheckout } from '@/features/check-in-out/hooks';
 import { useDeleteBooking } from '@/features/bookings/hooks';
 import { useTranslation } from 'react-i18next';
@@ -53,6 +56,7 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
   }
 
   const tagColor = getTagColorForBookingStatus(status);
+  const formattedStatus = getFormattedStatus(status);
 
   return (
     <GridTable.Row className="w-[300vw] sm:w-[180vw] md:w-[120vw]">
@@ -80,7 +84,7 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
         </span>
       </GridTable.Cell>
       <GridTable.Cell>
-        <Tag color={tagColor}>{status?.replace('-', ' ')}</Tag>
+        <Tag color={tagColor}>{formattedStatus}</Tag>
       </GridTable.Cell>
       <GridTable.Cell className="font-sono">
         {formatCurrency(totalPrice)}

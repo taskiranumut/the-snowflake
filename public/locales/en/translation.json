@@ -69,6 +69,11 @@
           "status": "Status",
           "amount": "Amount"
         }
+      },
+      "status": {
+        "checkedIn": "Checked in",
+        "checkedOut": "Checked out",
+        "unconfirmed": "Unconfirmed"
       }
     },
     "dashboard": {
