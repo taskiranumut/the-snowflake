@@ -190,7 +190,8 @@
     "common": {
       "today": "Bugün",
       "password": "Parola",
-      "userData": "Kullanıcı bilgileri"
+      "userData": "Kullanıcı bilgileri",
+      "user": "Kullanıcı"
     }
   },
   "message": {
@@ -325,15 +326,29 @@
         "content": "Herhangi bir veri bulunamadı."
       }
     },
+    "fallback": {
+      "title": "Oops! Bir şeyler ters gitti.",
+      "content": "Bir hata oluştu ve sayfa yüklenemedi. Lütfen tekrar deneyin."
+    },
+    "pagination": {
+      "results": "<0>{{count}}</0> sonuçtan <0>{{start}}</0> ile <0>{{end}}</0> arası gösteriliyor",
+      "resultsMobile": "<0>{{start}}</0> - <0>{{end}}</0> : <0>{{count}}</0> sonuç"
+    },
     "common": {
       "guestWithCount": "{{count}} misafir",
       "guestWithCount_other": "{{count}} misafir",
       "flag": "{{country}} bayrağı",
       "nights": "{{count}} gece",
-      "nights_other": "{{count}} gece"
+      "nights_other": "{{count}} gece",
+      "avatarAlt": "Profil resmi"
     }
   },
-  "tooltip": {},
+  "tooltip": {
+    "lightTheme": "Açık tema",
+    "darkTheme": "Koyu tema",
+    "closeSidebar": "Menüyü kapat",
+    "openSidebar": "Menüyü aç"
+  },
   "action": {
     "edit": "Düzenle",
     "delete": "Sil",
@@ -356,10 +371,18 @@
     "user": {
       "addUser": "Yeni kullanıcı ekle",
       "login": "Giriş yap"
+    },
+    "fallback": {
+      "tryAgaing": "Tekrar dene",
+      "goToHome": "Ana sayfaya git"
     }
   },
   "common": {
     "yes": "Evet",
-    "no": "Hayır"
+    "no": "Hayır",
+    "english": "English",
+    "turkish": "Türkçe",
+    "englishShort": "En",
+    "turkishShort": "Tr"
   }
 }

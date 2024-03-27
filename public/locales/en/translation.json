@@ -190,7 +190,8 @@
     "common": {
       "today": "Today",
       "password": "Password",
-      "userData": "User data"
+      "userData": "User data",
+      "user": "User"
     }
   },
   "message": {
@@ -326,11 +327,20 @@
         "content": "No data to show at the moment"
       }
     },
+    "fallback": {
+      "title": "Oops! Something went wrong.",
+      "content": "We are sorry, but something went wrong. Please try again."
+    },
+    "pagination": {
+      "results": "Showing <0>{{start}}</0> to <0>{{end}}</0> of <0>{{count}}</0> results",
+      "resultsMobile": "<0>{{start}}</0> - <0>{{end}}</0> : <0>{{count}}</0> results"
+    },
     "common": {
       "guestWithCount": "{{count}} guest",
       "guestWithCount_other": "{{count}} guests",
       "nights": "{{count}} night",
-      "nights_other": "{{count}} nights"
+      "nights_other": "{{count}} nights",
+      "avatarAlt": "Avatar of {{name}}"
     }
   },
   "action": {
@@ -355,11 +365,24 @@
     "user": {
       "addUser": "Add new user",
       "login": "Login"
+    },
+    "fallback": {
+      "tryAgaing": "Try again",
+      "goToHome": "Go to dashboard"
     }
   },
-  "tooltip": {},
+  "tooltip": {
+    "lightTheme": "Light theme",
+    "darkTheme": "Dark theme",
+    "closeSidebar": "Close sidebar",
+    "openSidebar": "Open sidebar"
+  },
   "common": {
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "english": "English",
+    "turkish": "Türkçe",
+    "englishShort": "En",
+    "turkishShort": "Tr"
   }
 }

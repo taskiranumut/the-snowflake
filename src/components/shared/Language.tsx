@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 
 type LanguageType = 'en' | 'tr';
@@ -19,9 +20,18 @@ type LanguageProps = {
 };
 
 export function Language({ language, small = false }: LanguageProps) {
+  const { t } = useTranslation();
   const languagesData: LanguagesDataType = {
-    en: { icon: 'gb', shortName: 'En', name: 'English' },
-    tr: { icon: 'tr', shortName: 'Tr', name: 'Turkish' },
+    en: {
+      icon: 'gb',
+      shortName: t('common.englishShort'),
+      name: t('common.english'),
+    },
+    tr: {
+      icon: 'tr',
+      shortName: t('common.turkishShort'),
+      name: t('common.turkish'),
+    },
   };
 
   return (
