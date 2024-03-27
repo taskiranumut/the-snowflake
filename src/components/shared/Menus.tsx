@@ -10,6 +10,7 @@ import {
 import { createPortal } from 'react-dom';
 import { HiEllipsisVertical } from 'react-icons/hi2';
 import { twMerge } from 'tailwind-merge';
+import { useTranslation } from 'react-i18next';
 
 type Position = {
   x: number;
@@ -57,10 +58,13 @@ type MenusContextTypes = {
 const MenusContext = createContext<MenusContextTypes | null>(null);
 
 function useMenusContext() {
+  const { t } = useTranslation();
   const context = useContext(MenusContext);
 
   if (!context) {
-    throw new Error('MenusContext does not exist!');
+    throw new Error(
+      t('message.context.common.error', { context: 'MenusContext' }),
+    );
   }
 
   return context;
@@ -138,7 +142,7 @@ function Toggle({
     <button
       type="button"
       className={twMerge(
-        'translate-x-2 rounded-md p-2 transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800',
+        'translate-x-2 rounded-md p-2 hover:bg-gray-100 hover:transition-colors hover:duration-200 dark:hover:bg-gray-800',
         className,
       )}
       onClick={handleClick}
@@ -192,7 +196,7 @@ function Button({
       <button
         type="button"
         className={twMerge(
-          'flex w-full items-center gap-4 rounded-md px-6 py-3 text-left text-base transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-900',
+          'flex w-full items-center gap-4 rounded-md px-6 py-3 text-left text-base hover:bg-gray-50 hover:transition-colors hover:duration-200 dark:hover:bg-gray-900',
           className,
         )}
         onClick={handleClick}

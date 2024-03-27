@@ -11,12 +11,13 @@ import {
   type RawNewDataContainer,
   type ImageInfo,
 } from '@/services/api/containers.types';
+import { t } from 'i18next';
 
 export async function getContainers(): Promise<DataContainer[]> {
   const { data, error } = await supabase.from('containers').select('*');
 
   if (error) {
-    throw new Error('Containers could not be loaded!');
+    throw new Error(t('message.api.containers.getContainers.error'));
   }
 
   return data.map((item) => convertRawContainerData(item));
@@ -26,7 +27,7 @@ export async function deleteContainer(id: number): Promise<void> {
   const { error } = await supabase.from('containers').delete().eq('id', id);
 
   if (error) {
-    throw new Error('Container could not be deleted!');
+    throw new Error(t('message.api.containers.deleteContainer.error'));
   }
 }
 
@@ -43,7 +44,9 @@ export async function addNewContainer(
     .select();
 
   if (error) {
-    throw new Error('Container could not be added!');
+    throw new Error(
+      t('message.api.containers.addNewContainer.error.container'),
+    );
   }
 
   if (newContainerData.image) {
@@ -53,9 +56,7 @@ export async function addNewContainer(
 
     if (storageError) {
       await deleteContainer(data[0].id);
-      throw new Error(
-        'Container image could not be uploaded and the container was not added!',
-      );
+      throw new Error(t('message.api.containers.addNewContainer.error.image'));
     }
   }
 
@@ -88,7 +89,7 @@ export async function editContainer({
     .select();
 
   if (error) {
-    throw new Error('Container could not be edited!');
+    throw new Error(t('message.api.containers.editContainer.error.container'));
   }
 
   if (newContainerData.image) {
@@ -97,10 +98,7 @@ export async function editContainer({
       .upload(imageInfo.name, newContainerData.image);
 
     if (storageError) {
-      await deleteContainer(data[0].id);
-      throw new Error(
-        'Container image could not be uploaded and the container was not added!',
-      );
+      throw new Error(t('message.api.containers.editContainer.error.image'));
     }
   }
 
@@ -116,7 +114,7 @@ export async function dupliateContainer(
     .select();
 
   if (error) {
-    throw new Error('Container could not be duplciated!');
+    throw new Error(t('message.api.containers.dupliateContainer.error'));
   }
 
   return data.map((item) => convertRawContainerData(item));

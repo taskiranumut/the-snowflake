@@ -1,4 +1,9 @@
-import { HeaderMenu, SidebarToggleButton, UserAvatar } from '@/components';
+import {
+  HeaderMenu,
+  SidebarToggleButton,
+  UserAvatar,
+  LanguageSelect,
+} from '@/components';
 
 export function Header() {
   return (
@@ -6,6 +11,7 @@ export function Header() {
       <SidebarToggleButton />
       <div className="flex gap-4">
         <UserAvatar />
+        <LanguageSelect />
         <HeaderMenu />
       </div>
     </header>

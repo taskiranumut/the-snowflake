@@ -1,17 +1,17 @@
 import { signUp } from '@/services/api';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 export function useSignUp() {
+  const { t } = useTranslation();
   const { isPending: isLoading, mutate: mutateSignUp } = useMutation({
     mutationFn: signUp,
     onSuccess: () => {
-      toast.success(
-        "User successfully created! Please verify the new account from the user's email address.",
-      );
+      toast.success(t('message.api.auth.signUp.success'));
     },
-    onError: () => {
-      toast.error('There was an error. Please try again a few minutes later.');
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 

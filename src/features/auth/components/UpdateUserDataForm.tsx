@@ -1,8 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useUpdateUser, useUser } from '@/features/auth/hooks';
 import { Button, Form, FormInput, FormRow } from '@/components/shared';
+import { useTranslation } from 'react-i18next';
 
 export function UpdateUserDataForm() {
+  const { t } = useTranslation();
   const { user } = useUser();
 
   const [fullName, setFullName] = useState(
@@ -45,13 +47,17 @@ export function UpdateUserDataForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <FormRow>
-        <FormInput label="Email address" value={user?.email} disabled />
+        <FormInput
+          label={t('label.forms.updateUserData.emailAddress')}
+          value={user?.email}
+          disabled
+        />
       </FormRow>
 
       <FormRow>
         <FormInput
           id="fullName"
-          label="Full name"
+          label={t('label.forms.updateUserData.fullName')}
           value={fullName}
           onChange={handleChangeFullName}
           disabled={isUpdating}
@@ -63,7 +69,7 @@ export function UpdateUserDataForm() {
           id="avatar"
           type="file"
           accept="image/*"
-          label="Avatar"
+          label={t('label.forms.updateUserData.avatar')}
           onChange={handleChangeAvatar}
           disabled={isUpdating}
         />
@@ -76,10 +82,10 @@ export function UpdateUserDataForm() {
           color="secondary"
           disabled={isUpdating}
         >
-          Cancel
+          {t('action.cancel')}
         </Button>
         <Button type="submit" disabled={isUpdating}>
-          Update account
+          {t('action.account.updateAccount')}
         </Button>
       </FormRow>
     </Form>

@@ -15,15 +15,20 @@ import {
   HiEye,
   HiTrash,
 } from 'react-icons/hi2';
-import { getTagColorForBookingStatus } from '@/features/bookings/helpers';
+import {
+  getTagColorForBookingStatus,
+  getFormattedStatus,
+} from '@/features/bookings/helpers';
 import { useCheckout } from '@/features/check-in-out/hooks';
 import { useDeleteBooking } from '@/features/bookings/hooks';
+import { useTranslation } from 'react-i18next';
 
 type BookingsTableRowProps = {
   booking: DataBooking;
 };
 
 export function BookingTableRow({ booking }: BookingsTableRowProps) {
+  const { t } = useTranslation();
   const {
     id: bookingId,
     startDate,
@@ -51,6 +56,7 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
   }
 
   const tagColor = getTagColorForBookingStatus(status);
+  const formattedStatus = getFormattedStatus(status);
 
   return (
     <GridTable.Row className="w-[300vw] sm:w-[180vw] md:w-[120vw]">
@@ -67,7 +73,7 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
         <span>
           {' '}
           {isToday(new Date(startDate || ''))
-            ? 'Today'
+            ? t('label.common.today')
             : formatDistanceFromNow(startDate)}{' '}
           &rarr; {nigthsNum} night stay
         </span>
@@ -78,7 +84,7 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
         </span>
       </GridTable.Cell>
       <GridTable.Cell>
-        <Tag color={tagColor}>{status?.replace('-', ' ')}</Tag>
+        <Tag color={tagColor}>{formattedStatus}</Tag>
       </GridTable.Cell>
       <GridTable.Cell className="font-sono">
         {formatCurrency(totalPrice)}
@@ -92,7 +98,7 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
                 onClick={() => navigate(`/bookings/${bookingId}`)}
                 icon={<HiEye />}
               >
-                See details
+                {t('action.bookings.details')}
               </Menus.Button>
 
               {status === 'unconfirmed' && (
@@ -100,7 +106,7 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
                   onClick={() => navigate(`/checkin/${bookingId}`)}
                   icon={<HiArrowDownOnSquare />}
                 >
-                  Check in
+                  {t('action.bookings.checkIn')}
                 </Menus.Button>
               )}
 
@@ -110,12 +116,14 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
                   disabled={isCheckingOut}
                   icon={<HiArrowUpOnSquare />}
                 >
-                  Check out
+                  {t('action.bookings.checkOut')}
                 </Menus.Button>
               )}
 
               <Modal.Open name="delete">
-                <Menus.Button icon={<HiTrash />}>Delete booking</Menus.Button>
+                <Menus.Button icon={<HiTrash />}>
+                  {t('action.delete')}
+                </Menus.Button>
               </Modal.Open>
             </Menus.List>
           </Menus.Menu>

@@ -2,6 +2,7 @@ import { Form, FormRow, FormInput, Spinner } from '@/components/shared';
 import { useSettings, useUpdateSettings } from '@/features/settings/hooks';
 import { type RawSettingsData } from '@/services/api/settings.type';
 import { useDebounce } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 type SettingsUpdate = {
   target:
@@ -13,6 +14,7 @@ type SettingsUpdate = {
 };
 
 export function UpdateSettingsForm() {
+  const { t } = useTranslation();
   const { isLoading, settings } = useSettings();
   const { isUpdating, mutateUpdateSettings } = useUpdateSettings();
 
@@ -38,7 +40,7 @@ export function UpdateSettingsForm() {
       <FormRow>
         <FormInput
           id="min-nights"
-          label="Minimum nights/booking"
+          label={t('label.forms.updateSettings.minNights')}
           type="number"
           defaultValue={settings?.minBookingLength || ''}
           disabled={isUpdating}
@@ -53,7 +55,7 @@ export function UpdateSettingsForm() {
       <FormRow>
         <FormInput
           id="max-nights"
-          label="Maximum nights/booking"
+          label={t('label.forms.updateSettings.maxNights')}
           defaultValue={settings?.maxBookingLength || ''}
           disabled={isUpdating}
           onChange={(e) =>
@@ -67,7 +69,7 @@ export function UpdateSettingsForm() {
       <FormRow>
         <FormInput
           id="max-guests"
-          label="Maximum guests/booking"
+          label={t('label.forms.updateSettings.maxGuests')}
           defaultValue={settings?.maxGuestNum || ''}
           disabled={isUpdating}
           onChange={(e) =>
@@ -81,7 +83,7 @@ export function UpdateSettingsForm() {
       <FormRow>
         <FormInput
           id="breakfast-price"
-          label="Breakfast price"
+          label={t('label.forms.updateSettings.breakfastPrice')}
           type="number"
           defaultValue={settings?.breakfastPrice || ''}
           disabled={isUpdating}

@@ -19,8 +19,8 @@ export function useLogout() {
       navigate('/login', { replace: true });
       isMobileDevice ? onClose() : onOpen();
     },
-    onError: () => {
-      toast.error('There was an error. Please try again a few minutes later.');
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 

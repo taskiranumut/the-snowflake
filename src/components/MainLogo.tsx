@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { APP_TITLE } from '@/utils/constants';
+import { useTranslation } from 'react-i18next';
 
 type MainLogoProps = {
   redirect?: boolean;
@@ -9,6 +9,7 @@ type MainLogoProps = {
 
 export function MainLogo({ redirect = false, mini = false }: MainLogoProps) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col items-center justify-start gap-1">
@@ -19,8 +20,8 @@ export function MainLogo({ redirect = false, mini = false }: MainLogoProps) {
           mini ? 'h-10' : 'h-24',
         )}
         src="/main-logo.png"
-        alt={APP_TITLE}
-        title={APP_TITLE}
+        alt={t('title.app')}
+        title={t('title.app')}
         onClick={() => redirect && navigate('/dashboard')}
       />
       {!mini && (
@@ -30,7 +31,7 @@ export function MainLogo({ redirect = false, mini = false }: MainLogoProps) {
             mini ? 'text-xs' : 'text-xl',
           )}
         >
-          {APP_TITLE}
+          {t('title.app')}
         </h1>
       )}
     </div>

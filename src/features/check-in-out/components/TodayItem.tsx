@@ -4,12 +4,14 @@ import { CheckoutButton } from '@/features/check-in-out/components';
 import { DataBooking } from '@/services/api/bookings.types';
 import { useScreenSizeContext } from '@/context';
 import { twMerge } from 'tailwind-merge';
+import { useTranslation } from 'react-i18next';
 
 type TodayItemsProps = {
   activity: DataBooking;
 };
 
 export function TodayItem({ activity }: TodayItemsProps) {
+  const { t } = useTranslation();
   const { id, status, guests, nigthsNum } = activity;
   const { isSm, isLg } = useScreenSizeContext();
 
@@ -22,23 +24,32 @@ export function TodayItem({ activity }: TodayItemsProps) {
           : 'grid-cols-[6.5rem_2rem_1fr_6rem]',
       )}
     >
-      {status === 'unconfirmed' && <Tag color="green">Arriving</Tag>}
-      {status === 'checked-in' && <Tag color="blue">Departing</Tag>}
+      {status === 'unconfirmed' && (
+        <Tag color="green">{t('label.dashboard.todayActivity.arriving')}</Tag>
+      )}
+      {status === 'checked-in' && (
+        <Tag color="blue">{t('label.dashboard.todayActivity.departing')}</Tag>
+      )}
 
       {guests?.countryFlag && !isSm && !isLg && (
         <Flag
           src={guests?.countryFlag}
-          alt={`Flag of ${guests?.nationality}`}
+          title={guests?.nationality || ''}
+          alt={t('message.common.flag', {
+            country: guests?.nationality,
+          })}
         />
       )}
 
-      <div className="w-max font-normal">{nigthsNum} nights</div>
+      <div className="w-max font-normal">
+        {t('message.common.nights', { count: nigthsNum || 0 })}
+      </div>
 
       <div className="flex basis-full items-center justify-end pr-1">
         {status === 'unconfirmed' && (
           <Link to={`/checkin/${id}`}>
             <Button size="sm" constantSize>
-              Check in
+              {t('action.bookings.checkIn')}
             </Button>
           </Link>
         )}

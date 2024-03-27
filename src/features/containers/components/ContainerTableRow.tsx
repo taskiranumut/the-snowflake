@@ -16,6 +16,7 @@ import {
   useDuplicateContainer,
 } from '@/features/containers/hooks';
 import { HiSquare2Stack, HiPencil, HiTrash } from 'react-icons/hi2';
+import { useTranslation } from 'react-i18next';
 
 type ContainerTableRowProps = {
   container: DataContainer;
@@ -31,6 +32,8 @@ export function ContainerTableRow({ container }: ContainerTableRowProps) {
     image,
     description,
   } = container;
+
+  const { t } = useTranslation();
 
   const { isDeleting, mutationDeleteContainer } = useDeleteContainer();
   const { isDuplicating, mutateDuplciateContainer } = useDuplicateContainer();
@@ -75,7 +78,7 @@ export function ContainerTableRow({ container }: ContainerTableRowProps) {
         {name}
       </GridTable.Cell>
       <GridTable.Cell className="font-sono">
-        {`${maxCapacity} guests`}
+        {t('message.common.guestWithCount', { count: maxCapacity || 0 })}
       </GridTable.Cell>
       <GridTable.Cell className="font-sono font-semibold">
         {formatCurrency(regularPrice)}
@@ -101,15 +104,21 @@ export function ContainerTableRow({ container }: ContainerTableRowProps) {
                   icon={<HiSquare2Stack />}
                   onClick={handleDuplicateContainer}
                 >
-                  Duplicate
+                  {t('action.duplicate')}
                 </Menus.Button>
 
                 <Modal.Open name="edit-form">
-                  <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+                  <Menus.Button icon={<HiPencil />}>
+                    {' '}
+                    {t('action.edit')}
+                  </Menus.Button>
                 </Modal.Open>
 
                 <Modal.Open name="delete">
-                  <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+                  <Menus.Button icon={<HiTrash />}>
+                    {' '}
+                    {t('action.delete')}
+                  </Menus.Button>
                 </Modal.Open>
               </Menus.List>
 

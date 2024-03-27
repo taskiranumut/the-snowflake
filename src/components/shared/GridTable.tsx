@@ -6,6 +6,7 @@ import {
   type ReactNode,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { useTranslation } from 'react-i18next';
 
 type ColumnsType =
   | '1'
@@ -70,10 +71,13 @@ type TableContextType = {
 const TableContext = createContext<TableContextType | null>(null);
 
 function useTableContext() {
+  const { t } = useTranslation();
   const context = useContext(TableContext);
 
   if (!context) {
-    throw new Error('TableContext does not exist!');
+    throw new Error(
+      t('message.context.common.error', { context: 'TableContext' }),
+    );
   }
 
   return context;
@@ -187,8 +191,9 @@ function Body<T>({
   className = '',
   ...otherProps
 }: BodyProps<T>) {
+  const { t } = useTranslation();
   if (!data || !data.length)
-    return <Empty>No data to show at the moment</Empty>;
+    return <Empty>{t('message.empty.gridTable.content')}</Empty>;
 
   return (
     <div className={twMerge('m-0', className)} {...otherProps}>

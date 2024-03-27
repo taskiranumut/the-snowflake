@@ -2,6 +2,8 @@ import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { useSearchParams } from 'react-router-dom';
 import { PAGE_SIZE } from '@/utils/constants';
+import { Trans } from 'react-i18next';
+import { useScreenSizeContext } from '@/context';
 
 type PaginationProps = {
   count: number | null;
@@ -25,6 +27,7 @@ function PaginationButton({ children, ...otherProps }: PaginationButtonProps) {
 }
 
 export function Pagination({ count, pageSize = PAGE_SIZE }: PaginationProps) {
+  const { isSm } = useScreenSizeContext();
   const [searchParams, setSearchParams] = useSearchParams();
 
   if (!count || count <= pageSize) return null;
@@ -51,15 +54,19 @@ export function Pagination({ count, pageSize = PAGE_SIZE }: PaginationProps) {
   return (
     <div className="flex w-full items-center justify-between">
       <p className="text-base">
-        <span className="hidden sm:inline">Showing </span>
-        <span className="font-semibold">
-          {(currentPage - 1) * pageSize + 1}
-        </span>{' '}
-        to{' '}
-        <span className="font-semibold">
-          {currentPage === pageCount ? count : currentPage * pageSize}
-        </span>{' '}
-        of <span className="font-semibold">{count}</span> results
+        <Trans
+          i18nKey={
+            isSm
+              ? 'message.pagination.resultsMobile'
+              : 'message.pagination.results'
+          }
+          components={[<span className="font-semibold" />]}
+          values={{
+            start: (currentPage - 1) * pageSize + 1,
+            end: currentPage === pageCount ? count : currentPage * pageSize,
+            count,
+          }}
+        />
       </p>
       <div className="flex gap-2">
         <PaginationButton onClick={previousPage} disabled={currentPage === 1}>
