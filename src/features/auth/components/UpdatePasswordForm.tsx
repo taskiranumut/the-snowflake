@@ -2,6 +2,7 @@ import { useUpdateUser } from '@/features/auth/hooks';
 import { Button, Form, FormInput, FormRow } from '@/components/shared';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useTriggerValidationOnLangChange } from '@/hooks';
 
 type FormFields = {
   password: string;
@@ -17,12 +18,15 @@ export function UpdatePasswordForm() {
     getValues,
     reset,
     watch,
+    trigger,
   } = useForm<FormFields>({
     defaultValues: {
       password: '',
       confirmPassword: '',
     },
   });
+
+  useTriggerValidationOnLangChange<FormFields>(trigger);
 
   const { mutateUpdateUser, isUpdating } = useUpdateUser();
 
