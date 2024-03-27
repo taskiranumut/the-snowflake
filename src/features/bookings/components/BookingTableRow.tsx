@@ -21,6 +21,7 @@ import {
 } from '@/features/bookings/helpers';
 import { useCheckout } from '@/features/check-in-out/hooks';
 import { useDeleteBooking } from '@/features/bookings/hooks';
+import { useLocaleDateFormat } from '@/hooks';
 import { useTranslation } from 'react-i18next';
 
 type BookingsTableRowProps = {
@@ -40,6 +41,8 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
     containers,
   } = booking;
 
+  const { formats, locale } = useLocaleDateFormat();
+
   const navigate = useNavigate();
 
   const { mutateCheckout, isCheckingOut } = useCheckout();
@@ -54,6 +57,22 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
       onSettled: () => navigate('/bookings'),
     });
   }
+
+  const stayTiming = isToday(new Date(startDate || ''))
+    ? t('label.common.today')
+    : t('message.bookingData.nightStay', {
+        start: formatDistanceFromNow(startDate, locale),
+        count: nigthsNum || 0,
+      });
+
+  const stayDateRange = t('message.bookingData.dateRange', {
+    start: format(new Date(startDate || ''), formats.long, {
+      locale,
+    }),
+    end: format(new Date(endDate || ''), formats.long, {
+      locale,
+    }),
+  });
 
   const tagColor = getTagColorForBookingStatus(status);
   const formattedStatus = getFormattedStatus(status);
@@ -70,17 +89,9 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
         </span>
       </GridTable.Cell>
       <GridTable.Cell className="flex flex-col items-start gap-1">
-        <span>
-          {' '}
-          {isToday(new Date(startDate || ''))
-            ? t('label.common.today')
-            : formatDistanceFromNow(startDate)}{' '}
-          &rarr; {nigthsNum} night stay
-        </span>
-        <span className="text-sm text-gray-500 dark:text-gray-400">
-          {' '}
-          {format(new Date(startDate || ''), 'MMM dd yyyy')} &mdash;{' '}
-          {format(new Date(endDate || ''), 'MMM dd yyyy')}
+        <span className="text-left">{stayTiming}</span>
+        <span className="text-left text-sm text-gray-500 dark:text-gray-400">
+          {stayDateRange}
         </span>
       </GridTable.Cell>
       <GridTable.Cell>
@@ -130,7 +141,7 @@ export function BookingTableRow({ booking }: BookingsTableRowProps) {
 
           <Modal.Window name="delete">
             <ConfirmDelete
-              resource="booking"
+              resource={t('message.empty.resource.booking')}
               onConfirm={handleDeleteBooking}
               disabled={isDeleting}
             />
