@@ -225,7 +225,11 @@
       "containerAndBreakfast": "({{container}} container + {{breakfast}} breakfast)",
       "paid": "Paid",
       "willPay": "Will pay at property",
-      "booked": "Booked on {{date}}"
+      "booked": "Booked on {{date}}",
+      "nightStay": "{{start}} → {{count}} night stay",
+      "nightStay_other": "{{start}} → {{count}} nights stay",
+      "dateRange": "{{start}} — {{end}}",
+      "dateRangeWithDistance": "{{start}} ({{distance}}) — {{end}}"
     },
     "dashboard": {
       "todayActivity": {

@@ -4,6 +4,7 @@ import {
   endOfDay,
   formatISO,
   startOfDay,
+  type Locale,
 } from 'date-fns';
 
 export const formatCurrency = (value: number | null) => {
@@ -15,14 +16,19 @@ export const formatCurrency = (value: number | null) => {
   }).format(value);
 };
 
-export const formatDistanceFromNow = (dateStr: string | null) => {
+export const formatDistanceFromNow = (
+  dateStr: string | null,
+  locale: Locale,
+) => {
   if (dateStr === null) return '';
 
   return formatDistance(parseISO(dateStr), new Date(), {
     addSuffix: true,
+    locale,
   })
     .replace('about ', '')
-    .replace('in', 'In');
+    .replace('in', 'In')
+    .replace('yaklaşık', '');
 };
 
 export const getToday = function (options: { end?: boolean } = {}) {
