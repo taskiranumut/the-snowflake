@@ -310,11 +310,19 @@
         }
       }
     },
+    "context": {
+      "common": {
+        "error": "{{context}} mevcut değil. Context provider kapsamı dışarısında kullanılmak istenmiş olabilir."
+      }
+    },
     "empty": {
       "content": "Herhangi bir {{resource}} bulunamadı.",
       "resource": {
         "booking": "rezervasyon",
         "container": "kabin"
+      },
+      "gridTable": {
+        "content": "Herhangi bir veri bulunamadı."
       }
     },
     "common": {

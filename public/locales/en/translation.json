@@ -311,11 +311,19 @@
         }
       }
     },
+    "context": {
+      "common": {
+        "error": "{{context}} does not exist. Please check if the context is properly defined in the parent component."
+      }
+    },
     "empty": {
       "content": "No {{resource}} could be found.",
       "resource": {
         "booking": "booking",
         "container": "container"
+      },
+      "gridTable": {
+        "content": "No data to show at the moment"
       }
     },
     "common": {

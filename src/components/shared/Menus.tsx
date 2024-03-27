@@ -10,6 +10,7 @@ import {
 import { createPortal } from 'react-dom';
 import { HiEllipsisVertical } from 'react-icons/hi2';
 import { twMerge } from 'tailwind-merge';
+import { useTranslation } from 'react-i18next';
 
 type Position = {
   x: number;
@@ -57,10 +58,13 @@ type MenusContextTypes = {
 const MenusContext = createContext<MenusContextTypes | null>(null);
 
 function useMenusContext() {
+  const { t } = useTranslation();
   const context = useContext(MenusContext);
 
   if (!context) {
-    throw new Error('MenusContext does not exist!');
+    throw new Error(
+      t('message.context.common.error', { context: 'MenusContext' }),
+    );
   }
 
   return context;
