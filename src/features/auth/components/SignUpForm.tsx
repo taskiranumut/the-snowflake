@@ -2,6 +2,7 @@ import { Button, Form, FormRow, FormInput } from '@/components/shared';
 import { useForm } from 'react-hook-form';
 import { useSignUp } from '@/features/auth/hooks';
 import { useTranslation } from 'react-i18next';
+import { useTriggerValidationOnLangChange } from '@/hooks';
 
 type FormFields = {
   fullName: string;
@@ -18,6 +19,7 @@ export function SignUpForm() {
     reset,
     getValues,
     watch,
+    trigger,
     formState: { errors },
   } = useForm<FormFields>({
     defaultValues: {
@@ -27,6 +29,8 @@ export function SignUpForm() {
       confirmPassword: '',
     },
   });
+
+  useTriggerValidationOnLangChange<FormFields>(trigger);
 
   const { mutateSignUp, isLoading } = useSignUp();
 

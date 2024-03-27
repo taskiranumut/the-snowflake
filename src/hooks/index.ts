@@ -4,3 +4,4 @@ export { useMoveBack } from '@/hooks/useMoveBack';
 export { useLocalStorageState } from '@/hooks/useLocalStorageState';
 export { useIsMobileDevice } from '@/hooks/useIsMobileDevice';
 export { useLocaleDateFormat } from '@/hooks/useLocaleDateFormat';
+export { useTriggerValidationOnLangChange } from '@/hooks/useTriggerValidationOnLangChange';

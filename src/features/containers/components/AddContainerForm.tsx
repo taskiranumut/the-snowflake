@@ -15,6 +15,7 @@ import {
   useEditContainer,
 } from '@/features/containers/hooks';
 import { useTranslation } from 'react-i18next';
+import { useTriggerValidationOnLangChange } from '@/hooks';
 
 type FormFields = {
   name: string;
@@ -44,6 +45,7 @@ export function AddContainerForm({
     reset,
     getValues,
     formState: { errors },
+    trigger,
   } = useForm<FormFields>({
     defaultValues: {
       name: container?.name ?? '',
@@ -54,6 +56,8 @@ export function AddContainerForm({
       image: null,
     },
   });
+
+  useTriggerValidationOnLangChange<FormFields>(trigger);
 
   function getConvertedNumberValue(value: number | string): number | null {
     const convertedValue = Number(value);
@@ -151,14 +155,10 @@ export function AddContainerForm({
           id="discount"
           label={t('label.forms.addContainer.discount')}
           {...register('discount', {
-            required: t(
-              'label.forms.addContainer.errors.discount.required',
-            ),
+            required: t('label.forms.addContainer.errors.discount.required'),
             validate: (value) =>
               Number(value) < Number(getValues('regularPrice')) ||
-              t(
-                'label.forms.addContainer.errors.discount.must',
-              ),
+              t('label.forms.addContainer.errors.discount.must'),
           })}
           disabled={isAdding || isEditing}
         />
