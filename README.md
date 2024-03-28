@@ -6,7 +6,7 @@
 
 <h3>The Snowflake web application is a reservation and container management panel developed for the employees of a winter, forest and container themed luxury hotel.</h3>
 
-👉 [PROJECT LINK](https://the-snowflake.vercel.app/login)
+👉 [PROJECT LINK](https://the-snowflake.netlify.app/login)
 
 ## Features
 
@@ -21,6 +21,7 @@
 - **Dashboard Insights:** Offers a dashboard that summarizes critical information and statistics for the past 7, 30, or 90 days, including guest activities and financial data.
 - **Sales and Stay Duration Analytics:** Features charts that depict total and additional sales, with a focus on the duration of stays as a metric.
 - **Global Settings Configuration:** Provides the ability to adjust settings for breakfast pricing, the number of nights per booking, and maximum guest allowance.
+- **Localization Support:** Supports Turkish and English, enhancing usability for hotel employees and guests by allowing interface navigation and interaction in their preferred language.
 - **Dark Mode Availability:** Includes a dark mode setting for improved visual ergonomics in low-light conditions.
 
 ## Tech Stack
