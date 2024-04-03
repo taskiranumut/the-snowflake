@@ -17,6 +17,9 @@ export function useCheckout() {
       queryClient.invalidateQueries({
         queryKey: ['bookings'],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['today-activity'],
+      });
       toast.success(
         t('message.api.bookings.updateBooking.success.checkOut', {
           id: data.id,

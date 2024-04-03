@@ -30,12 +30,15 @@ export function useCheckin() {
       queryClient.invalidateQueries({
         queryKey: ['bookings'],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['today-activity'],
+      });
       toast.success(
         t('message.api.bookings.updateBooking.success.checkIn', {
           id: data.id,
         }),
       );
-      navigate('/bookings');
+      navigate(-1);
     },
     onError: (err) => {
       toast.error(err.message);
