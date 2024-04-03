@@ -217,7 +217,6 @@
     "bookingData": {
       "nightsInContainer": "{{count}} night in Container <0>{{name}}</0>",
       "nightsInContainer_other": "{{count}} nights in Container <0>{{name}}</0>",
-      "flag": "Flag of {{country}}",
       "nationalId": "National ID",
       "observations": "Observations",
       "hasBreakfast": "Breakfast included?",
@@ -347,6 +346,7 @@
     "common": {
       "guestWithCount": "{{count}} guest",
       "guestWithCount_other": "{{count}} guests",
+      "flag": "Flag of {{country}}",
       "nights": "{{count}} night",
       "nights_other": "{{count}} nights",
       "avatarAlt": "Avatar of {{name}}"
