@@ -2,6 +2,7 @@ import { MainLogo, Navbar } from '@/components';
 import { useToggleSidebarContext, useScreenSizeContext } from '@/context';
 import { twMerge } from 'tailwind-merge';
 import { AiOutlineClose } from 'react-icons/ai';
+import { Uploader } from '@/data/Uploader';
 
 export function Sidebar() {
   const { isOpen, onClose } = useToggleSidebarContext();
@@ -27,6 +28,7 @@ export function Sidebar() {
       )}
       <MainLogo redirect mini={!isSm && !isOpen} />
       <Navbar />
+      {process.env.NODE_ENV === 'development' && isOpen && <Uploader />}
     </aside>
   );
 }

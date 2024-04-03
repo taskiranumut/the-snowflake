@@ -4,6 +4,7 @@ import {
   endOfDay,
   formatISO,
   startOfDay,
+  differenceInDays,
   type Locale,
 } from 'date-fns';
 
@@ -40,3 +41,6 @@ export const getToday = function (options: { end?: boolean } = {}) {
     return formatISO(startOfDay(today));
   }
 };
+
+export const subtractDates = (dateStr1: string, dateStr2: string) =>
+  differenceInDays(parseISO(dateStr1), parseISO(dateStr2));
