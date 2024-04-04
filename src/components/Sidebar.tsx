@@ -3,10 +3,12 @@ import { useToggleSidebarContext, useScreenSizeContext } from '@/context';
 import { twMerge } from 'tailwind-merge';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Uploader } from '@/data/Uploader';
+import { useUser } from '@/features/auth/hooks';
 
 export function Sidebar() {
   const { isOpen, onClose } = useToggleSidebarContext();
   const { isSm } = useScreenSizeContext();
+  const { isAdmin } = useUser();
 
   return (
     <aside
@@ -28,7 +30,7 @@ export function Sidebar() {
       )}
       <MainLogo redirect mini={!isSm && !isOpen} />
       <Navbar />
-      {process.env.NODE_ENV === 'development' && isOpen && <Uploader />}
+      {isAdmin && isOpen && <Uploader />}
     </aside>
   );
 }
