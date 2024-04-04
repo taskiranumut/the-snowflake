@@ -73,7 +73,7 @@
       "status": {
         "checkedIn": "Giriş yapıldı",
         "checkedOut": "Çıkış yapıldı",
-        "unconfirmed": "Onay bekle"
+        "unconfirmed": "Onay bekleyen"
       }
     },
     "dashboard": {
