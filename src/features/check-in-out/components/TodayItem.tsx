@@ -54,7 +54,12 @@ export function TodayItem({ activity }: TodayItemsProps) {
           </Link>
         )}
         {status === 'checked-in' && (
-          <CheckoutButton bookingId={id} size="sm" constantSize />
+          <CheckoutButton
+            bookingId={id}
+            size="sm"
+            constantSize
+            className="bg-sky-500 hover:bg-sky-600"
+          />
         )}
       </div>
     </li>
