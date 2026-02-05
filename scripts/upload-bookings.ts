@@ -1,8 +1,9 @@
+import 'dotenv/config';
 import { createClient } from '@supabase/supabase-js';
 import { isFuture, isPast, isToday, differenceInCalendarDays } from 'date-fns';
 
 import { bookings } from '../src/data/data-bookings';
-import { containers } from '../src/data/data-containers';
+import { containers } from './data-containers';
 
 const SUPABASE_URL = process.env.SUPABASE_URL!;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
