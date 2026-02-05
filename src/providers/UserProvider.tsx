@@ -12,7 +12,9 @@ export function UserProvider({ children }: UserProviderProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuth && !isLoading) return navigate('/login');
+    if (!isAuth && !isLoading) {
+      navigate('/login');
+    }
   }, [isAuth, isLoading, navigate]);
 
   if (isLoading)

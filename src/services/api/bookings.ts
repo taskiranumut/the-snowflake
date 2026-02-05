@@ -52,7 +52,7 @@ export async function getBooking(id: number | string): Promise<DataBooking> {
   const { data, error } = await supabase
     .from('bookings')
     .select('*, containers(*), guests(*)')
-    .eq('id', id)
+    .eq('id', Number(id))
     .single();
 
   if (error) {
@@ -69,7 +69,7 @@ export async function updateBooking({
   const { data, error } = await supabase
     .from('bookings')
     .update(updatedValues)
-    .eq('id', id)
+    .eq('id', Number(id))
     .select('*, containers(*), guests(*)')
     .single();
 
@@ -81,7 +81,10 @@ export async function updateBooking({
 }
 
 export async function deleteBooking(id: number): Promise<void> {
-  const { error } = await supabase.from('bookings').delete().eq('id', id);
+  const { error } = await supabase
+    .from('bookings')
+    .delete()
+    .eq('id', Number(id));
 
   if (error) {
     throw new Error(t('message.api.bookings.deleteBooking.error'));
