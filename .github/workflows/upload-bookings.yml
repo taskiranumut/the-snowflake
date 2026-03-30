@@ -3,7 +3,7 @@ name: Upload bookings (cron)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 3 */3 * *'
+    - cron: '20 3 * * *'
 
 jobs:
   run:
