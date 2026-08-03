@@ -6,7 +6,7 @@
 
 <h3>The Snowflake web application is a reservation and container management panel developed for the employees of a winter, forest and container themed luxury hotel.</h3>
 
-👉 [PROJECT LINK](https://the-snowflake.vercel.app/login)
+👉 [PROJECT DEMO](https://the-snowflake.vercel.app/login)
 
 ## Features
 
